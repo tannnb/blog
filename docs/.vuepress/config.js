@@ -1,6 +1,6 @@
 module.exports = {
     base: '/blog/',
-    dest: './dist',
+    dest: '/',
     title: 'TanBing的开发笔记',
     description: 'TanBing的开发笔记',
     locales: {
