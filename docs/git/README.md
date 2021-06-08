@@ -315,3 +315,23 @@ git stash pop
 ```
 
 [参考地址：阮一峰 -- 常用 Git 命令清单](https://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
+
+## GIT 拉取远程分支到本地
+```
+1. git init
+
+# 与origin master建立连接
+2. git remote add origin git@github.com:<userName>/***.git
+
+# 拉取远程分支到本地(dev为远程)
+3. git fetch origin dev
+
+# 创建本地分支并切换到该分支
+# dev:本地分支名称  
+# origin/dev:远程分支名称
+4. git checkout -b dev origin/dev
+
+# 拉取分支内容
+5 git pull origin dev
+```
+

@@ -1,6 +1,5 @@
 module.exports = {
     base: '/blog/',
-    dest: '/',
     title: 'TanBing的开发笔记',
     description: 'TanBing的开发笔记',
     locales: {
@@ -25,6 +24,10 @@ module.exports = {
         repo: 'https://github.com/tannnb',
         repoLabel: 'Github',
         nav: [
+            {
+                text: '前端学习',
+                link: '/interview/'
+            },
             {
                 text: '学习记录',
                 items: [
@@ -81,10 +84,9 @@ module.exports = {
             },
             {text: '播放器', link: 'http://music.tannnb.com/'},
         ],
-        lastUpdated: true,
+        lastUpdated: '最后更新时间',
         editLinks: false,
         editLinkText: '编辑此页',
-        // sidebar: 'false',
         sidebar: 'auto',
         searchMaxSuggestions: 10
     },
