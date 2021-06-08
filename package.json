@@ -3,6 +3,7 @@
     "vuepress": "^1.0.1"
   },
   "scripts": {
+    "dev": "vuepress dev docs",
     "docs:dev": "vuepress dev docs --temp .temp",
     "docs:build": "vuepress build docs",
     "deploy": "bash deploy.sh"

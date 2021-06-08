@@ -1,12 +1,12 @@
 module.exports = {
     base: '/blog/',
-    title: 'TanBing的开发笔记',
-    description: 'TanBing的开发笔记',
+    title: 'TanBing的学习笔记',
+    description: 'TanBing的学习笔记',
     locales: {
         '/': {
             lang: 'zh-CN',
-            title: 'TanBing的开发笔记',
-            description: 'TanBing的开发笔记'
+            title: 'TanBing的学习笔记',
+            description: 'TanBing的学习笔记'
         }
     },
     head: [
@@ -46,6 +46,10 @@ module.exports = {
                             {
                                 text: '你不知道的JavaScript(上)',
                                 link: '/javascript/es6/'
+                            },
+                            {
+                                text: 'JavaScript数据结构和算法',
+                                link: '/javascript/algorithm/'
                             },
                             {
                                 text: '常用方法',
