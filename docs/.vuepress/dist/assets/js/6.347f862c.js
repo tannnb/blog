@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[6],{262:function(n,e,t){"use strict";t.r(e);var o={name:"cus-border",methods:{handle:function(){console.log("待续...")}}},c=t(2),s=Object(c.a)(o,function(){var n=this.$createElement,e=this._self._c||n;return e("div",[e("button",{on:{click:this.handle}},[this._v("待续...")])])},[],!1,null,"1f0388c6",null);e.default=s.exports}}]);
