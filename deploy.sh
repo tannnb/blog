@@ -9,7 +9,7 @@ cd docs/.vuepress/dist
 
 git init
 git add -A
-git commit -m 'deploy：更新文章'
+git commit -m 'deploy'
 
 git push -f https://github.com/tannnb/blog.git master:gh-pages
 

@@ -2,7 +2,6 @@
 sidebar: auto
 ---
 
-
 ## 插入排序
 ```js
 // 插入排序
@@ -20,9 +19,8 @@ function insertionSort(arr) {
     }
     return arr
 }
-```
 
-```js
+// 合并条件判断
 // j进入循环必须满足2个条件: j>0 ,且要比前一位元素要小
 function insertionSort(arr) {
     for (let i = 1; i < arr.length; i++) {
@@ -33,8 +31,8 @@ function insertionSort(arr) {
         }
     }
 }
-```
 
+```
 
 
 ## 选择排序
