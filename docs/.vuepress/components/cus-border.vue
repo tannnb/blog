@@ -9,8 +9,7 @@ export default {
   name: "cus-border",
   methods: {
     handle() {
-      console.log('待续...')
-    }
+    },
   }
 }
 </script>

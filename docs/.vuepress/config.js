@@ -1,12 +1,12 @@
 module.exports = {
     base: '/blog/',
-    title: 'TanBing的学习笔记',
-    description: 'TanBing的学习笔记',
+    title: '前端学习笔记',
+    description: '前端学习笔记',
     locales: {
         '/': {
             lang: 'zh-CN',
-            title: 'TanBing的学习笔记',
-            description: 'TanBing的学习笔记'
+            title: '前端学习笔记',
+            description: '前端学习笔记'
         }
     },
     head: [
