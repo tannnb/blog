@@ -4,9 +4,8 @@ sidebar: auto
 
 ## 插入排序
 ```js
-// 插入排序
-// 第一个默认已经排好, 从下标为1开始
-// 依次与前面进行对比, 如 arr[j - 1] < arr[j] 刚好为排序顺序
+// 默认第一个元素已经排序好，第一层循环选中从1开始
+// 第二层循环让指定的元素 arr[j] 与它之前一位的元素 arr[j-1] 相比, 如 arr[j] < arr[j-1]则调换位置
 function insertionSort(arr) {
     for (let i = 1; i < arr.length; i++) {
         for (let j = i; j > 0; j--) {
@@ -38,7 +37,10 @@ function insertionSort(arr) {
 ## 选择排序
 ```js
 // 选择排序
-// 从一组数组中,选择最小的值将 arr[i] 与arr[i+1]... 依次进行对比,若小于 arr[i] ,则记录当前j值并赋值 minIndex
+// 第一层循环指定从下标为0开始指定元素: arr[i]
+// 第二层循环从i+1开始，让第一层循环中的元素arr[i]分别于第二层比较,小于arr[i]则进行替换
+// minIndex保存最小值的索引
+
 function selectionSort(arr) {
     let minIndex
     for (let i = 0; i < arr.length; i++) {
