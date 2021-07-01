@@ -1,18 +1,12 @@
----
-sidebar: auto
----
+# 基础知识
 
-# 前端学习笔记
-
-## 前端基础知识
-
-### 原始类型
+## 原始类型
 
 ::: tip
 javascript原始类型有6中,原始类型既只保存原始值，没有函数可以调用
 :::
 
-#### 六种原始类型
+## 六种原始类型
 
 * string
 * number
@@ -28,14 +22,14 @@ javascript原始类型有6中,原始类型既只保存原始值，没有函数�
 实例化一个对象，而这个对象上是有`toString()`方法的
 :::
 
-#### null到底是什么类型
+## null到底是什么类型
 
 * `null`不是一个空引用, 而是一个原始值; 它只是期望此处将引用一个对象, 注意是"期望".
 * `typeof null`结果是`object`, 这是个历史遗留bug.
 * 在ECMA6中, 曾经有提案为历史平反, 将`type null`的值纠正为`null`, 但最后提案被拒了.
 * 理由是历史遗留代码太多, 不想得罪人, 不如继续将错就错当和事老
 
-### 对象类型
+## 对象类型
 ::: tip
 在javascript中, 除了原始类型，其他的都是对象类型，对象类型储存的是地址，而原始类型储存的是值.
 :::
@@ -48,7 +42,7 @@ console.log(b) // 输出:1
 ```
 以上代码中,创建一个对象类型a(数组),将a的栈储存地址赋值给了变量b，此时修改a的值，打印出b的值也同步发生了改变,因为他们在内存中使用的同一个地址，改变其中任意变量的值，都会影响其他变量的值
 
-#### 对象当做函数参数
+## 对象当做函数参数
 
 ```js
 function Person(person) {
@@ -75,9 +69,9 @@ console.log(user.age)  //输出: 18
 2. 在`Person`函数内部，改变`person`的属性值，会同步反应到对象`lilei`上,此时`lilei.age`属性发生改变，既值为24
 3. 在`Person`函数内部，将`person`重新分配一个新的内存地址，此时该`person`和形参`person`没有任何关联了，并返回这个最新`person`对象
 
-### typeof 和 instanceof
+## typeof 和 instanceof
 
-#### typeof
+## typeof
 
 * 对于基本类型，除 `null` 以外，均可以返回正确的结果; 对于 `null` 则返回 object 类型
 * 对于引用类型，除 `function` 以外，一律返回 `object` 类型; 对于 `function` 返回 `function` 类型
@@ -95,7 +89,7 @@ typeof new Array();     // 输出: object
 typeof new Function();  // 输出: function
 ```
 
-#### instanceof
+## instanceof
 
 * `instanceof` 是用来判断 `A` 是否为 `B` 的实例，表达式为：`A instanceof B`，如果 A 是 B 的实例，则返回 `true`,否则返回 `false`。
 
@@ -131,7 +125,7 @@ new Date() instanceof Date;//true
 instanceof 只能用来判断两个对象是否属于实例关系， 而不能判断一个对象实例具体属于哪种类型
 :::
 
-### == 和 ===
+## == 和 ===
 
 ::: tip
 `===` 严格相等:左右两边不仅值要相等，类型也要相等，例如`'1'===1`的结果是`false`，因为一边是`string`，另一边是`number`。
@@ -146,7 +140,7 @@ instanceof 只能用来判断两个对象是否属于实例关系， 而不能�
 * 判断其中一方是否是`Boolean`，是的话就把`Boolean`转换成`Number`，再进行比较
 * 如果其中一方为`Object`，且另一方为`String`、`Number`或者`Symbol`，会将`Object`转换成原始类型后，再进行比较
 
-#### 对象转原始类型
+## 对象转原始类型
 
 对象转原始类型，会调用内置的[ToPrimitive]函数，对于该函数而言，其逻辑如下：
 
@@ -191,13 +185,13 @@ console.log(a == 1 && a == 2 && a == 3) // 输出:true
 5. `true && true && true`, 所以打印`true`
 
 
-### new操作中发生了什么
+## new操作中发生了什么
 * 创建一个空对象
 * 将构造函数的作用域赋给新对象（因此this就指向了这个新对象）
 * 执行构造函数中的代码(为这个新对象添加属性)
 * 最后返回 this 指向的新对象，也就是实例(如果没有手动返回其他的对象)
 
-### this指向解析
+## this指向解析
 1. 独立函数调用，例如`getUserInfo()`，此时`this`指向全局对象`window`
 2. 对象调用，例如`stu.getStudentName()`，此时`this`指向调用的对象`stu`
 3. `call()`、`apply()`和`bind()`改变上下文的方法，`this`指向取决于这些方法的第一个参数，当第一个参数为`null`时，`this`指向全局对象`window`
@@ -229,4 +223,5 @@ lilei.getName.apply(hanmeimei)  // 输出: 韩梅梅
 let p = new Student('王富贵')
 p.getName()   // 输出: 王富贵
 ```
+
 

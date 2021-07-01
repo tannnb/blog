@@ -1,3 +1,5 @@
+const nav = require('./utils/nav.js')
+const { frameworkSidebar, interviewSideBar } = nav
 module.exports = {
     base: '/blog/',
     title: '前端学习笔记',
@@ -26,7 +28,7 @@ module.exports = {
         nav: [
             {
                 text: '前端学习',
-                link: '/interview/'
+                link: '/interview/base/'
             },
             {
                 text: '学习记录',
@@ -86,12 +88,20 @@ module.exports = {
                     }
                 ]
             },
+            {
+                text: '架构学习',
+                link: '/framework/introduction/'
+            },
             {text: '播放器', link: 'http://music.tannnb.com/'},
         ],
         lastUpdated: '最后更新时间',
         editLinks: false,
         editLinkText: '编辑此页',
         sidebar: 'auto',
+        sidebar: {
+            '/interview/':interviewSideBar,
+            '/framework/': frameworkSidebar
+        },
         searchMaxSuggestions: 10
     },
     configureWebpack: {

@@ -4,7 +4,7 @@ lang: zh-CN
 heroText: Learning notes
 heroImage: /logo.jpeg
 actionText: 开始 →
-actionLink: /interview/
+actionLink: /interview/base/
 tagline: 学习笔记
 features:
 - title: A Blog
