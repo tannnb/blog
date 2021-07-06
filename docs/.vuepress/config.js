@@ -92,7 +92,7 @@ module.exports = {
                 text: '架构学习',
                 link: '/framework/introduction/'
             },
-            {text: '播放器', link: 'http://music.tannnb.com/'},
+            {text: '播放器', link: 'http://www.tannnb.com/pc/'},
         ],
         lastUpdated: '最后更新时间',
         editLinks: false,
