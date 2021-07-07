@@ -2,8 +2,7 @@
 
 ## 原始类型
 
-::: tip
-javascript原始类型有6中,原始类型既只保存原始值，没有函数可以调用
+::: tip javascript原始类型有6中,原始类型既只保存原始值，没有函数可以调用
 :::
 
 ## 六种原始类型
@@ -15,8 +14,7 @@ javascript原始类型有6中,原始类型既只保存原始值，没有函数�
 * undefined
 * symbol
 
-::: warning
-为什么说原始类型没有函数可以调用,但是`'1'.toString()`又可以在浏览器中正确执行?
+::: warning 为什么说原始类型没有函数可以调用,但是`'1'.toString()`又可以在浏览器中正确执行?
 
 因为`'1'.toString()`中字符串`'1'`在此时会被封装成对应字符串对象，相当于`new String('1').toString()`,因为`new String('1')`
 实例化一个对象，而这个对象上是有`toString()`方法的
@@ -30,8 +28,8 @@ javascript原始类型有6中,原始类型既只保存原始值，没有函数�
 * 理由是历史遗留代码太多, 不想得罪人, 不如继续将错就错当和事老
 
 ## 对象类型
-::: tip
-在javascript中, 除了原始类型，其他的都是对象类型，对象类型储存的是地址，而原始类型储存的是值.
+
+::: tip 在javascript中, 除了原始类型，其他的都是对象类型，对象类型储存的是地址，而原始类型储存的是值.
 :::
 
 ```js
@@ -40,6 +38,7 @@ let b = a
 a.push(1)
 console.log(b) // 输出:1
 ```
+
 以上代码中,创建一个对象类型a(数组),将a的栈储存地址赋值给了变量b，此时修改a的值，打印出b的值也同步发生了改变,因为他们在内存中使用的同一个地址，改变其中任意变量的值，都会影响其他变量的值
 
 ## 对象当做函数参数
@@ -121,8 +120,7 @@ _instanceof(p1, Student) // 输出：false
 new Date() instanceof Date;//true
 ```
 
-::: tip
-instanceof 只能用来判断两个对象是否属于实例关系， 而不能判断一个对象实例具体属于哪种类型
+::: tip instanceof 只能用来判断两个对象是否属于实例关系， 而不能判断一个对象实例具体属于哪种类型
 :::
 
 ## == 和 ===
@@ -177,21 +175,24 @@ let a = {
 }
 console.log(a == 1 && a == 2 && a == 3) // 输出:true
 ```
+
 **代码分析**：
+
 1. 重写对象`a`的`valueOf()`方法，使`value`属性每次调用时自增
 2. 当判断`a==1`时，第一次调用`valueOf()`方法，此时`value`等于1，判断`1==1`
 3. 判断`a==2`时，第二次调用`valueOf()`方法，此时`value`等于2，判断`2==2`
 4. 判断`a==3`时，第三次调用`valueOf()`方法，此时`value`等于3，判断`3==3`
 5. `true && true && true`, 所以打印`true`
 
-
 ## new操作中发生了什么
+
 * 创建一个空对象
 * 将构造函数的作用域赋给新对象（因此this就指向了这个新对象）
 * 执行构造函数中的代码(为这个新对象添加属性)
 * 最后返回 this 指向的新对象，也就是实例(如果没有手动返回其他的对象)
 
 ## this指向解析
+
 1. 独立函数调用，例如`getUserInfo()`，此时`this`指向全局对象`window`
 2. 对象调用，例如`stu.getStudentName()`，此时`this`指向调用的对象`stu`
 3. `call()`、`apply()`和`bind()`改变上下文的方法，`this`指向取决于这些方法的第一个参数，当第一个参数为`null`时，`this`指向全局对象`window`
@@ -210,11 +211,11 @@ Student.prototype.getName = function () {
     return this.name
 }
 let lilei = {
-    name:'李雷',
-    getName:getName
+    name: '李雷',
+    getName: getName
 }
 let hanmeimei = {
-    name:'韩梅梅'
+    name: '韩梅梅'
 }
 
 getName()        // 输出: 未命名
@@ -224,4 +225,229 @@ let p = new Student('王富贵')
 p.getName()   // 输出: 王富贵
 ```
 
+## 闭包
 
+当一个函数能够记住并访问它所在的词法作用域的时候，就产生了闭包，即使函数是在词法作用域之外执行
+
+* 函数中返回函数
+* 将函数作为参数传递
+* 回调函数
+* 非典型闭包IIFE(立即执行函数表达式)
+
+```js
+// 函数中返回函数
+var name = '李雷'
+
+function getName() {
+    var name = '韩梅梅'
+    return function () {
+        console.log(name)
+    }
+}
+
+var currentName = getName()
+currentName() // 韩梅梅
+```
+
+```js
+//将函数作为参数传递: 无论通过何种手段将内部的函数传递到词法作用域之外(外层函数外部)，它都会对原始作用域进行引用，无论在何处执行这个函数都会产生闭包
+var name = '李雷'
+
+function person() {
+    var name = '韩梅梅'
+
+    function print() {
+        console.log(name)
+    }
+
+    getName(print)
+}
+
+function getName(fn) {
+    fn()
+}
+
+person() // 韩梅梅
+```
+
+```js
+// 回调函数:定时器，事件监听，ajax请求，跨域窗口通信或者一部中，只要使用回调函数，实际都是在使用闭包
+setTimeout(function () {
+    console.log('setTimeout')
+}, 1000)
+
+document.addEventListener('click', function (event) {
+    console.log(event)
+})
+
+// postMessage:在子窗口中监听父窗口messaghe
+childWindow.addEventListener('message', function (event) {
+    console.log(event.origin) // 父窗口url
+    console.log(event.source) // 父窗口对象
+    console.log(event.data)   // 父窗口传递过来的数据
+})
+```
+
+```js
+//IIFE：立即执行函数表达式，创建了一个闭包。
+var name = '李雷';
+(function person() {
+    console.log(name)
+})()
+// ()()之前必须加 `;` 防止自执行函数前面有其他代码导致JS解析器认为是一个整体
+```
+
+## 原型，原型链
+
+参考如下链接：
+[JavaScript深入之从原型到原型链](https://github.com/mqyqingfeng/blog/issues/2)
+
+## 浅拷贝、深拷贝
+
+* 浅拷贝
+* 1.利用Object.assign()
+* 2.利用...扩展运算符
+
+```js
+var person = {
+    name: '李雷',
+    age: 20,
+    school: {
+        name: '希望小学'
+    }
+}
+var lilei = Object.assign({}, person)
+lilei.age = 21
+lilei.school.name = '新希望小学'
+console.log(person) // school.name:'新希望小学'
+console.log(lilei)  // school.name:'新希望小学'，age：21
+
+// -------分割线---------
+
+var person = {name: '李雷', age: 20}
+var newObj = {...person}
+```
+
+* 深拷贝
+* 1.使用JSON.parse()和JSON.stringify()两个函数
+* 2.实现自己的简易深拷贝方法
+* 3.lodash第三方库实现深拷贝
+
+```js
+// 使用JSON.parse()和JSON.stringify()
+// 会忽略属性值为undefined,Symbol的属性，不会序列化函数(忽略函数)
+var person = {
+    name: '李雷',
+    age: 18,
+    sex: undefined,
+    isSymbol: Symbol(),
+    getName() {
+        console.log(this.name)
+    }
+}
+var newObj = JSON.parse(JSON.stringify(person));
+
+
+// 简易深拷贝
+function deepClone(obj) {
+    function isObject(arg) {
+        return (typeof arg === 'object' || typeof arg === 'function') && arg !== null
+    }
+
+    if (!isObject(obj)) {
+        throw new Error('is not the object')
+    }
+    var isArray = Array.isArray(obj)
+    var newObj = isArray ? [...obj] : {...obj}
+    Reflect.ownKeys(newObj).forEach(key => {
+        newObj[key] = isObject(newObj[key]) ? deepClone(newObj[key]) : newObj[key];
+    })
+    return newObj;
+}
+
+var person = {
+    name: '李雷',
+    age: 18,
+    job: {
+        number: 1,
+    },
+    sex: undefined,
+    isSymbol: Symbol(),
+    getName() {
+        console.log(this.name)
+    }
+}
+
+var p1 = deepClone(person)
+person.job.number = 2
+console.log(person.job) // {number:2}
+console.log(p1.job)     // {number:1}
+
+
+// -------分割线---------
+// lodash第三方库实现深拷贝
+import _ from 'lodash'
+
+_.cloneDeep(person)
+
+```
+
+## 继承
+
+* 原型链实现继承
+* 借用构造函数实现继承
+* 组合继承
+* 寄生组合继承
+* 类继承
+
+## 手写getQueryString
+
+```js
+function getQueryString(url) {
+    let index = url.indexOf('?')
+    if (!url || index === -1) {
+        return undefined
+    }
+    let str = ''
+    let urlArr = url.substring(index + 1).split('&')
+    let result = {}
+    for (let i = 0; i < urlArr.length; i++) {
+        let item = urlArr[i].split('=')
+        result[item[0]] = item[1]
+    }
+    return result
+}
+
+let url = 'http://www.baidu.com?id=1&query=百度搜索&callback=callbackJSON'
+const {id, query, callback} = getQueryString(url)
+```
+
+## 手写call,apply
+
+```js
+// call
+Function.prototype.myCall = function (context) {
+    context = context ? Object(context) : window;
+    console.fn = this
+
+    // 执行函数
+    let args = [...arguments].slice(1)
+    let result = context.fn(...args)
+    // 删除函数
+    delete context.fn
+    return result
+}
+// apply
+Function.prototype.myApply = function (context, array) {
+    context = context ? Object(context) : window;
+    console.fn = this
+
+    let result;
+    if (!array) {
+        result = context.fn()
+    } else {
+        result = context.fn(...arr)
+    }
+    return result
+}
+```

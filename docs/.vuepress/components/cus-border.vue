@@ -7,8 +7,14 @@
 <script>
 export default {
   name: "cus-border",
+  data() {
+    return {
+      state:false
+    }
+  },
   methods: {
     handle() {
+
     },
   }
 }
