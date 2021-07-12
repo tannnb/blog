@@ -441,7 +441,7 @@ Function.prototype.myCall = function (context) {
 Function.prototype.myApply = function (context, array) {
     context = context ? Object(context) : window;
     console.fn = this
-
+    
     let result;
     if (!array) {
         result = context.fn()

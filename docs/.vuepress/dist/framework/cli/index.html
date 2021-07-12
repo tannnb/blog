@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>脚手架介绍 | 前端学习笔记</title>
+    <title>lerna 基本操作 | 前端学习笔记</title>
     <meta name="description" content="">
     <link rel="icon" href="/blog/favicon.ico">
     <link rel="manifest" href="/blog/manifest.json">
@@ -15,7 +15,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="msapplication-TileImage" content="/favicon.ico">
     <meta name="msapplication-TileColor" content="#000000">
-    <link rel="preload" href="/blog/assets/css/0.styles.48a0ee12.css" as="style"><link rel="preload" href="/blog/assets/js/app.206bde13.js" as="script"><link rel="preload" href="/blog/assets/js/2.60d6148c.js" as="script"><link rel="preload" href="/blog/assets/js/3.b2029ee2.js" as="script"><link rel="preload" href="/blog/assets/js/11.a89f6b46.js" as="script"><link rel="preload" href="/blog/assets/js/4.0e87130d.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.4037525d.js"><link rel="prefetch" href="/blog/assets/js/12.c34c6238.js"><link rel="prefetch" href="/blog/assets/js/13.98668401.js"><link rel="prefetch" href="/blog/assets/js/14.04fa0819.js"><link rel="prefetch" href="/blog/assets/js/15.ca49ddc3.js"><link rel="prefetch" href="/blog/assets/js/16.bbad6876.js"><link rel="prefetch" href="/blog/assets/js/17.6e0c4a25.js"><link rel="prefetch" href="/blog/assets/js/18.1ca3bfd1.js"><link rel="prefetch" href="/blog/assets/js/19.ce0a932e.js"><link rel="prefetch" href="/blog/assets/js/20.1e70316b.js"><link rel="prefetch" href="/blog/assets/js/21.a0e40cdd.js"><link rel="prefetch" href="/blog/assets/js/22.5921818e.js"><link rel="prefetch" href="/blog/assets/js/23.e4aba3e4.js"><link rel="prefetch" href="/blog/assets/js/24.f12644e5.js"><link rel="prefetch" href="/blog/assets/js/25.2752677f.js"><link rel="prefetch" href="/blog/assets/js/26.d5c3d8f4.js"><link rel="prefetch" href="/blog/assets/js/5.427b5562.js"><link rel="prefetch" href="/blog/assets/js/6.026ec6bc.js"><link rel="prefetch" href="/blog/assets/js/7.f5013773.js"><link rel="prefetch" href="/blog/assets/js/8.bebb982f.js"><link rel="prefetch" href="/blog/assets/js/9.5ca446bc.js">
+    <link rel="preload" href="/blog/assets/css/0.styles.48a0ee12.css" as="style"><link rel="preload" href="/blog/assets/js/app.ff01a3f2.js" as="script"><link rel="preload" href="/blog/assets/js/2.60d6148c.js" as="script"><link rel="preload" href="/blog/assets/js/3.b2029ee2.js" as="script"><link rel="preload" href="/blog/assets/js/11.bb7397d6.js" as="script"><link rel="preload" href="/blog/assets/js/4.0e87130d.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.4037525d.js"><link rel="prefetch" href="/blog/assets/js/12.c34c6238.js"><link rel="prefetch" href="/blog/assets/js/13.34d9b51c.js"><link rel="prefetch" href="/blog/assets/js/14.a04a8ea7.js"><link rel="prefetch" href="/blog/assets/js/15.e336f621.js"><link rel="prefetch" href="/blog/assets/js/16.bbad6876.js"><link rel="prefetch" href="/blog/assets/js/17.6e0c4a25.js"><link rel="prefetch" href="/blog/assets/js/18.776224ec.js"><link rel="prefetch" href="/blog/assets/js/19.a905c1a4.js"><link rel="prefetch" href="/blog/assets/js/20.feff8a2d.js"><link rel="prefetch" href="/blog/assets/js/21.60a0d7fb.js"><link rel="prefetch" href="/blog/assets/js/22.7a0bf4d2.js"><link rel="prefetch" href="/blog/assets/js/23.6ef3f665.js"><link rel="prefetch" href="/blog/assets/js/24.91685f2f.js"><link rel="prefetch" href="/blog/assets/js/25.6bf410b1.js"><link rel="prefetch" href="/blog/assets/js/26.d5c3d8f4.js"><link rel="prefetch" href="/blog/assets/js/5.427b5562.js"><link rel="prefetch" href="/blog/assets/js/6.026ec6bc.js"><link rel="prefetch" href="/blog/assets/js/7.f5013773.js"><link rel="prefetch" href="/blog/assets/js/8.bebb982f.js"><link rel="prefetch" href="/blog/assets/js/9.5ca446bc.js">
     <link rel="stylesheet" href="/blog/assets/css/0.styles.48a0ee12.css">
 </head>
 <body>
@@ -83,8 +83,42 @@
   播放器
   <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <a href="https://github.com/tannnb" target="_blank" rel="noopener noreferrer" class="repo-link">
     Github
-    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>介绍</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>脚手架设计</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/framework/cli/" aria-current="page" class="active sidebar-link">脚手架介绍</a></li><li><a href="/blog/framework/cli/vue.html" class="sidebar-link">Vue-Cli</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="脚手架介绍"><a href="#脚手架介绍" class="header-anchor">#</a> 脚手架介绍</h1> <p>脚手架本质是一个操作系统的客户端，他通过命令执行</p> <div class="language-shell extra-class"><pre class="language-shell"><code>vue create vue-app
-</code></pre></div><p>Cli基础知识</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">最后更新时间:</span> <span class="time">2021/7/1 下午12:00:08</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>介绍</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>脚手架设计</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/framework/cli/" aria-current="page" class="active sidebar-link">lerna 基本操作</a></li><li><a href="/blog/framework/cli/vue.html" class="sidebar-link">Vue-Cli</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="lerna-基本操作"><a href="#lerna-基本操作" class="header-anchor">#</a> lerna 基本操作</h1> <h4 id="脚手架项目初始化"><a href="#脚手架项目初始化" class="header-anchor">#</a> 脚手架项目初始化</h4> <ul><li>1.初始化npm项目</li> <li>2.安装lerna</li> <li>3.lerna init初始化项目</li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment"># 创建项目目录project-cli,安装lerna依赖</span>
+
+<span class="token comment"># 初始化lerna</span>
+lerna init
+
+<span class="token comment"># 创建包项目(例如:core)</span>
+lerna create @project-cli/core
+</code></pre></div><h4 id="创建package"><a href="#创建package" class="header-anchor">#</a> 创建package</h4> <ul><li>1.lerna create 创建Package</li> <li>2.lerna add 安装依赖</li> <li>3.lerna link 链接依赖</li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment"># 安装依赖：比如axios,会给packages下所有包都安装axios依赖</span>
+lerna <span class="token function">add</span> axios
+<span class="token comment"># 给指定包安装依赖：比如给指定core包</span>
+lerna <span class="token function">add</span> axios packages/core/
+
+<span class="token comment"># 包软链接</span>
+<span class="token comment"># 例如:core下引用utils; 在core package.json中配置utils依赖,然后进行link,此时core node_modules中会出现该包</span>
+<span class="token comment"># 该软链接指向本地开发的包</span>
+lerna <span class="token function">link</span>
+</code></pre></div><h4 id="脚手架开发和测试"><a href="#脚手架开发和测试" class="header-anchor">#</a> 脚手架开发和测试</h4> <ul><li>1.lerna exec 执行shell脚本</li> <li>2.lerna run 执行npm命令</li> <li>3.lerna clean 清空依赖</li> <li>4.lerna bootstrap 重装依赖</li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment"># 清除所有依赖,需手动删除dependencies中的依赖指定版本</span>
+lerna clean
+
+<span class="token comment"># 安装(重装)所有依赖</span>
+lerna bootstrap
+
+<span class="token comment"># 执行删除脚本; 会给所有包都执行rm命令</span>
+lerna <span class="token builtin class-name">exec</span> -- <span class="token function">rm</span> -rf node_modeules/
+
+<span class="token comment"># 删除指定包下的文件: --scope @project-cli/core </span>
+lerna <span class="token builtin class-name">exec</span> --scope @project-cli/core -- <span class="token function">rm</span> -rf node_modeules
+
+<span class="token comment"># 执行所有package.json下test命令</span>
+lerna run <span class="token builtin class-name">test</span>
+
+<span class="token comment"># 执行指定包下命令</span>
+lerna run --scope @project-cli/core <span class="token builtin class-name">test</span>
+</code></pre></div><h4 id="脚手架发布上线"><a href="#脚手架发布上线" class="header-anchor">#</a> 脚手架发布上线</h4> <ul><li>1.lerna version</li> <li>2.lerna changed 查看上版本以来的所有变更</li> <li>3.lerna diff 查看diff</li> <li>4.lerna publish 项目发布</li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment"># 需要先提交到github或Gitee上然后再进行lerna publish</span>
+<span class="token comment"># 确保package.json中的version与仓库中的tag/分支不能相同</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">最后更新时间:</span> <span class="time">2021/7/9 下午11:25:59</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
       ←
       <a href="/blog/framework/introduction/" class="prev">
         脚手架介绍
@@ -93,6 +127,6 @@
       </a>
       →
     </span></p></div> </main></div><div class="global-ui"><!----><!----></div></div>
-<script src="/blog/assets/js/app.206bde13.js" defer></script><script src="/blog/assets/js/2.60d6148c.js" defer></script><script src="/blog/assets/js/3.b2029ee2.js" defer></script><script src="/blog/assets/js/11.a89f6b46.js" defer></script><script src="/blog/assets/js/4.0e87130d.js" defer></script>
+<script src="/blog/assets/js/app.ff01a3f2.js" defer></script><script src="/blog/assets/js/2.60d6148c.js" defer></script><script src="/blog/assets/js/3.b2029ee2.js" defer></script><script src="/blog/assets/js/11.bb7397d6.js" defer></script><script src="/blog/assets/js/4.0e87130d.js" defer></script>
 </body>
 </html>

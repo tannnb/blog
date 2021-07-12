@@ -7,8 +7,8 @@ vue create vue-app
 ```
 主要由3个命令组成：
 * 主命令:`vue`
-* command:`create` 
-* command的参数param: `vue-app` 
+* command:`create`
+* command的参数param: `vue-app`
 
 ::: tip
 表示创建一个vue项目，项目名称位vue-app, 如果当前目录已经有文件了，我们需要覆盖当前目录下的文件，强制进行安装vue项目，可以使用--force参数
@@ -69,4 +69,3 @@ rm -rf node_modules
 
 npm install
 ```
-

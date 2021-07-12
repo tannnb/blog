@@ -56,8 +56,14 @@ Email: (this IS public) your email
 #查看当前使用的用户
 npm whoami
 
-npm登录
+npm 登录
 npm login
+
+npm 发布
+npm publish
+
+npm 撤销包
+npm unpublish 包名 --force
 ```
 
 ## 脚本命令相关
