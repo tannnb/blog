@@ -2,7 +2,8 @@
 
 ## 原始类型
 
-::: tip javascript原始类型有6中,原始类型既只保存原始值，没有函数可以调用
+::: tip 
+javascript原始类型有6中,原始类型既只保存原始值，没有函数可以调用
 :::
 
 ## 六种原始类型
@@ -14,7 +15,8 @@
 * undefined
 * symbol
 
-::: warning 为什么说原始类型没有函数可以调用,但是`'1'.toString()`又可以在浏览器中正确执行?
+::: warning
+为什么说原始类型没有函数可以调用,但是`'1'.toString()`又可以在浏览器中正确执行?
 
 因为`'1'.toString()`中字符串`'1'`在此时会被封装成对应字符串对象，相当于`new String('1').toString()`,因为`new String('1')`
 实例化一个对象，而这个对象上是有`toString()`方法的
@@ -29,7 +31,8 @@
 
 ## 对象类型
 
-::: tip 在javascript中, 除了原始类型，其他的都是对象类型，对象类型储存的是地址，而原始类型储存的是值.
+::: tip
+在javascript中, 除了原始类型，其他的都是对象类型，对象类型储存的是地址，而原始类型储存的是值.
 :::
 
 ```js
@@ -63,7 +66,6 @@ console.log(user.age)  //输出: 18
 ```
 
 **代码分析**
-
 1. 在`Person`函数中，`person`传递的是对象`lilei`的指针(指向地址)
 2. 在`Person`函数内部，改变`person`的属性值，会同步反应到对象`lilei`上,此时`lilei.age`属性发生改变，既值为24
 3. 在`Person`函数内部，将`person`重新分配一个新的内存地址，此时该`person`和形参`person`没有任何关联了，并返回这个最新`person`对象
@@ -114,13 +116,14 @@ let p1 = new Person()
 _instanceof(p1, Person)  // 输出：true
 _instanceof(p1, Student) // 输出：false
 
-    // ----分割线----
-    ([]) instanceof Array; //true
+// ----分割线----
+([]) instanceof Array; //true
 ({}) instanceof Object;//true
 new Date() instanceof Date;//true
 ```
 
-::: tip instanceof 只能用来判断两个对象是否属于实例关系， 而不能判断一个对象实例具体属于哪种类型
+::: tip 
+instanceof 只能用来判断两个对象是否属于实例关系， 而不能判断一个对象实例具体属于哪种类型
 :::
 
 ## == 和 ===
@@ -400,6 +403,136 @@ _.cloneDeep(person)
 * 寄生组合继承
 * 类继承
 
+```js
+// 原型链继承: 重写子类的原型,并将它指向父类; 这种方式创建出来的实例即是子类的实例,又是父类的实例。
+// 1.不能向父类构造函数传递参数。
+// 2.父类上的引用类型属性会被所有实例共享，只要其中一个实例改变，会影响其他实例的值
+function Animal() {
+    this.colors = ['red','yellow'] 
+}
+function Dog (name){
+    this.name = name
+}
+Dog.prototype = new Animal()
+
+let dog1 = new Dog('旺财')
+let dog2 = new Dog('小强')
+dog2.colors.push('blue')
+
+console.log(dog1) // ['red','yellow','blue'] 
+console.log(dog2) // ['red','yellow','blue'] 
+
+console.log(dog1 instanceof Dog)       // true
+console.log(dog2 instanceof Animal)    // true
+```
+```js
+// 构造函数实现继承:借用构造函数实现继承，通过在子类中使用`call`方法,实现父类构造函数并向父类构造函数传参
+// 1.无法继承父类原型对象上的属性和方法
+function Animal(name) {
+    this.name = name
+    this.colors = ['red','yellow']
+}
+Animal.prototype.eat = function () {
+    console.log('名称:' + this.name, '行为:eat')
+}
+function Dog(name) {
+    Animal.call(this,name)
+}
+let dog1 = new Dog('旺财') // Dog{name: "旺财", colors: Array(2)}
+let dog2 = new Dog('小强')
+
+dog2.colors.push('blue')
+
+console.log(dog1.colors); // ["red", "yellow"]
+console.log(dog2.colors); // ["red", "yellow", "blue"]
+
+
+console.log(dog1 instanceof Dog);    // true
+console.log(dog2 instanceof Animal); // false
+
+dog1.eat(); // error
+```
+```js
+// 组合继承: 组合原型链继承和借用构造函数继承两种方法。
+// 父类构造函数会被调用多次。
+function Animal(name) {
+    this.name = name
+    this.colors = ['red','yellow']
+}
+Animal.prototype.eat = function () {
+    console.log('名称:' + this.name, '行为:eat')
+}
+function Dog(name) {
+    Animal.call(this,name)
+}
+// 会多次调用new Animal()
+Dog.prototype = new Animal() // 第一次初始化Animal
+let dog1 = new Dog('旺财')   // 第二次初始化Animal
+let dog2 = new Dog('小强')   // 第三次初始化Animal
+
+dog2.colors.push('blue')
+
+console.log(dog1.name); //旺财
+console.log(dog2.colors); // ["red", "yellow", "blue"]
+
+dog1.eat(); // 名称:旺财 行为:eat
+```
+```js
+// 寄生组合继承:寄生组合继承是在组合继承的基础上，采用Object.create()方法来改造实现
+function Animal(name) {
+    this.name = name
+    this.colors = ['red','yellow']
+}
+Animal.prototype.eat = function () {
+    console.log('名称:' + this.name, '行为:eat')
+}
+
+function Dog(name) {
+    Animal.call(this,name)
+}
+Dog.prototype = Object.create(Animal.prototype)
+Dog.prototype.constructor = Dog
+
+let dog1 = new Dog('旺财')   
+let dog2 = new Dog('小强')  
+
+dog2.colors.push('blue')
+
+console.log(dog1.name); //旺财
+console.log(dog2.colors); // ["red", "yellow", "blue"]
+
+dog1.eat(); // 名称:旺财 行为:eat
+```
+```js
+// 类继承
+class Animal {
+    constructor(name) {
+        this.name = name
+        this.colors = ['red','yellow']
+    }
+    eat() {
+        console.log('名称:' + this.name, '行为:eat')
+    }
+}
+class Dog extends Animal {
+    constructor(name) {
+        super(name)
+    }
+}
+let dog1 = new Dog('旺财')
+let dog2 = new Dog('小强')
+
+dog2.colors.push('blue')
+
+console.log(dog1.name); //旺财
+console.log(dog2.colors); // ["red", "yellow", "blue"]
+
+dog1.eat(); // 名称:旺财 行为:eat
+```
+
+
+
+
 ## 手写getQueryString
 
 ```js
@@ -449,5 +582,20 @@ Function.prototype.myApply = function (context, array) {
         result = context.fn(...arr)
     }
     return result
+}
+```
+
+## 手写扁平数据结构转Tree
+```js
+function arrayToTree(data, pid = 0) {
+    return data.reduce((result,item) => {
+        if(item.pid === pid) {
+            result.push({
+                item,
+                ...{children:arrayToTree(data,item.id)}
+            })
+        }
+        return result
+    },[])
 }
 ```
