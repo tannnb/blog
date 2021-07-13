@@ -1,34 +1,3 @@
-<<<<<<< HEAD
-# 介绍和参考
-简介和介绍
-
-
-脚手架本地调试版本
-执行 `npm link`, npm会根据package中bin的配置，去当前node包下注册软链接(比如:a-text)，此时直接执行a-text命令，将会执行软链接所指向的文件
-
-
-// 链接本地脚手架
-// cd you-cli-dir
-// npm link
-//
-// 链接本地库文件
-// cd you-lib-dir
-// npm link
-// cd you-cli-dir
-// npm link you-lib
-//
-// 取消链接本地库文件
-// cd you-lib-dir
-// npm unlink
-// cd you-cli-dir
-// 如果link 存在
-// npm unlink you-lib
-// 如果link 不存在
-// rm -rf node_modules
-// npm install
-
-// 脚手架命令注册和参数解析
-=======
 # 脚手架介绍
 
 #### 脚手架本质是一个操作系统的客户端，他通过命令执行
@@ -100,4 +69,4 @@ rm -rf node_modules
 
 npm install
 ```
->>>>>>> 92d077e87a27ba81a2f1f3cda40c26c26cd566f2
+

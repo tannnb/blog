@@ -229,8 +229,7 @@ p.getName()   // 输出: 王富贵
 ```
 
 ## 闭包
-
-当一个函数能够记住并访问它所在的词法作用域的时候，就产生了闭包，即使函数是在词法作用域之外执行
+闭包就是能够读取其他函数内部变量的函数，或者子函数在外调用， 子函数所在的父函数的作用域不会被释放
 
 * 函数中返回函数
 * 将函数作为参数传递
@@ -395,7 +394,7 @@ _.cloneDeep(person)
 
 ```
 
-## 继承
+## 类的创建和继承
 
 * 原型链实现继承
 * 借用构造函数实现继承
@@ -555,7 +554,7 @@ let url = 'http://www.baidu.com?id=1&query=百度搜索&callback=callbackJSON'
 const {id, query, callback} = getQueryString(url)
 ```
 
-## 手写call,apply
+## 手写call,apply,bind
 
 ```js
 // call
@@ -574,7 +573,6 @@ Function.prototype.myCall = function (context) {
 Function.prototype.myApply = function (context, array) {
     context = context ? Object(context) : window;
     console.fn = this
-    
     let result;
     if (!array) {
         result = context.fn()
@@ -583,6 +581,24 @@ Function.prototype.myApply = function (context, array) {
     }
     return result
 }
+// bind
+Function.prototype.myBind = function(context){ 
+   if(typeof this !== "function") {
+       throw TypeError('** is not function')
+   }
+   const self = this;
+   const args = [...arguments].slice(1)
+    return function F() {
+       return self.apply(context,args.concat(...arguments))
+    }
+}
+
+function foo() {
+    console.log(this.age);
+}
+var obj = {age: 1}
+var newFunc = foo.myBind(obj);
+newFunc(); // 输出1
 ```
 
 ## 手写扁平数据结构转Tree
@@ -599,3 +615,42 @@ function arrayToTree(data, pid = 0) {
     },[])
 }
 ```
+### 手写debounce,throttling
+```js
+// immediate:是否立即执行
+function debounce(func,wait,immediate) {
+    let timeID;
+    return function() {
+        let context = this;
+        let arg = arguments;
+        let later = function() {
+            timeID = null;
+            if(!immediate) {
+                func.apply(context,args)
+            }
+        }
+        let callNow = immediate && !timeID;
+        clearTimeout(timeID);
+        timeID = setTimeout(later,wait)
+        if(callNow) {
+            func.apply(context,arg)
+        }
+    }
+}
+
+function throttle(func,wait = 500) {
+    let timeID;
+    let startTime = 0;
+    return function(...args) {
+        let context = this;
+        let currentTime = +new Date();
+        if(currentTime - startTime > wait) {
+            func.apply(context,args)
+            startTime = currentTime
+        }
+    }
+}
+
+```
+
+
