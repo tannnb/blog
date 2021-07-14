@@ -2,8 +2,7 @@
 
 ## 原始类型
 
-::: tip 
-javascript原始类型有6中,原始类型既只保存原始值，没有函数可以调用
+::: tip javascript原始类型有6中,原始类型既只保存原始值，没有函数可以调用
 :::
 
 ## 六种原始类型
@@ -15,8 +14,7 @@ javascript原始类型有6中,原始类型既只保存原始值，没有函数�
 * undefined
 * symbol
 
-::: warning
-为什么说原始类型没有函数可以调用,但是`'1'.toString()`又可以在浏览器中正确执行?
+::: warning 为什么说原始类型没有函数可以调用,但是`'1'.toString()`又可以在浏览器中正确执行?
 
 因为`'1'.toString()`中字符串`'1'`在此时会被封装成对应字符串对象，相当于`new String('1').toString()`,因为`new String('1')`
 实例化一个对象，而这个对象上是有`toString()`方法的
@@ -31,8 +29,7 @@ javascript原始类型有6中,原始类型既只保存原始值，没有函数�
 
 ## 对象类型
 
-::: tip
-在javascript中, 除了原始类型，其他的都是对象类型，对象类型储存的是地址，而原始类型储存的是值.
+::: tip 在javascript中, 除了原始类型，其他的都是对象类型，对象类型储存的是地址，而原始类型储存的是值.
 :::
 
 ```js
@@ -66,6 +63,7 @@ console.log(user.age)  //输出: 18
 ```
 
 **代码分析**
+
 1. 在`Person`函数中，`person`传递的是对象`lilei`的指针(指向地址)
 2. 在`Person`函数内部，改变`person`的属性值，会同步反应到对象`lilei`上,此时`lilei.age`属性发生改变，既值为24
 3. 在`Person`函数内部，将`person`重新分配一个新的内存地址，此时该`person`和形参`person`没有任何关联了，并返回这个最新`person`对象
@@ -116,14 +114,13 @@ let p1 = new Person()
 _instanceof(p1, Person)  // 输出：true
 _instanceof(p1, Student) // 输出：false
 
-// ----分割线----
-([]) instanceof Array; //true
+    // ----分割线----
+    ([]) instanceof Array; //true
 ({}) instanceof Object;//true
 new Date() instanceof Date;//true
 ```
 
-::: tip 
-instanceof 只能用来判断两个对象是否属于实例关系， 而不能判断一个对象实例具体属于哪种类型
+::: tip instanceof 只能用来判断两个对象是否属于实例关系， 而不能判断一个对象实例具体属于哪种类型
 :::
 
 ## == 和 ===
@@ -229,6 +226,7 @@ p.getName()   // 输出: 王富贵
 ```
 
 ## 闭包
+
 闭包就是能够读取其他函数内部变量的函数，或者子函数在外调用， 子函数所在的父函数的作用域不会被释放
 
 * 函数中返回函数
@@ -407,11 +405,13 @@ _.cloneDeep(person)
 // 1.不能向父类构造函数传递参数。
 // 2.父类上的引用类型属性会被所有实例共享，只要其中一个实例改变，会影响其他实例的值
 function Animal() {
-    this.colors = ['red','yellow'] 
+    this.colors = ['red', 'yellow']
 }
-function Dog (name){
+
+function Dog(name) {
     this.name = name
 }
+
 Dog.prototype = new Animal()
 
 let dog1 = new Dog('旺财')
@@ -424,19 +424,23 @@ console.log(dog2) // ['red','yellow','blue']
 console.log(dog1 instanceof Dog)       // true
 console.log(dog2 instanceof Animal)    // true
 ```
+
 ```js
 // 构造函数实现继承:借用构造函数实现继承，通过在子类中使用`call`方法,实现父类构造函数并向父类构造函数传参
 // 1.无法继承父类原型对象上的属性和方法
 function Animal(name) {
     this.name = name
-    this.colors = ['red','yellow']
+    this.colors = ['red', 'yellow']
 }
+
 Animal.prototype.eat = function () {
     console.log('名称:' + this.name, '行为:eat')
 }
+
 function Dog(name) {
-    Animal.call(this,name)
+    Animal.call(this, name)
 }
+
 let dog1 = new Dog('旺财') // Dog{name: "旺财", colors: Array(2)}
 let dog2 = new Dog('小强')
 
@@ -451,19 +455,23 @@ console.log(dog2 instanceof Animal); // false
 
 dog1.eat(); // error
 ```
+
 ```js
 // 组合继承: 组合原型链继承和借用构造函数继承两种方法。
 // 父类构造函数会被调用多次。
 function Animal(name) {
     this.name = name
-    this.colors = ['red','yellow']
+    this.colors = ['red', 'yellow']
 }
+
 Animal.prototype.eat = function () {
     console.log('名称:' + this.name, '行为:eat')
 }
+
 function Dog(name) {
-    Animal.call(this,name)
+    Animal.call(this, name)
 }
+
 // 会多次调用new Animal()
 Dog.prototype = new Animal() // 第一次初始化Animal
 let dog1 = new Dog('旺财')   // 第二次初始化Animal
@@ -476,48 +484,25 @@ console.log(dog2.colors); // ["red", "yellow", "blue"]
 
 dog1.eat(); // 名称:旺财 行为:eat
 ```
+
 ```js
 // 寄生组合继承:寄生组合继承是在组合继承的基础上，采用Object.create()方法来改造实现
 function Animal(name) {
     this.name = name
-    this.colors = ['red','yellow']
+    this.colors = ['red', 'yellow']
 }
+
 Animal.prototype.eat = function () {
     console.log('名称:' + this.name, '行为:eat')
 }
 
 function Dog(name) {
-    Animal.call(this,name)
+    Animal.call(this, name)
 }
+
 Dog.prototype = Object.create(Animal.prototype)
 Dog.prototype.constructor = Dog
 
-let dog1 = new Dog('旺财')   
-let dog2 = new Dog('小强')  
-
-dog2.colors.push('blue')
-
-console.log(dog1.name); //旺财
-console.log(dog2.colors); // ["red", "yellow", "blue"]
-
-dog1.eat(); // 名称:旺财 行为:eat
-```
-```js
-// 类继承
-class Animal {
-    constructor(name) {
-        this.name = name
-        this.colors = ['red','yellow']
-    }
-    eat() {
-        console.log('名称:' + this.name, '行为:eat')
-    }
-}
-class Dog extends Animal {
-    constructor(name) {
-        super(name)
-    }
-}
 let dog1 = new Dog('旺财')
 let dog2 = new Dog('小强')
 
@@ -529,8 +514,35 @@ console.log(dog2.colors); // ["red", "yellow", "blue"]
 dog1.eat(); // 名称:旺财 行为:eat
 ```
 
+```js
+// 类继承
+class Animal {
+    constructor(name) {
+        this.name = name
+        this.colors = ['red', 'yellow']
+    }
 
+    eat() {
+        console.log('名称:' + this.name, '行为:eat')
+    }
+}
 
+class Dog extends Animal {
+    constructor(name) {
+        super(name)
+    }
+}
+
+let dog1 = new Dog('旺财')
+let dog2 = new Dog('小强')
+
+dog2.colors.push('blue')
+
+console.log(dog1.name); //旺财
+console.log(dog2.colors); // ["red", "yellow", "blue"]
+
+dog1.eat(); // 名称:旺财 行为:eat
+```
 
 ## 手写getQueryString
 
@@ -582,75 +594,244 @@ Function.prototype.myApply = function (context, array) {
     return result
 }
 // bind
-Function.prototype.myBind = function(context){ 
-   if(typeof this !== "function") {
-       throw TypeError('** is not function')
-   }
-   const self = this;
-   const args = [...arguments].slice(1)
+Function.prototype.myBind = function (context) {
+    if (typeof this !== "function") {
+        throw TypeError('** is not function')
+    }
+    const self = this;
+    const args = [...arguments].slice(1)
     return function F() {
-       return self.apply(context,args.concat(...arguments))
+        return self.apply(context, args.concat(...arguments))
     }
 }
 
 function foo() {
     console.log(this.age);
 }
+
 var obj = {age: 1}
 var newFunc = foo.myBind(obj);
 newFunc(); // 输出1
 ```
 
 ## 手写扁平数据结构转Tree
+
 ```js
 function arrayToTree(data, pid = 0) {
-    return data.reduce((result,item) => {
-        if(item.pid === pid) {
+    return data.reduce((result, item) => {
+        if (item.pid === pid) {
             result.push({
                 item,
-                ...{children:arrayToTree(data,item.id)}
+                ...{children: arrayToTree(data, item.id)}
             })
         }
         return result
-    },[])
+    }, [])
 }
 ```
+
 ### 手写debounce,throttling
+
 ```js
 // immediate:是否立即执行
-function debounce(func,wait,immediate) {
+function debounce(func, wait, immediate) {
     let timeID;
-    return function() {
+    return function () {
         let context = this;
         let arg = arguments;
-        let later = function() {
+        let later = function () {
             timeID = null;
-            if(!immediate) {
-                func.apply(context,args)
+            if (!immediate) {
+                func.apply(context, args)
             }
         }
         let callNow = immediate && !timeID;
         clearTimeout(timeID);
-        timeID = setTimeout(later,wait)
-        if(callNow) {
-            func.apply(context,arg)
+        timeID = setTimeout(later, wait)
+        if (callNow) {
+            func.apply(context, arg)
         }
     }
 }
 
-function throttle(func,wait = 500) {
+function throttle(func, wait = 500) {
     let timeID;
     let startTime = 0;
-    return function(...args) {
+    return function (...args) {
         let context = this;
         let currentTime = +new Date();
-        if(currentTime - startTime > wait) {
-            func.apply(context,args)
+        if (currentTime - startTime > wait) {
+            func.apply(context, args)
             startTime = currentTime
         }
     }
 }
-
 ```
 
+### 手写Promise
 
+```js
+const PENDING = 'pending' // 等待状态 
+const FULFILLED = 'fulfilled' // 成功状态
+const REJECTED = 'rejected' // 失败状态
+
+function isFunction(v) {
+    return typeof v === 'function'
+}
+function isObject(v) {
+    return typeof v === 'object' && v !== null
+}
+
+class Promise {
+    constructor(executor) {
+        this.state = PENDING
+        this.value = undefined
+        this.reason = undefined
+        
+        // resolve 回调队列
+        this.resolvedCallbacks = []
+        const resolve = value => {
+            // 如果 value 是个 Promise 则递归执行
+            if(value instanceof Promise) {
+                return value.then(resolve,reject)
+            }
+            setTimeout(() => {
+                if(this.state === PENDING) {
+                    this.state = FULFILLED
+                    this.value = value
+                    this.resolvedCallbacks.forEach(fn => fn())
+                }
+            },0)
+        }
+        
+        // reject 回调队列
+        this.rejectedCallbacks = []
+        const reject = reson => {
+            setTimeout(() => {
+                if(this.state === PENDING) {
+                    this.state = REJECTED
+                    this.reason = value
+                    this.rejectedCallbacks.forEach(fn => fn())
+                }    
+            },0)
+        }
+
+        // 执行器 (executor) 接收两个参数，分别是 resolve, reject
+        try {
+            executor(resolve, reject)
+        } catch (error) {
+            reject(error)
+        }
+    }
+    
+    then(onFulfilled, onRejected) {
+        onFulfilled = isFunction(onFulfilled) ? onFulfilled : (v) => v
+        onRejected = isFunction(onRejected) ? onRejected : (e) => { throw e }
+        /**
+         * 在链式调用时需要返回一个新的 promise
+         * 在 then 函数中，无论是成功还是失败的回调，只要返回了结果就会传入下一个 then 的成功回调
+         * 如果出现错误就会传入下一个 then 的失败回调
+         * 即：下一个 then 的状态和上一个 then 执行时候的状态无关
+         * 所以在 then 执行的时候 onFulfilled, onRejected 可能会出现错误，需要捕获错误，并执行失败回调（处理成失败状态）
+         */
+        // 
+        const promise2 = new Promise((resolve, reject) => {
+            if(this.state === FULFILLED) {
+                setTimeout(() => {
+                    try {
+                        // 为了链式调用，需要获取 onFulfilled 函数执行的返回值，通过 resolve 返回
+                        const x = onFulfilled(this.value)
+                        // 通过 resolutionProcedure 函数对 x 的返回值做处理
+                        // promise2此时还无法访问，所以使用setTimeout延迟执行，使其能访问到
+                        resolutionProcedure(promise2, x, resolve, reject)
+                    }catch(error) {
+                        reject(error)
+                    }
+                },0)
+            }
+            if(this.state === REJECTED) {
+               setTimeout(() => {
+                   try {
+                       const x = onRejected(this.reason)
+                       resolutionProcedure(promise2, x, resolve, reject)  
+                   }catch (error) {
+                       reject(error)
+                   }
+               },0)
+            }
+            // 当 Promise 状态为等待状态 (pending) 时，将 onFulfilled 和 onRejected 存入对应的回调队列
+            if(this.state === PENDING) {
+                this.resolvedCallbacks.push(() => {
+                    try {
+                        const x = onRejected(this.value)
+                        resolutionProcedure(promise2, x, resolve, reject)
+                    }catch (error) {
+                        reject(error)
+                    }
+                })
+                this.rejectedCallbacks.push(() => {
+                    try {
+                        const x = onRejected(this.reason)
+                        resolutionProcedure(promise2, x, resolve, reject)
+                    } catch (error) {
+                        reject(error)
+                    }
+                })
+            }
+        })
+        return promise2
+    }
+    catch(cb) {
+        return this.then(null, cb)
+    }
+}
+
+function resolutionProcedure(promise2, x, resolve, reject) {
+    
+    // 第一种情况: promise2 返回结果 x 为自身，应直接执行 reject
+    if(promise2 === x) {
+        return reject(new TypeError('ERROR 循环引用'))
+    }
+    
+    // 第二种情况: 如果 x 是一个 Promise 实例
+    if(x instanceof Promise) {
+        x.then(
+            value => resolutionProcedure(promise2,value,resolve, reject),
+            reject
+        )
+        return 
+    }
+    
+    let called = false
+    if(isObject(x) || isFunction(x)) {
+        try {
+            let then = x.then
+            if(isFunction(then)) {
+                then.call(
+                    x,
+                    (y) => {
+                        if(called) return
+                        called = true
+                        resolutionProcedure(promise2,y,resolve, reject)
+                    },
+                    (r) => {
+                        if(called) return
+                        called = true
+                        reject(r)
+                    }
+                )
+            }else {
+                // 如果 then 不是一个函数，用 x 完成 promise
+                resolve(x)
+            }
+        }catch(error) {
+            if(called) return
+            called = true
+            reject(error)
+        }
+    }else {
+        // 如果是一个普通值就直接调用 resolve(x)
+        reject(x) 
+    }
+}
+```

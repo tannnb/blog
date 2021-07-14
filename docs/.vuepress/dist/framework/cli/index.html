@@ -4,24 +4,24 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>lerna 基本操作 | 前端学习笔记</title>
-    <meta name="description" content="前端学习笔记">
+    <meta name="description" content="">
     <link rel="icon" href="/blog/favicon.ico">
-  <link rel="manifest" href="/blog/manifest.json">
-  <meta name="theme-color" content="#3eaf7c">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <link rel="apple-touch-icon" href="/blog/favicon.ico">
-  <link rel="mask-icon" href="/blog/favicon.ico" color="#3eaf7c">
-  <meta name="msapplication-TileImage" content="/favicon.ico">
-  <meta name="msapplication-TileColor" content="#000000">
-    
-    <link rel="preload" href="/blog/assets/css/0.styles.09c98605.css" as="style"><link rel="preload" href="/blog/assets/js/app.ddf64eb6.js" as="script"><link rel="preload" href="/blog/assets/js/2.7ff060a7.js" as="script"><link rel="preload" href="/blog/assets/js/4.5e6b533e.js" as="script"><link rel="preload" href="/blog/assets/js/10.c519f585.js" as="script"><link rel="prefetch" href="/blog/assets/js/11.a0106204.js"><link rel="prefetch" href="/blog/assets/js/12.7d3b9350.js"><link rel="prefetch" href="/blog/assets/js/13.c73c65f5.js"><link rel="prefetch" href="/blog/assets/js/14.ec28b47d.js"><link rel="prefetch" href="/blog/assets/js/15.703cc80f.js"><link rel="prefetch" href="/blog/assets/js/16.6ec2c753.js"><link rel="prefetch" href="/blog/assets/js/17.b93c4347.js"><link rel="prefetch" href="/blog/assets/js/18.38fee7f9.js"><link rel="prefetch" href="/blog/assets/js/19.47e1506c.js"><link rel="prefetch" href="/blog/assets/js/20.2a20b637.js"><link rel="prefetch" href="/blog/assets/js/21.d5044944.js"><link rel="prefetch" href="/blog/assets/js/22.53341b5e.js"><link rel="prefetch" href="/blog/assets/js/23.fb3e44a3.js"><link rel="prefetch" href="/blog/assets/js/24.c9840497.js"><link rel="prefetch" href="/blog/assets/js/25.d2a97620.js"><link rel="prefetch" href="/blog/assets/js/3.cfc78647.js"><link rel="prefetch" href="/blog/assets/js/5.32ba6d7f.js"><link rel="prefetch" href="/blog/assets/js/6.938e7faa.js"><link rel="prefetch" href="/blog/assets/js/7.54f8900d.js"><link rel="prefetch" href="/blog/assets/js/8.970c1b62.js"><link rel="prefetch" href="/blog/assets/js/9.b06881ed.js">
-    <link rel="stylesheet" href="/blog/assets/css/0.styles.09c98605.css">
+    <link rel="manifest" href="/blog/manifest.json">
+    <link rel="apple-touch-icon" href="/blog/favicon.ico">
+    <link rel="mask-icon" href="/blog/favicon.ico" color="#3eaf7c">
+    <meta name="description" content="前端学习笔记">
+    <meta name="theme-color" content="#3eaf7c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-TileImage" content="/favicon.ico">
+    <meta name="msapplication-TileColor" content="#000000">
+    <link rel="preload" href="/blog/assets/css/0.styles.827ecb93.css" as="style"><link rel="preload" href="/blog/assets/js/app.b8ef52da.js" as="script"><link rel="preload" href="/blog/assets/js/2.52721808.js" as="script"><link rel="preload" href="/blog/assets/js/3.7233cddb.js" as="script"><link rel="preload" href="/blog/assets/js/12.1bce20ca.js" as="script"><link rel="preload" href="/blog/assets/js/4.e50e3fd3.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.4a6613cc.js"><link rel="prefetch" href="/blog/assets/js/11.bc2abc04.js"><link rel="prefetch" href="/blog/assets/js/13.01bb7319.js"><link rel="prefetch" href="/blog/assets/js/14.74de5eea.js"><link rel="prefetch" href="/blog/assets/js/15.aedefd98.js"><link rel="prefetch" href="/blog/assets/js/16.a0d450bc.js"><link rel="prefetch" href="/blog/assets/js/17.8d4d611d.js"><link rel="prefetch" href="/blog/assets/js/18.3bee495d.js"><link rel="prefetch" href="/blog/assets/js/19.ab6e15c3.js"><link rel="prefetch" href="/blog/assets/js/20.e5ea443a.js"><link rel="prefetch" href="/blog/assets/js/21.e756157e.js"><link rel="prefetch" href="/blog/assets/js/22.974eee61.js"><link rel="prefetch" href="/blog/assets/js/23.fcb1046c.js"><link rel="prefetch" href="/blog/assets/js/24.8b73599f.js"><link rel="prefetch" href="/blog/assets/js/25.1a68194b.js"><link rel="prefetch" href="/blog/assets/js/26.0fa8acf8.js"><link rel="prefetch" href="/blog/assets/js/27.3fdcecf2.js"><link rel="prefetch" href="/blog/assets/js/5.1583c6b8.js"><link rel="prefetch" href="/blog/assets/js/6.bcbfedd1.js"><link rel="prefetch" href="/blog/assets/js/7.109192b9.js"><link rel="prefetch" href="/blog/assets/js/8.0efcc9fa.js"><link rel="prefetch" href="/blog/assets/js/9.a9048de2.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.827ecb93.css">
 </head>
 <body>
 <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><!----> <span class="site-name">前端学习笔记</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/blog/interview/base/" class="nav-link">
   前端学习
-</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="学习记录" class="dropdown-title"><span class="title">学习记录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="学习记录" class="dropdown-title"><span class="title">学习记录</span> <span class="arrow down"></span></button> <button type="button" aria-label="学习记录" class="mobile-dropdown-title"><span class="title">学习记录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
           CSS系列
         </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/style/css/" class="nav-link">
   常用CSS样式
@@ -49,11 +49,11 @@
   架构学习
 </a></div><div class="nav-item"><a href="http://www.tannnb.com/pc/" target="_blank" rel="noopener noreferrer" class="nav-link external">
   播放器
-  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <a href="https://github.com/tannnb" target="_blank" rel="noopener noreferrer" class="repo-link">
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <a href="https://github.com/tannnb" target="_blank" rel="noopener noreferrer" class="repo-link">
     Github
-    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/blog/interview/base/" class="nav-link">
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/blog/interview/base/" class="nav-link">
   前端学习
-</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="学习记录" class="dropdown-title"><span class="title">学习记录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="学习记录" class="dropdown-title"><span class="title">学习记录</span> <span class="arrow down"></span></button> <button type="button" aria-label="学习记录" class="mobile-dropdown-title"><span class="title">学习记录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
           CSS系列
         </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/style/css/" class="nav-link">
   常用CSS样式
@@ -81,43 +81,43 @@
   架构学习
 </a></div><div class="nav-item"><a href="http://www.tannnb.com/pc/" target="_blank" rel="noopener noreferrer" class="nav-link external">
   播放器
-  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <a href="https://github.com/tannnb" target="_blank" rel="noopener noreferrer" class="repo-link">
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <a href="https://github.com/tannnb" target="_blank" rel="noopener noreferrer" class="repo-link">
     Github
-    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>介绍</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>脚手架设计</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/framework/cli/" class="active sidebar-link">lerna 基本操作</a></li><li><a href="/blog/framework/cli/vue.html" class="sidebar-link">Vue-Cli</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="lerna-基本操作"><a href="#lerna-基本操作" aria-hidden="true" class="header-anchor">#</a> lerna 基本操作</h1> <h4 id="脚手架项目初始化"><a href="#脚手架项目初始化" aria-hidden="true" class="header-anchor">#</a> 脚手架项目初始化</h4> <ul><li>1.初始化npm项目</li> <li>2.安装lerna</li> <li>3.lerna init初始化项目</li></ul> <div class="language-shell extra-class"><pre class="language-text"><code># 创建项目目录project-cli,安装lerna依赖
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>介绍</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>脚手架设计</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/framework/cli/" aria-current="page" class="active sidebar-link">lerna 基本操作</a></li><li><a href="/blog/framework/cli/vue.html" class="sidebar-link">Vue-Cli</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="lerna-基本操作"><a href="#lerna-基本操作" class="header-anchor">#</a> lerna 基本操作</h1> <h4 id="脚手架项目初始化"><a href="#脚手架项目初始化" class="header-anchor">#</a> 脚手架项目初始化</h4> <ul><li>1.初始化npm项目</li> <li>2.安装lerna</li> <li>3.lerna init初始化项目</li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment"># 创建项目目录project-cli,安装lerna依赖</span>
 
-# 初始化lerna
+<span class="token comment"># 初始化lerna</span>
 lerna init
 
-# 创建包项目(例如:core)
+<span class="token comment"># 创建包项目(例如:core)</span>
 lerna create @project-cli/core
-</code></pre></div><h4 id="创建package"><a href="#创建package" aria-hidden="true" class="header-anchor">#</a> 创建package</h4> <ul><li>1.lerna create 创建Package</li> <li>2.lerna add 安装依赖</li> <li>3.lerna link 链接依赖</li></ul> <div class="language-shell extra-class"><pre class="language-text"><code># 安装依赖：比如axios,会给packages下所有包都安装axios依赖
-lerna add axios
-# 给指定包安装依赖：比如给指定core包
-lerna add axios packages/core/
+</code></pre></div><h4 id="创建package"><a href="#创建package" class="header-anchor">#</a> 创建package</h4> <ul><li>1.lerna create 创建Package</li> <li>2.lerna add 安装依赖</li> <li>3.lerna link 链接依赖</li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment"># 安装依赖：比如axios,会给packages下所有包都安装axios依赖</span>
+lerna <span class="token function">add</span> axios
+<span class="token comment"># 给指定包安装依赖：比如给指定core包</span>
+lerna <span class="token function">add</span> axios packages/core/
 
-# 包软链接
-# 例如:core下引用utils; 在core package.json中配置utils依赖,然后进行link,此时core node_modules中会出现该包
-# 该软链接指向本地开发的包
-lerna link
-</code></pre></div><h4 id="脚手架开发和测试"><a href="#脚手架开发和测试" aria-hidden="true" class="header-anchor">#</a> 脚手架开发和测试</h4> <ul><li>1.lerna exec 执行shell脚本</li> <li>2.lerna run 执行npm命令</li> <li>3.lerna clean 清空依赖</li> <li>4.lerna bootstrap 重装依赖</li></ul> <div class="language-shell extra-class"><pre class="language-text"><code># 清除所有依赖,需手动删除dependencies中的依赖指定版本
+<span class="token comment"># 包软链接</span>
+<span class="token comment"># 例如:core下引用utils; 在core package.json中配置utils依赖,然后进行link,此时core node_modules中会出现该包</span>
+<span class="token comment"># 该软链接指向本地开发的包</span>
+lerna <span class="token function">link</span>
+</code></pre></div><h4 id="脚手架开发和测试"><a href="#脚手架开发和测试" class="header-anchor">#</a> 脚手架开发和测试</h4> <ul><li>1.lerna exec 执行shell脚本</li> <li>2.lerna run 执行npm命令</li> <li>3.lerna clean 清空依赖</li> <li>4.lerna bootstrap 重装依赖</li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment"># 清除所有依赖,需手动删除dependencies中的依赖指定版本</span>
 lerna clean
 
-# 安装(重装)所有依赖
+<span class="token comment"># 安装(重装)所有依赖</span>
 lerna bootstrap
 
-# 执行删除脚本; 会给所有包都执行rm命令
-lerna exec -- rm -rf node_modeules/
+<span class="token comment"># 执行删除脚本; 会给所有包都执行rm命令</span>
+lerna <span class="token builtin class-name">exec</span> -- <span class="token function">rm</span> -rf node_modeules/
 
-# 删除指定包下的文件: --scope @project-cli/core 
-lerna exec --scope @project-cli/core -- rm -rf node_modeules
+<span class="token comment"># 删除指定包下的文件: --scope @project-cli/core </span>
+lerna <span class="token builtin class-name">exec</span> --scope @project-cli/core -- <span class="token function">rm</span> -rf node_modeules
 
-# 执行所有package.json下test命令
-lerna run test
+<span class="token comment"># 执行所有package.json下test命令</span>
+lerna run <span class="token builtin class-name">test</span>
 
-# 执行指定包下命令
-lerna run --scope @project-cli/core test
-</code></pre></div><h4 id="脚手架发布上线"><a href="#脚手架发布上线" aria-hidden="true" class="header-anchor">#</a> 脚手架发布上线</h4> <ul><li>1.lerna version</li> <li>2.lerna changed 查看上版本以来的所有变更</li> <li>3.lerna diff 查看diff</li> <li>4.lerna publish 项目发布</li></ul> <div class="language-shell extra-class"><pre class="language-text"><code># 需要先提交到github或Gitee上然后再进行lerna publish
-# 确保package.json中的version与仓库中的tag/分支不能相同
+<span class="token comment"># 执行指定包下命令</span>
+lerna run --scope @project-cli/core <span class="token builtin class-name">test</span>
+</code></pre></div><h4 id="脚手架发布上线"><a href="#脚手架发布上线" class="header-anchor">#</a> 脚手架发布上线</h4> <ul><li>1.lerna version</li> <li>2.lerna changed 查看上版本以来的所有变更</li> <li>3.lerna diff 查看diff</li> <li>4.lerna publish 项目发布</li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment"># 需要先提交到github或Gitee上然后再进行lerna publish</span>
+<span class="token comment"># 确保package.json中的version与仓库中的tag/分支不能相同</span>
 </code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">最后更新时间:</span> <span class="time">2021-7-12 22:44:28</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
       ←
       <a href="/blog/framework/introduction/" class="prev">
@@ -126,7 +126,7 @@ lerna run --scope @project-cli/core test
         Vue-Cli
       </a>
       →
-    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
-<script src="/blog/assets/js/app.ddf64eb6.js" defer></script><script src="/blog/assets/js/2.7ff060a7.js" defer></script><script src="/blog/assets/js/4.5e6b533e.js" defer></script><script src="/blog/assets/js/10.c519f585.js" defer></script>
+    </span></p></div> </main></div><div class="global-ui"><!----><!----></div></div>
+<script src="/blog/assets/js/app.b8ef52da.js" defer></script><script src="/blog/assets/js/2.52721808.js" defer></script><script src="/blog/assets/js/3.7233cddb.js" defer></script><script src="/blog/assets/js/12.1bce20ca.js" defer></script><script src="/blog/assets/js/4.e50e3fd3.js" defer></script>
 </body>
 </html>

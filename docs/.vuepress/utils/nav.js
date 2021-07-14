@@ -13,6 +13,13 @@ const interviewSideBar = [
         'browser/http'
     ]
   },
+  {
+    title: 'HTTP相关',
+    collapsable: true,
+    children: [
+      'http/'
+    ]
+  },
 ]
 
 
