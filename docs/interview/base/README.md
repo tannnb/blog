@@ -544,7 +544,7 @@ console.log(dog2.colors); // ["red", "yellow", "blue"]
 dog1.eat(); // 名称:旺财 行为:eat
 ```
 
-## 手写getQueryString
+## 仿写getQueryString
 
 ```js
 function getQueryString(url) {
@@ -566,7 +566,7 @@ let url = 'http://www.baidu.com?id=1&query=百度搜索&callback=callbackJSON'
 const {id, query, callback} = getQueryString(url)
 ```
 
-## 手写call,apply,bind
+## 仿写call,apply,bind
 
 ```js
 // call
@@ -614,7 +614,7 @@ var newFunc = foo.myBind(obj);
 newFunc(); // 输出1
 ```
 
-## 手写扁平数据结构转Tree
+## 仿写扁平数据结构转Tree
 
 ```js
 function arrayToTree(data, pid = 0) {
@@ -630,7 +630,7 @@ function arrayToTree(data, pid = 0) {
 }
 ```
 
-### 手写debounce,throttling
+## 仿写debounce,throttling
 
 ```js
 // immediate:是否立即执行
@@ -668,52 +668,30 @@ function throttle(func, wait = 500) {
 }
 ```
 
-### 手写Promise
+## 仿写Promise
 
 ```js
-const PENDING = 'pending' // 等待状态 
-const FULFILLED = 'fulfilled' // 成功状态
-const REJECTED = 'rejected' // 失败状态
-
-function isFunction(v) {
-    return typeof v === 'function'
-}
-function isObject(v) {
-    return typeof v === 'object' && v !== null
-}
-
 class Promise {
     constructor(executor) {
         this.state = PENDING
         this.value = undefined
         this.reason = undefined
+        this.onResolbedCallbacks = []     // 保存异步成功回调
+        this.onRejectedCallbacks = []     // 保存异步失败回调
         
-        // resolve 回调队列
-        this.resolvedCallbacks = []
         const resolve = value => {
-            // 如果 value 是个 Promise 则递归执行
-            if(value instanceof Promise) {
-                return value.then(resolve,reject)
+            if(this.state === PENDING) {
+                this.state = FULFILLED
+                this.value = value
+                this.resolvedCallbacks.forEach(fn => fn())
             }
-            setTimeout(() => {
-                if(this.state === PENDING) {
-                    this.state = FULFILLED
-                    this.value = value
-                    this.resolvedCallbacks.forEach(fn => fn())
-                }
-            },0)
         }
-        
-        // reject 回调队列
-        this.rejectedCallbacks = []
         const reject = reson => {
-            setTimeout(() => {
-                if(this.state === PENDING) {
-                    this.state = REJECTED
-                    this.reason = value
-                    this.rejectedCallbacks.forEach(fn => fn())
-                }    
-            },0)
+            if(this.state === PENDING) {
+                this.state = REJECTED
+                this.reason = value
+                this.rejectedCallbacks.forEach(fn => fn())
+            }
         }
 
         // 执行器 (executor) 接收两个参数，分别是 resolve, reject
@@ -725,58 +703,38 @@ class Promise {
     }
     
     then(onFulfilled, onRejected) {
-        onFulfilled = isFunction(onFulfilled) ? onFulfilled : (v) => v
-        onRejected = isFunction(onRejected) ? onRejected : (e) => { throw e }
-        /**
-         * 在链式调用时需要返回一个新的 promise
-         * 在 then 函数中，无论是成功还是失败的回调，只要返回了结果就会传入下一个 then 的成功回调
-         * 如果出现错误就会传入下一个 then 的失败回调
-         * 即：下一个 then 的状态和上一个 then 执行时候的状态无关
-         * 所以在 then 执行的时候 onFulfilled, onRejected 可能会出现错误，需要捕获错误，并执行失败回调（处理成失败状态）
-         */
-        // 
         const promise2 = new Promise((resolve, reject) => {
             if(this.state === FULFILLED) {
-                setTimeout(() => {
-                    try {
-                        // 为了链式调用，需要获取 onFulfilled 函数执行的返回值，通过 resolve 返回
-                        const x = onFulfilled(this.value)
-                        // 通过 resolutionProcedure 函数对 x 的返回值做处理
-                        // promise2此时还无法访问，所以使用setTimeout延迟执行，使其能访问到
-                        resolutionProcedure(promise2, x, resolve, reject)
-                    }catch(error) {
-                        reject(error)
-                    }
-                },0)
+                try {
+                    resolve(onFulfilled(this.value))
+                }catch(error) {
+                    reject(error)
+                }
             }
             if(this.state === REJECTED) {
-               setTimeout(() => {
-                   try {
-                       const x = onRejected(this.reason)
-                       resolutionProcedure(promise2, x, resolve, reject)  
-                   }catch (error) {
-                       reject(error)
-                   }
-               },0)
+                try {
+                    resolve(onRejected(this.reason))
+                }catch (error) {
+                    reject(error)
+                }
             }
             // 当 Promise 状态为等待状态 (pending) 时，将 onFulfilled 和 onRejected 存入对应的回调队列
             if(this.state === PENDING) {
-                this.resolvedCallbacks.push(() => {
-                    try {
-                        const x = onRejected(this.value)
-                        resolutionProcedure(promise2, x, resolve, reject)
-                    }catch (error) {
-                        reject(error)
-                    }
-                })
-                this.rejectedCallbacks.push(() => {
-                    try {
-                        const x = onRejected(this.reason)
-                        resolutionProcedure(promise2, x, resolve, reject)
-                    } catch (error) {
-                        reject(error)
-                    }
-                })
+               try {
+                   this.resolvedCallbacks.push(() => {
+                       onFulfilled(this.value)
+                   })
+               }catch(error) {
+                   reject(e)
+               }
+
+               try {
+                    this.rejectedCallbacks.push(() => {
+                        onRejected(this.reason)
+                    })
+                } catch (error) {
+                    reject(error)
+                }
             }
         })
         return promise2
@@ -786,52 +744,144 @@ class Promise {
     }
 }
 
-function resolutionProcedure(promise2, x, resolve, reject) {
-    
-    // 第一种情况: promise2 返回结果 x 为自身，应直接执行 reject
-    if(promise2 === x) {
-        return reject(new TypeError('ERROR 循环引用'))
+```
+
+## 仿写柯里化
+```js
+function curryArg (...args) {
+      let sum = args.reduce((target, next) => target + next, 0)
+      function next (...sArgs) {
+        sum = sArgs.reduce((target, next) => target + next, sum)
+        return next
+      }
+      next.toString = function () {
+        return sum
+      }
+      return next
     }
-    
-    // 第二种情况: 如果 x 是一个 Promise 实例
-    if(x instanceof Promise) {
-        x.then(
-            value => resolutionProcedure(promise2,value,resolve, reject),
-            reject
-        )
-        return 
+```
+
+## 仿写数据响应式原理
+```js
+// defineProperty方案
+function Observe(obj) {
+    if(typeof obj !== 'object' || obj === null) {
+        return
     }
-    
-    let called = false
-    if(isObject(x) || isFunction(x)) {
-        try {
-            let then = x.then
-            if(isFunction(then)) {
-                then.call(
-                    x,
-                    (y) => {
-                        if(called) return
-                        called = true
-                        resolutionProcedure(promise2,y,resolve, reject)
-                    },
-                    (r) => {
-                        if(called) return
-                        called = true
-                        reject(r)
-                    }
-                )
-            }else {
-                // 如果 then 不是一个函数，用 x 完成 promise
-                resolve(x)
-            }
-        }catch(error) {
-            if(called) return
-            called = true
-            reject(error)
+    Object.keys(obj).forEach(key => {
+        defineReactive(obj, key, obj[key])
+    })
+}
+function defineReactive(target,key,val) {
+    Observe(val)
+    Object.defineProperty(target,key,{
+        enumerable: true,   // 可枚举
+        configurable: true, // 可删除
+        get() {
+            return val
+        },
+        set(newVal) {
+            val = newVal
         }
-    }else {
-        // 如果是一个普通值就直接调用 resolve(x)
-        reject(x) 
+    })
+}
+
+// proxy方案
+function Observe(obj) {
+    if(typeof obj !== 'object' || obj === null) {
+        return
+    }
+    const handle = {
+        get(target,key) {
+            const value = target[key]
+            if (typeof value === 'object' && value !== null) {
+                return new Proxy(value, handle )
+            }
+            return Reflect.get(target, key)
+        },
+        set(target,key,value) {
+            return Reflect.set(target, key, value)
+        }
+    }
+    return new Proxy(obj, handle)
+}
+
+const obj = {
+    name: 'AAA',
+    age: 23,
+    job: {
+        name: 'FE',
+        salary: 1000
     }
 }
+const proxyObj = observe(obj)
+const name = proxyObj.name
+proxyObj.name = 'BBB'
+const jobName = proxyObj.job.name
+proxyObj.job.name = 'fe'
+
+```
+
+## 仿写发布订阅模式
+```js
+class Subject {
+    constructor() {
+        this.listeners = Object.create(null)
+    }
+
+    // 注册事件
+    $on(event, listener) {
+        if (!event || !listener) {
+            return
+        }
+        if (this.listeners[event]) {
+            this.listeners[event].push(listener)
+        } else {
+            this.listeners[event] = [listener]
+        }
+    }
+
+    // 发布事件
+    $emit(event, ...args) {
+        if (!this.hasBind(event)) {
+            return console.log(`${event} 没有绑定`)
+        }
+        this.listeners[event].forEach(listener => listener.call(this, ...args))
+    }
+
+    // 取消订阅
+    $off(event, listener) {
+        if (!this.hasBind(event)) {
+            return console.log(`${event} 不存在`)
+        }
+        if (!listener) {
+            delete this.listeners[event]
+            return
+        }
+        this.listeners[event] = this.listeners[event].filter(item => item !== listener)
+    }
+
+    // 注册一次
+    $once(event, listener) {
+        let self = this
+
+        function one() {
+            listener.apply(this, arguments)
+            self.$off(event)
+        }
+        this.$on(event, one)
+    }
+
+    hasBind(event) {
+        return this.listeners[event] && this.listeners[event].length
+    }
+}
+
+let event = new Subject()
+event.$on('click',() => {console.log('执行click_1')})
+event.$on('click',() => {console.log('执行click_2')})
+event.$emit('click') // 执行click_1  执行click_2
+event.$off('click')
+event.$once('click',(cb) => {console.log('执行once:', cb)})
+event.$emit('click',100)   //  执行once: 100
 ```

@@ -47,24 +47,24 @@ vue create vue-app --force
 
 ```shell
 
-// 链接本地脚手架
+# 链接本地脚手架
 cd you-cli-dir
 npm link
 
-// 链接本地库文件
+# 链接本地库文件
 cd you-lib-dir
 npm link
 cd you-cli-dir
 npm link you-lib
 
-// 取消链接本地库文件
+# 取消链接本地库文件
 cd you-lib-dir
 npm unlink
 cd you-cli-dir
 
-// 如果link 存在
+# 如果link 存在
 npm unlink you-lib
-// 如果link 不存在
+# 如果link 不存在
 rm -rf node_modules
 
 npm install
