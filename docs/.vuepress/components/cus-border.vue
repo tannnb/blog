@@ -6,6 +6,10 @@
 
 <script>
 
+
+
+
+
 export default {
   name: "cus-border",
   data() {
@@ -14,13 +18,8 @@ export default {
     }
   },
   mounted() {
-    new Promise((resolve, reject) => {
-        resolve(1)
-    }).then((res) => {
 
-    },err => {
 
-    })
   },
   methods: {
     handle() {
