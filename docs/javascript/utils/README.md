@@ -163,6 +163,24 @@ function unique(data, keys) {
     return data
 }
 ```
-
+## Cookie操作
+```js
+let doCookie = {
+        getCookie(name) {
+            let reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+            let arr = document.cookie.match(reg)
+            return arr && arr.length > 2?  unescape(arr[2]) : null
+        },
+        setCookie(cookName, cookValue, expiration) {
+            let date = new Date();
+            date.setTime(date.getTime() + (expiration * 24 * 60 * 60 * 1000));
+            let expires = `expires=${date.toUTCString()}`;
+            document.cookie = `${cookName}=${cookValue};${expires}`
+        }
+    }
+    doCookie.setCookie('name', 'lilei', 20);
+    doCookie.setCookie('jsdh', 'lilei2', 20);
+   // console.log(doCookie.getCookie('name')); // 打印lilei
+```
 
 

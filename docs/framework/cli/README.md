@@ -1,4 +1,4 @@
-# lerna 基本操作
+### lerna 基本操作
 
 #### 脚手架项目初始化
 * 1.初始化npm项目
@@ -65,3 +65,81 @@ lerna run --scope @project-cli/core test
 # 确保package.json中的version与仓库中的tag/分支不能相同
 ```
 
+
+## commander 基本操作
+新建一个项目文件(project)初始化npm init,并配置bin信息,使用npm link创建本地软链接
+```js
+const package = require('./package.json')
+const commander = require('commander')
+const program = new commander.Command();
+program
+    .name(Object.keys(package.bin)[0])
+    .usage('<command> [options]')
+    .version(package.version,'-V, --version','当前版本号')
+    .option('-d, --debug' ,'是否开启调试',false)
+    .parse(process.argv);
+program.outputHelp()
+
+// 比如创建的软链接命令为 project-cli
+// >  project-cli
+
+// 输出如下：
+// Usage: project-cli <command> [options]
+
+//Options:
+//    -V, --version  当前版本号
+//    -d, --debug    是否开启调试 (default: false)
+//    -h, --help     display help for command
+```
+
+创建子命令的两种方式
+```js
+// 第一种： command新增子命令
+const program = new commander.Command();
+const dev = program.command('dev <source> [destination]')
+dev
+    .description('dev命令描述信息')
+    .option('-f, --force','是否强制进行某些操作')
+    .action((source,destination,cmdObj) => {
+        console.log('do clone:', source,destination,cmdObj.force)
+    });
+
+
+// 第二种：addCommand新增子命令
+const service = new commander.Command('service');
+service
+    .command('start [port]')
+    .description('服务启动')
+    .action((port) => {
+        console.log('服务启动端口:', port)
+    });
+service
+    .command('stop')
+    .description('服务终止')
+    .action((port) => {
+        console.log('服务终止完成')
+    })
+program.addCommand(service)
+program.outputHelp()
+
+// >  project-cli
+// Usage:  [options] [command]
+// Options:
+//     -h, --help                                  display help for command
+//     Commands:
+//         dev [options] <source> [destination]   dev命令描述信息
+//         service
+//         help [command]                          display help for command
+```
+```js
+// 监听输入的命令
+program
+    .arguments('<cmd> [options]')
+    .description('cmd command',{
+        cmd:'command to run',
+        options:'options for command'
+    })
+    .action((cmd,env) =>{
+        console.log('cmd:', cmd,env)
+    });
+```
