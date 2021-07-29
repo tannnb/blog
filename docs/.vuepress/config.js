@@ -19,9 +19,7 @@ module.exports = {
         ['meta', {name: 'apple-mobile-web-app-status-bar-style', content: 'black'}],
     ],
     markdown: {
-        code: {
-            lineNumbers: false  // 是否启用代码块行号
-        }
+        lineNumbers: true  // 是否启用代码块行号
     },
     themeConfig: {
         repo: 'https://github.com/tannnb',
