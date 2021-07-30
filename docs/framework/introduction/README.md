@@ -34,15 +34,14 @@ vue create vue-app --force
 
 全局安装成功之后，进入 `node/bin` 目录下会存在多个软连接文件,
 其中`vue`软连接指向的是`/lib/node_modules/@vue/cli/bin/vue.js`
-
-那么这个绑定关系是如何指定的？
-在`/lib/node_modules/@vue/cli`下的package.json存在bin配置,此配置就是安装完成之后软连接的名称和指向地址
+那么这个绑定关系是如何指定的？在`/lib/node_modules/@vue/cli`下的package.json存在bin配置
+这个配置就是安装完成之后软连接的名称和指向地址
 
 全局安装 `@vue/cli` 发生了什么?
-首先将包安装到`node_modules下`, 然后查找`package.json`文件中的bin配置,如果找到该配置,那么就会在`node/bin`
+首先将包安装到`node_modules下`，然后查找`package.json`文件中的bin配置，如果找到该配置，那么就会在`node/bin`
 下根据`package.json`中的配置创建软连接名称和地址
 
-为什么vue指向一个js文件,我们确可以直接通过vue命令去直接执行它？
+为什么vue指向一个js文件，我们确可以直接通过vue命令去直接执行它？
 `/lib/node_modules/@vue/cli/bin/vue.js` 第一行有申明命令 `#!/usr/bin/env node` 表示为用node去执行这个文件
 ```
 

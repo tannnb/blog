@@ -56,7 +56,7 @@ lerna run --scope @project-cli/core test
 ```
 
 #### 脚手架发布上线
-* 1.lerna version
+* 1.lerna version 
 * 2.lerna changed 查看上版本以来的所有变更
 * 3.lerna diff 查看diff
 * 4.lerna publish 项目发布

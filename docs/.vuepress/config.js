@@ -1,27 +1,26 @@
 const nav = require('./utils/nav.js')
-const { frameworkSidebar, interviewSideBar } = nav
+const {frameworkSidebar, interviewSideBar} = nav
 module.exports = {
+    lang: 'zh-CN',
     base: '/blog/',
-    title: '前端学习笔记',
-    description: '前端学习笔记',
-    locales: {
-        '/': {
-            lang: 'zh-CN',
-            title: '前端学习笔记',
-            description: '前端学习笔记'
-        }
-    },
+    title: '黑娃 ● 知识库',
+    description: '知识库强，则技术强，技术强则国强',
     head: [
         ['link', {rel: 'icon', href: '/favicon.ico'}],
         ['link', {rel: 'manifest', href: '/manifest.json'}],
+        ['link', {rel: 'apple-touch-icon', href: '/favicon.ico'}],
+        ['link', {rel: 'mask-icon', href: '/favicon.ico', color: '#3eaf7c'}],
+        ['link', {rel: 'dns-prefetch', href: 'https://tannnb.github.io/blog/'}],
+        ['link', {rel: 'prerender', href: 'https://tannnb.github.io/blog/'}],
+        ['meta', {name: 'msapplication-TileImage', content: '/favicon.ico'}],
+        ['meta', {name: 'msapplication-TileColor', content: '#000000'}],
         ['meta', {name: 'theme-color', content: '#3eaf7c'}],
         ['meta', {name: 'apple-mobile-web-app-capable', content: 'yes'}],
         ['meta', {name: 'apple-mobile-web-app-status-bar-style', content: 'black'}],
-        ['link', {rel: 'apple-touch-icon', href: '/favicon.ico'}],
-        ['link', {rel: 'mask-icon', href: '/favicon.ico', color: '#3eaf7c'}],
-        ['meta', {name: 'msapplication-TileImage', content: '/favicon.ico'}],
-        ['meta', {name: 'msapplication-TileColor', content: '#000000'}]
     ],
+    markdown: {
+        lineNumbers: true  // 是否启用代码块行号
+    },
     themeConfig: {
         repo: 'https://github.com/tannnb',
         repoLabel: 'Github',
@@ -99,7 +98,7 @@ module.exports = {
         editLinkText: '编辑此页',
         sidebar: 'auto',
         sidebar: {
-            '/interview/':interviewSideBar,
+            '/interview/': interviewSideBar,
             '/framework/': frameworkSidebar
         },
         searchMaxSuggestions: 10
@@ -117,6 +116,7 @@ module.exports = {
         '@vuepress/back-to-top',
         '@vuepress/nprogress',
         '@vuepress/active-header-links',
+        '@vuepress/plugin-docsearch',
         [
             '@vuepress/pwa',
             {

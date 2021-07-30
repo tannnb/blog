@@ -39,55 +39,6 @@ sidebar: auto
 
 [git 命令大全 github](https://github.com/521xueweihan/git-tips)
 
-## 将代码提交到 github 的 gh-pages 分支
-
-1. 安装 `gh-pages`
-
-```sh
-yarn add -D gh-pages
-# OR npm install -D gh-pages
-```
-
-2. 在 `package.json` 中添加如下脚本
-
-```json
-"deploy": "gh-pages -d dist -m deploy",
-"deploy:build": "npm run build && npm run deploy"
-```
-
-3. 运行 `deploy` 脚本
-
-```sh
-yarn deploy
-# OR npm run deploy
-```
-
-## 删除 Git 中的所有提交历史记录
-
-::: tip 提示
-以 `master` 分支为例
-:::
-
-```sh
-# 创建 orphan 分支
-git checkout --orphan [分支名]
-
-# 添加需要上传文件
-git add .
-
-# 提交更改
-git commit -m "Initial"
-
-# 删除需要清空提交记录的分支
-git branch -D master
-
-# 将当前分支重命名为需要清空提交记录的分支名
-git branch -m master
-
-# 强制更新存储库
-git push -f origin master
-```
-
 
 # Git 命令清单
 
@@ -317,7 +268,7 @@ git stash pop
 [参考地址：阮一峰 -- 常用 Git 命令清单](https://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
 
 ## GIT 拉取远程分支到本地
-```
+```sh
 1. git init
 
 # 与origin master建立连接
@@ -335,3 +286,52 @@ git stash pop
 5 git pull origin dev
 ```
 
+
+## 提交到github的gh-pages分支
+
+1. 安装 `gh-pages`
+
+```sh
+yarn add -D gh-pages
+# OR npm install -D gh-pages
+```
+
+2. 在 `package.json` 中添加如下脚本
+
+```json
+"deploy":"gh-pages -d dist -m deploy",
+"deploy:build": "npm run build && npm run deploy"
+```
+
+3. 运行 `deploy` 脚本
+
+```sh
+yarn deploy
+# OR npm run deploy
+```
+
+## 删除 Git 中的所有提交历史记录
+
+::: tip 提示
+以 `master` 分支为例
+:::
+
+```sh
+# 创建 orphan 分支
+git checkout --orphan [分支名]
+
+# 添加需要上传文件
+git add .
+
+# 提交更改
+git commit -m "Initial"
+
+# 删除需要清空提交记录的分支
+git branch -D master
+
+# 将当前分支重命名为需要清空提交记录的分支名
+git branch -m master
+
+# 强制更新存储库
+git push -f origin master
+```

@@ -2,7 +2,7 @@
 sidebar: auto
 ---
 
-## npm 
+## npm源
 
 ```sh
 # 查看当前 npm 源

@@ -3,7 +3,12 @@ const interviewSideBar = [
   {
     title: '基础知识',
     collapsable: true,
-    children: ['base/']
+    children: [
+        'base/',
+        'base/data_type',
+        'base/isEqual',
+        'base/typeof',
+    ]
   },
   {
     title: '浏览器相关',
