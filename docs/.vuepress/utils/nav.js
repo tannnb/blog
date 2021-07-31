@@ -8,6 +8,17 @@ const interviewSideBar = [
         'base/data_type',
         'base/isEqual',
         'base/typeof',
+        'base/is_this',
+        'base/closure',
+        'base/is_class',
+        'base/is_copy',
+        'base/is_call_apply_bind',
+        'base/is_tree',
+        'base/is_curry',
+        'base/is_debounce',
+        'base/is_promise',
+        'base/is_proxy',
+        'base/is_subject',
     ]
   },
   {
