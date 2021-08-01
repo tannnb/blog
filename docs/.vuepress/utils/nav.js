@@ -11,6 +11,7 @@ const interviewSideBar = [
         'base/is_this',
         'base/closure',
         'base/is_class',
+        'base/is_eventLoop',
         'base/is_copy',
         'base/is_call_apply_bind',
         'base/is_tree',
