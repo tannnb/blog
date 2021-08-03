@@ -228,4 +228,3 @@ lilei.getName.apply(hanmeimei)  // 输出: 韩梅梅
 let p = new Student('王富贵')
 p.getName()   // 输出: 王富贵
 ```
-
