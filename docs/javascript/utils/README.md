@@ -105,6 +105,26 @@ function getURLQuery(url) {
         (a, v) => (a[v.slice(0, v.indexOf('='))] = v.slice(v.indexOf('=') + 1), a), {}
     ) : []
 }
+
+
+function getQueryString(url) {
+    let index = url.indexOf('?')
+    if (!url || index === -1) {
+        return undefined
+    }
+    let str = ''
+    let urlArr = url.substring(index + 1).split('&')
+    let result = {}
+    for (let i = 0; i < urlArr.length; i++) {
+        let item = urlArr[i].split('=')
+        result[item[0]] = item[1]
+    }
+    return result
+}
+
+let url = 'http://www.baidu.com?id=1&query=百度搜索&callback=callbackJSON'
+const {id, query, callback} = getQueryString(url)
+
 ```
 
 ## 检测设备
