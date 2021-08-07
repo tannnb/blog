@@ -9,6 +9,7 @@ const interviewSideBar = [
         'base/isEqual',
         'base/typeof',
         'base/is_this',
+        'base/is_new',
         'base/closure',
         'base/is_class',
         'base/is_eventLoop',
