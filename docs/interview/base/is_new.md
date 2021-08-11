@@ -28,35 +28,40 @@ console.log(p.getName()) // 李雷
 
 ## 二、流程
 new关键字主要做了以下的工作？
-* 创建一个新的对象`obj`
+* 创建一个空对象，这个对象讲会作为执行构造函数执行之后返回对象的实例
   
-* 将对象与构建函数通过原型链连接起来
+* 将空对象的`__proto__`指向构造函数的`prototype`。
   
-* 将构建函数中的`this`绑定到新建的对象`obj`上
+* 将这个空对象赋值给构造函数内部的`this`，并执行构造函数。
   
-* 根据构建函数返回类型作判断，如果是原始值则被忽略，如果是返回对象，需要正常处理
+* 根据构造函数的逻辑，返回第一步创建的对象或者构造函数显示的返回值。
 
-<div style="text-align: left;width: 600px">
-  <img src="../../images/base/is_new_01.png" />
-</div>
 
-## 三、模拟new操作符
+## 三、仿写new关键词方法
 ```js
-function Mynew() {
-    let obj = {}
-    let args = Array.from(arguments)
-    obj.__proto__ = args[0].prototype
-    let result = func.apply(args[0], args.slice(1))
-    return result instanceof Object ? result : obj
+function Mynew(...agrs) {
+    // 1. 获取构造函数
+    const constructor = args.shift()
+    
+    // 2. 创建空对象并设置原型
+    const obj = Object.create(constructor.prototype)
+    
+    // 3.绑定this并执行构造函数
+    const result = constructor.apply(obj,args)
+    
+    // 4. 返回构造函数显示返回的值或新对象
+    return isObject(result) ? result : obj
 }
 
-function Person(name,age) {
+function isObject (obj) {
+    return obj !== null && typeof obj === 'object'
+}
+
+function Person(name) {
     this.name = name
-    this.age = age
 }
-Person.prototype.getName = function () {
-    return this.name
-}
-let p = Mynew(Person,'李雷', 20)
-console.log(p.getName())  // 李雷
+
+let p = Mynew(Person,'李雷')
+console.log(p instanceof Person) // true
+console.log(p.name)  // 李雷
 ```

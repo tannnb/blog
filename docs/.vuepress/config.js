@@ -46,6 +46,14 @@ module.exports = {
                         items: [
                             {
                                 text: '你不知道的JavaScript(上)',
+                                link: '/javascript/know_top/'
+                            },
+                            {
+                                text: '你不知道的JavaScript(中)',
+                                link: '/javascript/know_in/'
+                            },
+                            {
+                                text: '深入理解ES6',
                                 link: '/javascript/es6/'
                             },
                             {
