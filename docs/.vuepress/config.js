@@ -1,5 +1,5 @@
 const nav = require('./utils/nav.js')
-const {frameworkSidebar, interviewSideBar} = nav
+const {frameworkSidebar, interviewSideBar,webpackSideBar} = nav
 module.exports = {
     lang: 'zh-CN',
     base: '/blog/',
@@ -92,6 +92,15 @@ module.exports = {
                                 link: '/nodejs/npm/'
                             }
                         ]
+                    },
+                    {
+                        text: 'webpack系列',
+                        items: [
+                            {
+                                text: 'webpack',
+                                link: '/webpack/webpack_next/'
+                            }
+                        ]
                     }
                 ]
             },
@@ -107,7 +116,8 @@ module.exports = {
         sidebar: 'auto',
         sidebar: {
             '/interview/': interviewSideBar,
-            '/framework/': frameworkSidebar
+            '/framework/': frameworkSidebar,
+            '/webpack/':webpackSideBar
         },
         searchMaxSuggestions: 10
     },
