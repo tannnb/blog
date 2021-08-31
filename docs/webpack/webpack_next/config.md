@@ -82,13 +82,11 @@ webpack给我们提供了三个选项，即`none`、`development`和`production`
 
 ## devtool
 开启sourceMap调试，与代码映射位置。而我们可以在配置文件中，使用devtool开启它
-```js
+```js {4}
 const path = require('path');
 
 module.exports = {
-   ...
-   // 开启source-map
-    devtool: "source-map"
+    devtool: "source-map"  // 开启source-map
 };
 ```  
 由于配置项太多，这里只说最常见的几项,完整配置可查看 [webpack/devtool](https://webpack.docschina.org/configuration/devtool/#root)
@@ -121,7 +119,7 @@ devtool: 'cheap-module-source-map'
 或者也可以去github找他人写的loader或者自己手写loader来使用。
 :::
 而对于`loader`的配置，是写在`module`配置内的。`module`选项是一个对象，它里面有一个`rules`属性，是一个数组，在里面我们可以配置多个匹配规则。
-```js
+```js {4-7}
 {
     module:{
         rules:[
@@ -138,7 +136,7 @@ devtool: 'cheap-module-source-map'
 :::  
 
 如果我们需要对对应loader提供配置的时候，我们可以选用对象写法：
-```js
+```js {7-14}
 module: {
     rules: [
         {
@@ -209,7 +207,7 @@ npm install html-webpack-plugin -D
 ```
 2. 接下来配置一下webpack。一般plugin插件都是一个类，而我们需要在plugins选项中需要创建一个插件实例。对于htmlWebpackPlugin插件，我们需要传入一些配置：
 * html模板地址`template`和打包出来的文件名`filename`。
-```js
+```js {12-15}
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -222,16 +220,14 @@ module.exports = {
     plugins: [
        // 使用htmlWebpackPlugin插件
         new htmlWebpackPlugin({
-           // 指定html模板
-            template: './src/index.html',  
-           // 自定义打包的文件名
-            filename: 'index.html'
+            template: './src/index.html',    // 指定html模板
+            filename: 'index.html'  // 自定义打包的文件名
         })
     ]
 }
 ```
 接下来执行一下打包，就会发现dist文件下会生成一个index.html。打开会发现，webpack会自动将打包后的bundle文件引入(这里bundle名为index)：
-```html
+```html {6}
 <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -244,7 +240,7 @@ module.exports = {
 </html>
 ```
 如果我们有多个chunk的时候，我们可以指定该html要引入哪些chunk。在htmlWebpackPlugin配置中有一个chunks选项，是一个数组，你只需要加入你想引入的chunkName即可
-```js
+```js {6,7,17}
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -261,7 +257,7 @@ module.exports = {
         new htmlWebpackPlugin({
             template: './src/index.html',  
             filename: 'index.html',
-           chunks: ["index"]  // 只引入index chunk
+            chunks: ["index"]  // 只引入index chunk
         })
     ]
 };
@@ -271,7 +267,7 @@ module.exports = {
 > 实现多页面的话，只需要再new一个htmlWebpackPlugin实例即可
 > 
 ::: details 简易多页配置
-```js
+```js {5,6,14,15,20,21}
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
@@ -313,7 +309,7 @@ module.exports = {
 npm install clean-webpack-plugin -D
 ```
 添加配置
-```js
+```js {13}
 const path = require('path');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
@@ -341,7 +337,7 @@ module.exports = {
 
 这样子更好的避免测试过程中误删。
 :::
-```js
+```js {14-18}
 // 完整配置
 const path = require('path');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
@@ -393,7 +389,7 @@ npm install webpack-dev-server -D
 :::
 
 #### webpack.config.js中，有一个`devServer`选项是用来配置webpack-dev-server，这里简单介绍几个比较常用的配置。[webpack/DevServer](https://webpack.docschina.org/configuration/dev-server/#root)
-```js
+```js {4-13}
 module.exports = {
     ...
     // 配置webpack-dev-server
@@ -414,14 +410,14 @@ module.exports = {
 // proxy: 设置本地开发的跨域代理。(proxy的值必须是一个对象，在里面我们可以配置一个或多个跨域代理)
 ```
 :::details proxy配置信息那点事儿
-```text
-当你请求/api/users的时候，就会代理到http://localhost:9000/api/users
+```js
+// 当你请求/api/users的时候，就会代理到http://localhost:9000/api/users
 
-如果配置了pathRewrite,比如{ '^/api': '' } ,那么请求/api/users的时候，就会代理到http://localhost:3000/users
+// 如果配置了pathRewrite,比如{ '^/api': '' } ,那么请求/api/users的时候，就会代理到http://localhost:3000/users
 
-changeOrigin: 默认情况下，代理时会保留主机头的来源，当我们将其设置为true可以覆盖这种行为
+// changeOrigin: 默认情况下，代理时会保留主机头的来源，当我们将其设置为true可以覆盖这种行为
 
-secure: 当你的接口使用了https的时候，需要将其设置为false
+// secure: 当你的接口使用了https的时候，需要将其设置为false
 ```
 :::
 
@@ -444,7 +440,7 @@ import './index.css'
 console.log('hello webpack 5')
 ```
 3. 配置css-loader
-```js
+```js {5-8}
 module.exports = {
    ...
   module: {
@@ -465,17 +461,15 @@ module.exports = {
 这是因为style-loader是将css代码插入到了main.js当中去了
 :::
 #### 那么我们不想将css代码放进js中，而是直接导出一份或多份css文件，那该怎么做？ 这就得使用另一个插件—— `mini-css-extract-plugin`
-:::details 配置如下
-```js
+```js {8,16}
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
     module: {
         rules: [
             {
                 test: /\.css$/,
-                // 使用miniCssExtractPlugin.loader替换style-loader
                 use: [
-                    miniCssExtractPlugin.loader,
+                    miniCssExtractPlugin.loader,  // 使用miniCssExtractPlugin.loader替换style-loader
                     'css-loader'
                 ]
             }
@@ -489,10 +483,9 @@ module.exports = {
 };
 // 注:这里我们不再使用style-loader，而是使用miniCssExtractPlugin提供的loader
 ```
-:::
 
-:::details 接下来打包一下，dist路径下就会多出一个main.css文件，并且在index.html中也会自动引入
-```html 
+#### 接下来打包一下，dist路径下就会多出一个main.css文件，并且在index.html中也会自动引入
+```html {6-7}
 <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -506,7 +499,6 @@ module.exports = {
     </body>
 </html>
 ```
-:::
 
 ## CSS添加浏览器前缀
 当我们使用一下css新特性的时候，可能需要考虑到浏览器兼容的问题，这时候可能需要对一些css属性添加浏览器前缀。而这类工作，其实可以交给webpack去实现。准确来说，是交给`postcss`去实现。
@@ -516,7 +508,7 @@ npm install postcss postcss-loader -D
 ```
 :::details 配置步骤与解释
 1. 首先在webpack配置文件先引入postcss-loader，它的顺序必须要在css-loader之前执行
-```js
+```js {2-5}
 rules: [
     {
         test: /\.css$/,
@@ -537,7 +529,7 @@ module.exports = {
 ```shell
 npm install autoprefixer -D
 ```
-```js
+```js {4-9}
 module.exports = {
     plugins: [
         // 将css编译为适应于多版本浏览器
@@ -571,7 +563,7 @@ body {
 npm install cssnano -D
 ```
 还是在配置文件`postcss.config.js`中引入
-```js
+```js {4}
 module.exports = {
     plugins: [
         ...,
@@ -579,12 +571,10 @@ module.exports = {
     ]
 }
 ```
-
-:::details 打包之后css压缩代码
+#### 打包之后css压缩代码
 ```css
 body{display:-webkit-box;display:-ms-flexbox;display:flex}
 ```
-:::
 
 ## CSS预处理器
 在我们实际开发中，我们会更多使用`Sass`、`Less`或者`stylus`这类css预处理器。而其实html是无法直接解析这类文件的，因此我们需要使用对应的loader将其转换成css
@@ -596,7 +586,7 @@ npm install sass sass-loader -D
 ```
 :::details sass-loader 配置步骤与解释
 1. 在module加上sass的匹配规则，sass-loader的执行顺序应该是排第一，我们需要先将其转换成css，然后才能执行后续的操作,比如添加前缀等
-```js
+```js {2-5}
 rules: [
     {
         test: /\.(css|scss|less)$/,  // 识别css scss less文件
@@ -654,7 +644,7 @@ img.src= pic;
 document.querySelector('body').append(img);
 ```
 
-```js
+```js {5-8}
 module.exports = {
   ...
   module: {
@@ -670,7 +660,7 @@ module.exports = {
 #### 此时dist路径下没有图片文件，但是你打开页面是可以看到图片的，且通过调试工具，我们可以看到其实url-loader默认会将静态资源转成base64
 
 `url-loader`选项有提供一个属性，叫`limit`，就是我们可以设置一个文件大小阈值，当文件大小超过这个值的时候，`url-loader`就不会转成`base64`，而是直接打包成文件。执行打包,可以看到dist目录下出现了图片文件
-```js
+```js {6-12}
 module.exports = {
   module: {
     rules: [
@@ -749,7 +739,7 @@ module.exports = {
 }
 ```
 会发现dist文件夹下依旧会打包成一个图片文件，但是它的名称会被改成哈希值，但是我们可以通过options选项来设置导出的名称
-```js
+```js {8-10}
 module.exports = {
   module: {
     rules: [
@@ -758,7 +748,7 @@ module.exports = {
         use: [{
           loader: 'file-loader',
           options: {
-            name: '[name].[ext]',   // 使用占位符设置导出名称
+            name: '[name].[ext]',   // 使用占位符设置导出名称,如果不设置那么名称是自动生成的hash值
           }
         }]
       }
@@ -767,6 +757,475 @@ module.exports = {
 }
 ```
 :::
+
+
+:::warning 问题：如果直接在index.html引入图片的话，可以顺利打包吗？
+结论：页面找不到该图片地址。
+
+运行打包出来的文件，发现`<img src="./image.png">`,浏览器并没有解析和打包出来,这时候需要使用另一个插件 `html-withimg-loader`
+:::
+```shell
+npm install html-withimg-loader -D
+```
+
+:::details 配置 html-withimg-loader 规则与操作
+1. 添加html解析规则，此时直接执行打包命令，图片还是展示不出来。然后通过调试工具看的话，会发现显示的是 `<img src="{"default":"image.png"}">` 这是什么原因？
+
+因为`html-loader`使用的是`commonjs`进行解析的，而`url-loader`默认是使用`esModule`解析的。因此我们需要设置一下`url-loader`
+```js {4-5}
+{
+  rules:[
+     { 
+       test: /\.html$/,
+       loader: 'html-withimg-loader' 
+       }
+  ]
+}
+```
+2. 修改url-loader配置
+```js {8}
+{
+  rules:[
+      {
+          test: /\.(png|je?pg|gif|webp)$/,
+          use: {
+              loader: 'url-loader',
+              options: {
+                  esModule: false,  // 不使用esModule解析
+                  name: '[name].[ext]',
+                  limit: 1024 * 10
+              }
+          }
+      }
+  ]
+}
+```
+此时在执行打包命令，可以看到图片正常显示出来了，也能正常找到引用地址。
+:::
+
+## 资源模块
+在webpack5中，新添了一个资源模块，它允许使用资源文件（字体，图标等）而无需配置额外 loader，内容太多 :smile: 具体的内容查看 [webpack/asset-modules](https://webpack.docschina.org/guides/asset-modules/)
+
+前面的例子，我们对静态资源都使用了`url-loader`或者`file-loader`，而在webpack5，我们甚至可以需要手动去安装和使用这两个loader，而直接设置一个`type`属性。
+
+:::details 修改静态资源配置
+```js
+rules:[
+    
+    // {
+    //     test: /\.(png|je?pg|gif|webp)$/,
+    //     use: [{
+    //         loader: 'url-loader',
+    //         options: {
+    //             esModule: false,  // 不使用esModule解析
+    //             name: '[name].[ext]',   // 使用占位符设置导出名称
+    //             limit: 1024 * 10  // 设置转成base64阈值，大于10k不转成base64
+    //         }
+    //     }]
+    // },
+    
+      {
+          test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/i,
+          type: "asset/resource",
+      }
+  ]
+```
+
+3. 打包出来的文件名师hash值，我们可以配置`bundle`静态文件名称,此时静态文件名称就显示正常了
+```js {5}
+{
+    output: {
+        path: path.resolve(__dirname, 'dist/'),
+        filename: '[name].js',
+        assetModuleFilename: '[name][ext]'   // 设置静态bundle文件的名称
+    }
+}
+```
+
+然后打包测试后，静态文件都会直接打包成文件并自动引入，`效果跟file-loader一致`
+
+#### `type`有4种新的模块类型,来替换所有这些 loader：
+* `asset/resource`：发送一个单独的文件并导出 URL。之前通过使用 `file-loader` 实现。
+* `asset/inline`：导出一个资源的 data URI。之前通过使用 `url-loader` 实现。
+* `asset/source`：导出资源的源代码。之前通过使用 `raw-loader` 实现。
+* `asset`：在导出一个 data URI 和发送一个单独的文件之间自动选择。之前通过使用 `url-loader`，并且配置资源体积限制实现。
+:::
+  
+## 配置Babel处理es6
+为了兼容多浏览器转义，因此我们需要用到`babel`, 同时，我们需要使用babel中用于JavaScript兼容的插件
+```shell
+npm install babel-loader -D
+
+npm install @babel/preset-env @babel/core core-js -D
+```
+
+:::details babel配置与步骤
+1. 配置js文件解析转义
+```js {4-5}
+{
+    rules:[
+        {
+            test: /\.js$/,
+            use: ['babel-loader']
+        }
+    ]
+}
+```
+2. 配置babel。当然我们可以直接在`webpack.config.js`里面配置，但是babel同样也提供了配置文件`.babelrc`，babel的配置特别多，所以一般会在根目录下创建一个`.babelrc`文件单独配置
+```js
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        // 浏览器版本
+        "targets": {
+          "edge": "17",
+          "chrome": "67"
+        },
+        // 配置corejs版本，但需要额外安装corejs
+        "corejs": 3,
+          
+        // 加载情况
+        // entry: 需要在入口文件进入@babel/polyfill，然后babel根据使用情况按需载入
+        // usage: 无需引入，自动按需加载(推荐)
+        // false: 入口文件引入，全部载入
+        "useBuiltIns": "usage"
+      }
+    ]
+  ]
+}
+```
+3. 在index.js中,编写一些es6的代码打包之后，控制台能正常输出结果
+```js
+new Promise(resolve => {
+    resolve('Hello babel')
+}).then(res => {
+    console.log(res);
+})
+let result = Object.assign({} ,{id:10086})
+console.log("客服电话:", result)
+```
+上面打包代码是直接使用了`Promise`,`assign`，而没有考虑到低版本浏览器的兼容。然后我们打开babel后，执行一下打包命令，会发现代码多出了很多。
+
+而在打包代码中，可以看到webpack使用了`polyfill(垫片)`实现promise类，然后再去调用，从而兼容了低版本浏览器没有promise属性问题
+:::
+
+## 配置React
+webpack要解析react需要借助`@babel/preset-react` 来实现
+```shell
+npm install @babel/preset-react -D
+```
+:::warning 注意
+在.babelrc中配置presets时，注意：一定是从下往上，先执行"@babel/preset-react"解析jsx格式语法，在通过"@babel/preset-env"解析es6成es5的语法
+:::
+
+尝试一下react写法，首先安装核心库`react`,`react-dom`
+```shell
+npm install react react-dom -S
+```
+
+在`index.js`尝试添加如下代码，可以看到页面正正确显示`hello React`，以及打印出`componentDidMount`
+```js
+import React,{useEffect} from 'react'
+import ReactDom from 'react-dom'
+
+function App() {
+    useEffect(() => {
+        console.log('componentDidMount')
+    },[])
+    return <div>hello React</div>
+}
+
+ReactDom.render(<App />,document.getElementById('root'))
+```
+
+
+## 文件归类
+
+:::details 我们的测试代码中，我们的src文件夹如下：
+```text
+├── src
+│   ├── image.jpg
+│   ├── index.html
+│   ├── index.js
+│   ├── index.css
+│   ├── iconfont.css
+│   ├── iconfont.ttf
+│   └── variable.scss
+```
+:::
+
+:::details 而正常项目的话，我们会使用文件夹将其分好类,如下方显示
+```text
+├── src
+│   ├── index.html
+│   ├── js
+│   │   └── index.js
+│   ├── static
+│   │   └── image.png
+│   │   └── iconfont.ttf
+│   │   └── iconfont.css
+│   └── style
+│       ├── index.css
+│       └── variable.scss
+```
+:::
+
+:::details 文件归类步骤与解析
+1. 首先，我们先将打包出来的JavaScript文件放入`assets`文件夹下，我们只需要修改`output.filename`即可
+```js {4}
+{
+    output: {
+        path: path.resolve(__dirname, 'dist/'),
+        filename: 'assets/[name].js'
+    }
+}
+```
+2. 其次，我们将打包出来的`css`文件也放入`assets`路径下，因为我们打包css是使用`miniCssExtractPlugin`，因此我们只需要配置一下`miniCssExtractPlugin`的`filename`即可
+```js {5}
+{
+   plugins: [
+      ...
+      new miniCssExtractPlugin({
+        filename: "assets/[name].css"
+      })
+   ]
+}
+```
+3. 最后就是静态资源了，这里我们使用静态模块方案，所以直接修改`output.assetModuleFilename`即可
+```js {5}
+{
+   output: {
+      path: path.resolve(__dirname, 'dist/'),
+      filename: 'assets/[name].js',
+      assetModuleFilename: 'assets/[name][ext]'
+    }
+}
+```
+此时打包之后，预览一下页面，发现都正常引入和使用。
+:::
+
+
+## 哈希值
+通常，我们打包文件的文件名都需要带上一个哈希值，这会给我们的好处就是`避免缓存`,webpack也提供了三种哈希值的策略。
+
+#### 文件调整
+```js
+// index.js
+import pic from "../static/image.jpg";
+const img = new Image();
+img.src= pic;
+img.width = 40
+document.querySelector('body').append(img);
+
+// main.js
+import '../style/index.css'
+import '../style/variable.scss'
+
+
+// webpack.config.js
+entry: {
+    index: './src/js/index.js',
+    main: './src/js/main.js'
+}
+```
+
+
+
+
+## 哈希值-hash策略
+`hash策略`，是以项目为单位的，也就是说，只要项目一个文件发生改动，首先打包后该文件对应的bundle文件名会改变，其次所有js文件和css文件的文件名也会改变
+
+首先我们需要在所有设置`filename`的地方加入`[hash]`占位符，同时我们也可以设置哈希值的长度，只需加上冒号和长度值即可，比如`[hash:6]`。
+:::details 配置修改 
+```js {3,4,12,17-18}
+module.exports = {
+    entry: {
+        index: './src/js/index.js',
+        main: './src/js/main.js'
+    },
+    module: {
+        ...
+    },
+    plugins: [
+        ...
+        new miniCssExtractPlugin({
+            filename: "assets/[name]-[hash:6].css"
+        }),
+    ],
+    output: {
+        path: path.resolve(__dirname, 'dist/'),
+        filename: 'assets/[name]-[hash:6].js',
+        assetModuleFilename: 'assets/[name]-[hash:6][ext]'
+    },
+}
+```
+打包之后的文件大概长这样
+```text
+├── assets
+│   ├── iconfont-73a6ce.ttf
+│   ├── iconfont-468e4b.woff
+│   ├── iconfont-c601d3.woff2
+│   ├── image-702fc4.jpg
+│   ├── index-1c6a2b.js
+│   ├── main-1c6a2b.css
+│   └── main-1c6a2b.js
+└── index.html
+```
+
+> 为么css的名称叫main.css呢?
+> 
+>是因为main.js 中引入了css样式，经过webpack打包过程中，执行miniCssExtractPlugin插件钩子，将css代码从js中剔除，生成一个新css文件此时文件名称就为`"assets/[name]-[hash:6].css"`配置的名称
+
+修改`style.css`,在重新打包测试查看文件名称,这时候会发现`index.js`、`main.js`、`main.css`的文件名都会发生改变，但静态文件并不会发生变化
+```text {6-8}
+├── assets
+│   ├── iconfont-73a6ce.ttf
+│   ├── iconfont-468e4b.woff
+│   ├── iconfont-c601d3.woff2
+│   ├── image-702fc4.jpg
+│   ├── index-8739d8.js
+│   ├── main-8739d8.css
+│   └── main-8739d8.js
+└── index.html
+```
+如果我更换一张图片，但是文件名不变，会不会改变呢？ 我们找一个其他图片还是命名 `image.jpg` 然后重新打包;
+
+结果如下 `index.js`、`main.js`、`main.css` 的文件名依旧会发生改变，同时`image.jpg`也发生了变化。
+
+```text {5-8}
+├── assets
+│   ├── iconfont-73a6ce.ttf
+│   ├── iconfont-468e4b.woff
+│   ├── iconfont-c601d3.woff2
+│   ├── image-f8ef88.jpg
+│   ├── index-5766ac.js
+│   ├── main-5766ac.css
+│   └── main-5766ac.js
+└── index.html
+```
+:::tip 通过上面的测试，我们可以简单总结出
+* 如果修改项目文件的话，所有的`js`、`css`打包文件的文件名都会发生变化，尽管来自多个`chunk`
+* 如果修改静态文件的话，该静态文件的打包文件文件名会发生变化，并且所有的`js`、`css`打包文件的文件名也都会发生变化
+:::
+
+
+## 哈希值-chunkHash策略
+而`chunkHash`策略的话，是以`chunk`为单位的，如果一个文件发生变化，只有那条`chunk相关的文件`的打包文件文件名才会发生变化。
+
+:::details 配置修改
+
+<b>! 这里注意的是`chunkhash`不适用于静态文件，因此静态文件依旧使用`hash`</b>
+```js {12,17}
+module.exports = {
+    entry: {
+        index: './src/js/index.js',
+        main: './src/js/main.js'
+    },
+    module: {
+        ...
+    },
+    plugins: [
+        ...
+        new miniCssExtractPlugin({
+            filename: "assets/[name]-[chunkhash:6].css"
+        }),
+    ],
+    output: {
+        path: path.resolve(__dirname, 'dist/'),
+        filename: 'assets/[name]-[chunkhash:6].js',
+        assetModuleFilename: 'assets/[name]-[hash:6][ext]'
+    }
+}
+```
+打包结果
+```text {6-8}
+├── assets
+│   ├── iconfont-73a6ce.ttf
+│   ├── iconfont-468e4b.woff
+│   ├── iconfont-c601d3.woff2
+│   ├── image-f8ef88.jpg
+│   ├── index-91dbc3.js
+│   ├── main-91dbc3.css
+│   └── main-91dbc3.js
+└── index.html
+```
+然后我们首先修改一下`style.css`，打包一下，会发现`main.css`和`main.js`都发生了变化，而<b>index.js不是一个chunk的，因此不会发生变化</b>。
+```text {7-8}
+├── assets
+│   ├── iconfont-73a6ce.ttf
+│   ├── iconfont-468e4b.woff
+│   ├── iconfont-c601d3.woff2
+│   ├── image-f8ef88.jpg
+│   ├── index-91dbc3.js
+│   ├── main-7c5a87.css
+│   └── main-7c5a87.js
+└── index.html
+```
+同样，我们再覆盖一下image.jpg，再打包一下
+这时候`image.jpg`会发生变化，然后`index.js`也发生了变化，因为它们是一个chunk的，而`main.css`和`main.js`就不会发生变化。
+```text {5-6}
+├── assets
+│   ├── iconfont-73a6ce.ttf
+│   ├── iconfont-468e4b.woff
+│   ├── iconfont-c601d3.woff2
+│   ├── image-696218.jpg
+│   ├── index-9d9520.js
+│   ├── main-7c5a87.css
+│   └── main-7c5a87.js
+└── index.html
+```
+:::tip 通过上面的测试，我们可以简单总结出
+* 如果修改项目文件的话，该项目文件对应的`chunk`的`js`、`css`打包文件的文件名都会发生变化
+* 如果修改静态文件的话，该静态文件的`打包文件文件名`会发生变化，并且引入该静态文件对应的`chunk`的`js`、`css`打包文件的文件名也都会发生变化
+:::
+
+## 哈希值-contenthash策略
+`contenthash`策略， 它是以自身内容为单位的，因此当一个文件发生变化的时候，首先它本身的打包文件的名称会发生变化，其次，引入它的文件的打包文件也会发生变化
+
+我们将`chunkhash`改成`contenthash`
+
+:::details 配置修改
+```js
+module.exports = {
+    entry: {
+        index: './src/js/index.js',
+        main: './src/js/main.js'
+    },
+    module: {
+        ...
+    },
+    plugins: [
+        ...
+        new miniCssExtractPlugin({
+            filename: "assets/[name]-[contenthash:6].css"
+        }),
+    ],
+    output: {
+        path: path.resolve(__dirname, 'dist/'),
+        filename: 'assets/[name]-[contenthash:6].js',
+        assetModuleFilename: 'assets/[name]-[contenthash:6][ext]'
+    }
+}
+```
+打包之后结果
+```text 
+├── assets
+│   ├── iconfont-73a6ce.ttf
+│   ├── iconfont-468e4b.woff
+│   ├── iconfont-c601d3.woff2
+│   ├── image-696218.jpg
+│   ├── index-59cae7.js
+│   ├── main-7c5a87.css
+│   └── main-7c5a87.js
+└── index.html
+```
+:::
+
+
+
+
 
 
 
