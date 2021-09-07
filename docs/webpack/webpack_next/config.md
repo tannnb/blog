@@ -1217,16 +1217,212 @@ module.exports = {
 │   ├── iconfont-c601d3.woff2
 │   ├── image-696218.jpg
 │   ├── index-59cae7.js
-│   ├── main-7c5a87.css
-│   └── main-7c5a87.js
+│   ├── main-83beab.css
+│   └── main-83beab.js
 └── index.html
 ```
+
+同样，我们再覆盖一下image.jpg，再打包一下
+这时候`image.jpg`会发生变化，然后`index.js`也发生了变化，因为它们是一个chunk的，而`main.css`和`main.js`就不会发生变化。
+打包之后结果
+```text 
+├── assets
+│   ├── iconfont-73a6ce.ttf
+│   ├── iconfont-468e4b.woff
+│   ├── iconfont-c601d3.woff2
+│   ├── image-84a8db.jpg
+│   ├── index-e043f6.js
+│   ├── main-83beab.css
+│   └── main-83beab.js
+└── index.html
+```
+同样，我们在编辑一下`main.js`，
+
+在进行打包,查看结果只有`main.js`的打包文件会发生变化，而处于同个`chunk`的`main.css`却不会发生变化，这是因为`main.css`没有引用`main.js`。
+```text 
+├── assets
+│   ├── iconfont-73a6ce.ttf
+│   ├── iconfont-468e4b.woff
+│   ├── iconfont-c601d3.woff2
+│   ├── image-84a8db.jpg
+│   ├── index-e043f6.js
+│   ├── main-83beab.css
+│   └── main-d0c1b2.js
+└── index.html
+```
+:::tip 通过上面的测试，我们可以简单总结出
+* 不管是修改项目文件还是静态文件，它本身的打包文件的文件名会发生变化，其次引用该文件的对应打包文件的文件名也会发生变化
 :::
 
+## alias命名
+在配置文件中，其实有一个`resovle.alias`选项，它可以创建`import`和`require`别名，来确保模块引入变得更简单，同时webpack在打包的时候也能更快的找到引入文件。
 
+```js 
+const path = require('path');
+module.exports = {
+  ...
+  resolve: {
+    alias: {
+      // 配置style路径的别名
+      style: path.resolve(__dirname, 'src/style/')
+    }
+  }
+}
+```
+```js {1}
+import 'style/index.scss'
+import '../static/iconfont.css'
+```
 
+## include与exclude
+当我们使用`loader`的时候，我们可以配置`include`来指定只解析该路径下的对应文件，同时我们可以配置`exclude`来指定不解析该路径下的对应文件。
+```js {8,13}
+const path = require('path');
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [miniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
+        include: [path.resolve(__dirname, 'src')]  // 只解析src路径下的css
+      },
+      {
+        test: /\.js$/,
+        use: 'babel-loader',
+        exclude: /node_modules/   // 不解析node_modules路径下的js
+      }
+    ]
+  }
+}
+```
 
+## noParse
+在`module.noParse`选项中，只配置不需要解析的文件。<b>通常我们会忽略一些大型插件从而来提高构建性能</b>
+```js {3}
+module.exports = {
+  module: {
+    noParse: /jquery|lodash/, 
+  }
+};
+```
 
+## HappyPack开启多进程Loader
+`webpack`构建过程中，其实大部分消耗时间都是用到`loader`解析上面，一方面是因为转换文件数据量很大，另一方面是因为JavaScript单线程特性的原因，因此需要一个个去处理，而不能并发操作
 
+而我们可以使用`HappyPack`，将这部分任务分解到多个子进程中去进行并行处理，子进程处理完成后把结果发送到主进程中去，从而减少总的构建时间。
+```shell
+npm install happypack  -D
+```
+```js {10-12,17-24}
+const HappyPack = require("happypack");
+const os = require("os");
 
+const HappyThreadPool = HappyPack.ThreadPool({size: os.cpus().length});
 
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: [{
+          loader: 'happypack/loader?id=happyBabelLoader'
+        }]
+      }
+    ]
+  },
+  plugins: [
+    new HappyPack({
+      id: 'happyBabelLoader',  // 与loader对应的id标识
+      // 用法跟loader配置一样
+      loaders: [
+        {loader: 'babel-loader', options: {}}
+      ],
+      threadPool: HappyThreadPool  // 预定义线程池 | shared pool(共享线程池)
+    })
+  ]
+};
+```
+## 代码压缩
+当`mode`为`production`的时候，webpack打包会开启代码压缩插件，同时webpack也有提供一个`optimization`选项，让我们可以使用自己喜欢的插件去覆盖原生插件
+
+可以使用`webpack-parallel-uglify-plugin`来覆盖原生代码压缩插件，它的一个优点就是可以`并行执行`, [webpack/uglify](https://github.com/gdborton/webpack-parallel-uglify-plugin)
+```shell
+npm install webpack-parallel-uglify-plugin -D
+```
+```js
+const ParallelUglifyPlugin = require("webpack-parallel-uglify-plugin")
+module.exports = {
+  optimization: {
+    minimizer: [
+      new ParallelUglifyPlugin({
+        // 缓存路径
+        cacheDir: '.cache/',  
+        // 压缩配置
+        uglifyJS: {
+          output: {
+            comments: false,
+            beautify: false
+          },
+          compress: {
+            drop_console: true,
+            collapse_vars: true,
+            reduce_vars: true
+          }
+        }
+      })
+    ]
+  }
+};
+```
+
+## 配置缓存
+每次执行构建都会把所有的文件都重新编译一边，我们可以将这些重复动作缓存下来提高构建速度
+
+在`Webpack5`之前，我们都使用了`cache-loader`，而在webpack5中，官方提供了一个`cache`选项给我们带来持久性缓存。
+```js {15}
+let cacheConfig = {
+    'development':{
+        type: 'memory'  // 默认配置
+    },
+    'production':{
+        type: 'filesystem',
+        buildDependencies: {
+            config: [__filename]
+        }
+    }
+}
+
+let process = process.env.NODE_ENV
+module.exports = {
+  cache: cacheConfig[process]
+}
+```
+
+## analyzer打包大小分析
+```shell
+npm install webpack-bundle-analyzer -D
+```
+```js {4}
+const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
+module.exports = {
+    plugins: [
+        new BundleAnalyzerPlugin()
+    ]
+}
+```
+:::warning analyzer
+webpack会自动打开一个页面，显示我们打包文件的情况，通过打包报告可以很直观的知道哪些依赖包大，则可以做做针对性的修改
+:::
+如果不想每次运行都打开网页的话，我们可以先将数据保存起来，然后要看的时候再执行新的命令去查看
+```js
+// webpack.config.js
+new BundleAnalyzerPlugin({
+   analyzerMode: 'disabled',
+   generateStatsFile: true
+ })
+
+// package.json
+"scripts": {
+    "analyzer": "webpack-bundle-analyzer --port 3000 ./dist/stats.json"
+},
+```

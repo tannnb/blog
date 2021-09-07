@@ -68,6 +68,8 @@ const webpackSideBar = [
             'webpack_next/',
             'webpack_next/init_webpack',
             'webpack_next/config',
+            'webpack_next/loader',
+            'webpack_next/plugin',
         ]
     },
 ]
