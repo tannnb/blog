@@ -105,7 +105,7 @@ module.exports = {
                 ]
             },
             {
-                text: '架构学习',
+                text: '脚手架学习',
                 link: '/framework/introduction/'
             },
             {text: '播放器', link: 'http://www.tannnb.com/pc/'},
@@ -113,7 +113,6 @@ module.exports = {
         lastUpdated: '最后更新时间',
         editLinks: false,
         editLinkText: '编辑此页',
-        sidebar: 'auto',
         sidebar: {
             '/interview/': interviewSideBar,
             '/framework/': frameworkSidebar,

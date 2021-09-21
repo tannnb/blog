@@ -94,10 +94,16 @@ console.log('hello world')
 删除软链接`rm -rf myapp`
 :::
 
+#### 脚手架命令执行全过程
+<div style="text-align: left;width: 400px">
+  <img src="../../images/framework/introduction_2.png" />
+</div>
 
 
+
+
+#### 本地调试流程
 ```shell
-
 # 链接本地脚手架
 cd you-cli-dir
 npm link

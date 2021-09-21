@@ -46,13 +46,15 @@ const frameworkSidebar = [
     {
         title: '介绍',
         collapsable: true,
-        children: ['introduction/']
+        children: [
+            'introduction/',
+            'introduction/lerna',
+        ]
     },
     {
         title: '脚手架设计',
         collapsable: true,
         children: [
-            'cli/',
             'cli/vue'
         ]
     }
