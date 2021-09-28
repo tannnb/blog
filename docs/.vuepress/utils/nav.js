@@ -77,8 +77,21 @@ const webpackSideBar = [
 ]
 
 
+// typescript菜单栏配置
+const typescriptSideBar = [
+    {
+        title: 'typescript学习',
+        collapsable: false,
+        children: [
+            'typescript_next/'
+        ]
+    },
+]
+
+
 module.exports = {
     interviewSideBar,
     frameworkSidebar,
-    webpackSideBar
+    webpackSideBar,
+    typescriptSideBar
 }
