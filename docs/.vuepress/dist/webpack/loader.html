@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>自定义Loader | 黑娃 ● 知识库</title>
+    <meta name="description" content="">
+    <link rel="icon" href="/blog/favicon.ico">
+    <link rel="manifest" href="/blog/manifest.json">
+    <link rel="apple-touch-icon" href="/blog/favicon.ico">
+    <link rel="mask-icon" href="/blog/favicon.ico" color="#3eaf7c">
+    <link rel="dns-prefetch" href="https://tannnb.github.io/blog/">
+    <link rel="prerender" href="https://tannnb.github.io/blog/">
+    <meta name="description" content="知识库强，则技术强，技术强则国强">
+    <meta name="msapplication-TileImage" content="/favicon.ico">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="theme-color" content="#3eaf7c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="preload" href="/blog/assets/css/0.styles.48a0ee12.css" as="style"><link rel="preload" href="/blog/assets/js/app.6840529f.js" as="script"><link rel="preload" href="/blog/assets/js/2.11a5d5e3.js" as="script"><link rel="preload" href="/blog/assets/js/3.dc5724bf.js" as="script"><link rel="preload" href="/blog/assets/js/47.3be3b891.js" as="script"><link rel="preload" href="/blog/assets/js/4.66589091.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.fecf8860.js"><link rel="prefetch" href="/blog/assets/js/11.029e3ba7.js"><link rel="prefetch" href="/blog/assets/js/12.824cb017.js"><link rel="prefetch" href="/blog/assets/js/13.624c30f7.js"><link rel="prefetch" href="/blog/assets/js/14.426051a6.js"><link rel="prefetch" href="/blog/assets/js/15.795a90e5.js"><link rel="prefetch" href="/blog/assets/js/16.40e78b0c.js"><link rel="prefetch" href="/blog/assets/js/17.ee43b362.js"><link rel="prefetch" href="/blog/assets/js/18.ee9fb776.js"><link rel="prefetch" href="/blog/assets/js/19.3b9ef262.js"><link rel="prefetch" href="/blog/assets/js/20.97bdde46.js"><link rel="prefetch" href="/blog/assets/js/21.c4667805.js"><link rel="prefetch" href="/blog/assets/js/22.af37b567.js"><link rel="prefetch" href="/blog/assets/js/23.1a2cb92b.js"><link rel="prefetch" href="/blog/assets/js/24.40f8b4fb.js"><link rel="prefetch" href="/blog/assets/js/25.f1f2b77f.js"><link rel="prefetch" href="/blog/assets/js/26.967eeb52.js"><link rel="prefetch" href="/blog/assets/js/27.f35d832b.js"><link rel="prefetch" href="/blog/assets/js/28.6304848a.js"><link rel="prefetch" href="/blog/assets/js/29.307fd86f.js"><link rel="prefetch" href="/blog/assets/js/30.591c9baa.js"><link rel="prefetch" href="/blog/assets/js/31.beadbffd.js"><link rel="prefetch" href="/blog/assets/js/32.9f84e0c8.js"><link rel="prefetch" href="/blog/assets/js/33.7f0429d5.js"><link rel="prefetch" href="/blog/assets/js/34.803cbed1.js"><link rel="prefetch" href="/blog/assets/js/35.2d6aa872.js"><link rel="prefetch" href="/blog/assets/js/36.848e7f90.js"><link rel="prefetch" href="/blog/assets/js/37.7f01a87c.js"><link rel="prefetch" href="/blog/assets/js/38.28c19fe0.js"><link rel="prefetch" href="/blog/assets/js/39.e4061a03.js"><link rel="prefetch" href="/blog/assets/js/40.3cdbb3ae.js"><link rel="prefetch" href="/blog/assets/js/41.9fcac76b.js"><link rel="prefetch" href="/blog/assets/js/42.111583c0.js"><link rel="prefetch" href="/blog/assets/js/43.620cd84c.js"><link rel="prefetch" href="/blog/assets/js/44.723b4dc3.js"><link rel="prefetch" href="/blog/assets/js/45.8158993f.js"><link rel="prefetch" href="/blog/assets/js/46.132fa256.js"><link rel="prefetch" href="/blog/assets/js/48.f7db10ca.js"><link rel="prefetch" href="/blog/assets/js/49.bd0ddb4e.js"><link rel="prefetch" href="/blog/assets/js/5.6a045548.js"><link rel="prefetch" href="/blog/assets/js/6.9358a351.js"><link rel="prefetch" href="/blog/assets/js/7.cd67eb81.js"><link rel="prefetch" href="/blog/assets/js/8.7cc0cfa5.js"><link rel="prefetch" href="/blog/assets/js/9.3d8caf25.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.48a0ee12.css">
+</head>
+<body>
+<div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><!----> <span class="site-name">黑娃 ● 知识库</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/blog/interview/base/" class="nav-link">
+  前端学习
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="学习记录" class="dropdown-title"><span class="title">学习记录</span> <span class="arrow down"></span></button> <button type="button" aria-label="学习记录" class="mobile-dropdown-title"><span class="title">学习记录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          CSS系列
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/style/" class="nav-link">
+  常用CSS样式
+</a></li></ul></li><li class="dropdown-item"><h4>
+          JavaScript系列
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/javascript/es6.html" class="nav-link">
+  深入理解ES6
+</a></li><li class="dropdown-subitem"><a href="/blog/javascript/know_top.html" class="nav-link">
+  你不知道的JavaScript(上)
+</a></li><li class="dropdown-subitem"><a href="/blog/javascript/know_in.html" class="nav-link">
+  你不知道的JavaScript(中)
+</a></li><li class="dropdown-subitem"><a href="/blog/javascript/algorithm.html" class="nav-link">
+  JavaScript数据结构和算法
+</a></li><li class="dropdown-subitem"><a href="/blog/javascript/utils.html" class="nav-link">
+  常用方法
+</a></li></ul></li><li class="dropdown-item"><h4>
+          typescript系列
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/typescript/" class="nav-link">
+  typescript
+</a></li></ul></li><li class="dropdown-item"><h4>
+          Git系列
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/git/" class="nav-link">
+  精通Git
+</a></li></ul></li><li class="dropdown-item"><h4>
+          nodejs系列
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/nodejs/npm.html" class="nav-link">
+  npm配置
+</a></li></ul></li><li class="dropdown-item"><h4>
+          webpack系列
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/webpack/" class="nav-link router-link-active">
+  webpack
+</a></li></ul></li></ul></div></div><div class="nav-item"><a href="/blog/framework/" class="nav-link">
+  脚手架学习
+</a></div><div class="nav-item"><a href="http://www.tannnb.com/pc/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  播放器
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <a href="https://github.com/tannnb" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Github
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/blog/interview/base/" class="nav-link">
+  前端学习
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="学习记录" class="dropdown-title"><span class="title">学习记录</span> <span class="arrow down"></span></button> <button type="button" aria-label="学习记录" class="mobile-dropdown-title"><span class="title">学习记录</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          CSS系列
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/style/" class="nav-link">
+  常用CSS样式
+</a></li></ul></li><li class="dropdown-item"><h4>
+          JavaScript系列
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/javascript/es6.html" class="nav-link">
+  深入理解ES6
+</a></li><li class="dropdown-subitem"><a href="/blog/javascript/know_top.html" class="nav-link">
+  你不知道的JavaScript(上)
+</a></li><li class="dropdown-subitem"><a href="/blog/javascript/know_in.html" class="nav-link">
+  你不知道的JavaScript(中)
+</a></li><li class="dropdown-subitem"><a href="/blog/javascript/algorithm.html" class="nav-link">
+  JavaScript数据结构和算法
+</a></li><li class="dropdown-subitem"><a href="/blog/javascript/utils.html" class="nav-link">
+  常用方法
+</a></li></ul></li><li class="dropdown-item"><h4>
+          typescript系列
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/typescript/" class="nav-link">
+  typescript
+</a></li></ul></li><li class="dropdown-item"><h4>
+          Git系列
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/git/" class="nav-link">
+  精通Git
+</a></li></ul></li><li class="dropdown-item"><h4>
+          nodejs系列
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/nodejs/npm.html" class="nav-link">
+  npm配置
+</a></li></ul></li><li class="dropdown-item"><h4>
+          webpack系列
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/blog/webpack/" class="nav-link router-link-active">
+  webpack
+</a></li></ul></li></ul></div></div><div class="nav-item"><a href="/blog/framework/" class="nav-link">
+  脚手架学习
+</a></div><div class="nav-item"><a href="http://www.tannnb.com/pc/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  播放器
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <a href="https://github.com/tannnb" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Github
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>webpack学习记录</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/webpack/" aria-current="page" class="sidebar-link">前置概念</a></li><li><a href="/blog/webpack/initWebpack.html" class="sidebar-link">初始化webpack</a></li><li><a href="/blog/webpack/config.html" class="sidebar-link">参数配置</a></li><li><a href="/blog/webpack/loader.html" aria-current="page" class="active sidebar-link">自定义Loader</a></li><li><a href="/blog/webpack/plugin.html" class="sidebar-link">自定义插件</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="自定义loader"><a href="#自定义loader" class="header-anchor">#</a> 自定义Loader</h1> <div class="custom-block warning"><p class="custom-block-title">我们使用了很多的loader，那么那些loader是哪里来的？ 我们能不能写自己的loader然后使用？</p> <p>答案当然是可以的，Webpack 为我们提供了一些loader的API，通过这些API我们能够编写出自己的loader并使用。</p></div> <div class="custom-block tip"><p class="custom-block-title">如何编写及使用自己的Loader</p> <p>我们需要把.js文件中，所有出现<code>hello_world</code>，改成<code>hello_React</code></p></div> <p>首先在项目根目录新建一个<code>replaceLoader.js</code>文件</p> <div class="custom-block tip"><p class="custom-block-title">说明</p> <ul><li>编写<code>loader</code>时，<code>module.exports</code>是固定写法，并且它只能是一个普通函数，不能写箭头函数</li> <li><code>source</code>是打包文件的源文件内容</li></ul></div> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">// replaceLoader.js</span>
+module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">source</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> source<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token string">'hello_world'</span><span class="token punctuation">,</span> <span class="token string">'hello_React'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// index.js 下编写jsx代码</span>
+<span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span>
+<span class="token keyword">import</span> ReactDOM <span class="token keyword">from</span> <span class="token string">'react-dom'</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">App</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+        <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>hello_world<span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+    <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>App<span class="token operator">/</span><span class="token operator">&gt;</span><span class="token punctuation">,</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'app'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><p>配置自定义loader方法，直接在use中引入对应loader文件</p> <div class="language-js line-numbers-mode"><div class="highlight-lines"><br><br><br><br><br><br><div class="highlighted"> </div><br><br><br><br><br></div><pre class="language-js"><code>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+    rules<span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+            test<span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.js$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+            use<span class="token operator">:</span> <span class="token punctuation">[</span>
+                <span class="token operator">...</span>
+                <span class="token punctuation">{</span> loader<span class="token operator">:</span>path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'./replaceLoader.js'</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+            <span class="token punctuation">]</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><p>使用<code>resolveLoader</code>，它告诉了<code>Webpack</code>使用<code>loader</code>时，应该去哪些目录下去找，默认是<code>node_modules</code>，做了此项配置后，我们就不用去显示的填写其路径了，因为它会自动去对应文件夹下面去找</p> <div class="language-js line-numbers-mode"><div class="highlight-lines"><br><br><div class="highlighted"> </div><br><br><br><br><br><br><div class="highlighted"> </div><br><br><br><br><br><br></div><pre class="language-js"><code>module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+    resolveLoader<span class="token operator">:</span> <span class="token punctuation">{</span>
+        modules<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'node_modules'</span><span class="token punctuation">,</span> <span class="token string">'./'</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    module<span class="token operator">:</span><span class="token punctuation">{</span>
+        rules<span class="token operator">:</span><span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+                test<span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.js$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+                use<span class="token operator">:</span> <span class="token punctuation">[</span>
+                    <span class="token punctuation">{</span>loader<span class="token operator">:</span> <span class="token string">'replaceLoader'</span><span class="token punctuation">}</span>
+                <span class="token punctuation">]</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><p>此时打包之后，页面正常显示出<code>hello_React</code></p> <h4 id="如何向loader传参及返回多个值"><a href="#如何向loader传参及返回多个值" class="header-anchor">#</a> 如何向Loader传参及返回多个值</h4> <ol><li>如何传递参数
+在使用loader的时候，可以写成如下的形式：</li></ol> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token punctuation">{</span>
+  test<span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.js$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+  use<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+    loader<span class="token operator">:</span> <span class="token string">'replaceLoader'</span><span class="token punctuation">,</span>
+    options<span class="token operator">:</span> <span class="token punctuation">{</span>
+        name<span class="token operator">:</span> <span class="token string">'稻香-周杰伦'</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p>再使用<code>options</code>传递参数后，我们可以使用官方提供的<code>loader-utils</code> (opens new window)来获取<code>options</code>参数，可以像下面这样写：</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token keyword">const</span> loaderUtils <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'loader-utils'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">source</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> options <span class="token operator">=</span> loaderUtils<span class="token punctuation">.</span><span class="token function">getOptions</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> source<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token string">'hello_world'</span><span class="token punctuation">,</span> options<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p>此时再次进行打包，原来的<code>hello_React</code>变成了<code>稻香-周杰伦</code></p> <h4 id="如何在loader中写异步代码"><a href="#如何在loader中写异步代码" class="header-anchor">#</a> 如何在Loader中写异步代码</h4> <p>在上面的例子中，我们都是使用了同步的代码，那么如果我们有必须异步的场景，该如何实现呢？我们不妨做这样的假设，先写一个<code>setTimeout</code>：</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token keyword">const</span> loaderUtils <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'loader-utils'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">source</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> options <span class="token operator">=</span> loaderUtils<span class="token punctuation">.</span><span class="token function">getOptions</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> result <span class="token operator">=</span> source<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token string">'hello_world'</span><span class="token punctuation">,</span> options<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">callback</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><div class="custom-block danger"><p class="custom-block-title">此时打包之后会报错:`throw new Error(&quot;callback(): The callback was already called.&quot;);`</p> <p>解决办法是：使用this.async()主动标识有异步代码：</p></div> <div class="language-js line-numbers-mode"><div class="highlight-lines"><br><br><br><br><div class="highlighted"> </div><br><br><div class="highlighted"> </div><br><br><br></div><pre class="language-js"><code><span class="token keyword">const</span> loaderUtils <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'loader-utils'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">source</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> options <span class="token operator">=</span> loaderUtils<span class="token punctuation">.</span><span class="token function">getOptions</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> callback <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">async</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> result <span class="token operator">=</span> source<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token string">'hello_world'</span><span class="token punctuation">,</span> options<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">callback</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><h4 id="如何返回多个值"><a href="#如何返回多个值" class="header-anchor">#</a> 如何返回多个值</h4> <div class="custom-block tip"><p class="custom-block-title">说明</p> <p><code>webpack</code>的API允许我们使用<code>callback(error, result, sourceMap?, meta?)</code>返回多个值，它有四个参数：</p> <ul><li><code>Error || Null</code> ：错误类型， 没有错误传递<code>null</code></li> <li><code>result</code> ：转换后的结果</li> <li><code>sourceMap</code>：可选参数，处理分析后的<code>sourceMap</code></li> <li><code>meta</code>: 可选参数，元信息</li></ul></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/blog/webpack/config.html" class="prev">
+        参数配置
+      </a></span> <span class="next"><a href="/blog/webpack/plugin.html">
+        自定义插件
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----><!----></div></div>
+<script src="/blog/assets/js/app.6840529f.js" defer></script><script src="/blog/assets/js/2.11a5d5e3.js" defer></script><script src="/blog/assets/js/3.dc5724bf.js" defer></script><script src="/blog/assets/js/47.3be3b891.js" defer></script><script src="/blog/assets/js/4.66589091.js" defer></script>
+</body>
+</html>

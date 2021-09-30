@@ -44,18 +44,12 @@ const interviewSideBar = [
 // 前端架构侧边栏
 const frameworkSidebar = [
     {
-        title: '介绍',
-        collapsable: true,
-        children: [
-            'introduction/',
-            'introduction/lerna',
-        ]
-    },
-    {
         title: '脚手架设计',
         collapsable: true,
         children: [
-            'cli/vue'
+            '/framework/',
+            '/framework/lerna',
+            '/framework/vue',
         ]
     }
 ]
@@ -67,11 +61,11 @@ const webpackSideBar = [
         title: 'webpack学习记录',
         collapsable: false,
         children: [
-            'webpack_next/',
-            'webpack_next/init_webpack',
-            'webpack_next/config',
-            'webpack_next/loader',
-            'webpack_next/plugin',
+            '/webpack/',
+            '/webpack/initWebpack',
+            '/webpack/config',
+            '/webpack/loader',
+            '/webpack/plugin',
         ]
     },
 ]
@@ -80,10 +74,10 @@ const webpackSideBar = [
 // typescript菜单栏配置
 const typescriptSideBar = [
     {
-        title: 'typescript学习',
+        title: 'typescript',
         collapsable: false,
         children: [
-            'typescript_next/'
+            '/typescript/'
         ]
     },
 ]

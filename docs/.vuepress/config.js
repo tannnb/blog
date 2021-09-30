@@ -37,7 +37,7 @@ module.exports = {
                         items: [
                             {
                                 text: '常用CSS样式',
-                                link: '/style/css/'
+                                link: '/style/'
                             }
                         ]
                     },
@@ -45,24 +45,24 @@ module.exports = {
                         text: 'JavaScript系列',
                         items: [
                             {
+                                text: '深入理解ES6',
+                                link: '/javascript/es6'
+                            },
+                            {
                                 text: '你不知道的JavaScript(上)',
-                                link: '/javascript/know_top/'
+                                link: '/javascript/know_top'
                             },
                             {
                                 text: '你不知道的JavaScript(中)',
-                                link: '/javascript/know_in/'
-                            },
-                            {
-                                text: '深入理解ES6',
-                                link: '/javascript/es6/'
+                                link: '/javascript/know_in'
                             },
                             {
                                 text: 'JavaScript数据结构和算法',
-                                link: '/javascript/algorithm/'
+                                link: '/javascript/algorithm'
                             },
                             {
                                 text: '常用方法',
-                                link: '/javascript/utils/'
+                                link: '/javascript/utils'
                             }
                         ]
                     },
@@ -71,7 +71,7 @@ module.exports = {
                         items: [
                             {
                                 text: 'typescript',
-                                link: '/typescript/typescript_next/'
+                                link: '/typescript/'
                             }
                         ]
                     },
@@ -89,7 +89,7 @@ module.exports = {
                         items: [
                             {
                                 text: 'npm配置',
-                                link: '/nodejs/npm/'
+                                link: '/nodejs/npm'
                             }
                         ]
                     },
@@ -98,7 +98,7 @@ module.exports = {
                         items: [
                             {
                                 text: 'webpack',
-                                link: '/webpack/webpack_next/'
+                                link: '/webpack/'
                             }
                         ]
                     }
@@ -106,7 +106,7 @@ module.exports = {
             },
             {
                 text: '脚手架学习',
-                link: '/framework/introduction/'
+                link: '/framework/'
             },
             {text: '播放器', link: 'http://www.tannnb.com/pc/'},
         ],
