@@ -115,3 +115,8 @@ nvm list
 # 切换到指定的 node 版本
 nvm use 版本号
 ```
+
+#### require加载资源的方式(类型)
+* js： 要求必须输出module.exports/exports输出模块
+* json: 如果是json文件，会通过JOSN.parse去解析文件
+* node：通过C++插件AddOns去打开文件

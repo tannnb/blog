@@ -49,6 +49,7 @@ const frameworkSidebar = [
         children: [
             '/framework/',
             '/framework/lerna',
+            '/framework/fork',
             '/framework/vue',
         ]
     }
