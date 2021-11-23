@@ -11,7 +11,7 @@ npm config get registry
 npm config set registry=https://registry.npm.taobao.org
 # yarn config set registry https://registry.npm.taobao.org
 # 官方源
-npm config set registry=http://registry.npmjs.org
+npm config set registry=https://registry.npmjs.org
 ```
 
 ## 查看已安装的依赖包
