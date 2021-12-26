@@ -71,7 +71,7 @@ module.exports = {
                         items: [
                             {
                                 text: 'typescript',
-                                link: '/typescript/'
+                                link: '/typescript/base/'
                             }
                         ]
                     },

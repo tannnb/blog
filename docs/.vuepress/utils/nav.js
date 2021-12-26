@@ -71,16 +71,27 @@ const webpackSideBar = [
     },
 ]
 
-
 // typescript菜单栏配置
 const typescriptSideBar = [
     {
-        title: 'typescript',
-        collapsable: false,
+        title: 'typescript基础',
+        collapsable: true,
         children: [
-            '/typescript/'
+            'base/',
+            'base/baseType',
+            'base/function',
+            'base/Class',
+            'base/interface',
+            'base/generics',
         ]
     },
+    {
+        title: '类型挑战',
+        collapsable: true,
+        children: [
+            'typeChange/'
+        ]
+    }
 ]
 
 

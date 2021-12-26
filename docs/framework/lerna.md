@@ -107,6 +107,13 @@ program.outputHelp()
 //    -h, --help     display help for command
 ```
 
+
+:::tip require加载资源的方式(类型)
+* js： 要求必须输出module.exports/exports输出模块
+* json: 如果是json文件，会通过JOSN.parse去解析文件
+* node：通过C++插件AddOns去打开文件
+:::
+
 创建子命令的两种方式
 ```js
 // 第一种： command新增子命令

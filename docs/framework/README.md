@@ -42,7 +42,7 @@ vue create -help
 
 终端根据vue命令链接到实际文件`vue.js`，然后利用node执行`vue.js`，`vue.js`解析command/options并且执行command，执行完成之后最后退出
 
-<div style="text-align: left">
+<div style="text-align: left;width:600px">
   <img src="../images/framework/introduction_1.png" />
 </div>
 
@@ -96,7 +96,7 @@ console.log('hello world')
 :::
 
 #### 脚手架命令执行全过程
-<div style="text-align: left">
+<div style="text-align: left;width:500px">
   <img src="../images/framework/introduction_2.png" />
 </div>
 
