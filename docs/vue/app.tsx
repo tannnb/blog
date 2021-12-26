@@ -140,17 +140,13 @@ const removeEmptyRoutes = (routerSource: any[]) => {
     return route
   })
 }
-const importComponentAsync = (component: string) => {
-  if(!component) return null
-  const path = component.slice(1)
-  return () => import(`@/pages${path}/index`)
-}
 const setComponentAsync = (route: any) => {
   if(route.component) {
-    route.component = importComponentAsync(route.component)
+    const path = route.component.slice(1)
+    route.component = () => import(`@/pages${path}/index`)
   }
 }
-const isChecks = (route: any) => {
+const includesKeys = (route: any) => {
   const keys = Object.keys(route)
   return !keys.includes('audit') && !keys.includes('tntInsts')
 }
@@ -162,7 +158,7 @@ const isEqual = (route: any,initData: initProps) => {
 // eslint-disable-next-line @typescript-eslint/no-shadow
 const asyncComponent = (route: any, initData: initProps) => {
   // 1. 没有auth和tnt字段以及routes字段
-  if(isChecks(route) && !route.routes) {
+  if(includesKeys(route) && !route.routes) {
     setComponentAsync(route)
     return route
   }
@@ -175,7 +171,7 @@ const asyncComponent = (route: any, initData: initProps) => {
   // 存在子级情况验证是否有权限
   const childRoutes: any[] = []
   route.routes?.forEach((item: any) => {
-    if(isChecks(item)) {
+    if(includesKeys(item)) {
       setComponentAsync(item)
       childRoutes.push(item)
     }
@@ -193,10 +189,9 @@ export function patchRoutes() {
   routeArray.forEach((route: any) => {
     const result = asyncComponent(route,initData)
     if(result) {
-      result && RoutesMaps.push(result)
+      RoutesMaps.push(result)
     }
   })
-  console.log(RoutesMaps)
   return RoutesMaps
 }
 
