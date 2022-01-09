@@ -86,6 +86,16 @@ const typescriptSideBar = [
         ]
     },
     {
+        title: '最佳实践',
+        collapsable: true,
+        children: [
+            'practice/',
+            'practice/hook',
+            'practice/interface',
+            'practice/props',
+        ]
+    },
+    {
         title: '类型挑战',
         collapsable: true,
         children: [
