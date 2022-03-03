@@ -9,6 +9,7 @@ function App () {
 
   const [form] = Form.useForm();
   const [tabelData, setTableData] = useState([])
+  const [editState, setEditState] = useState(true)
 
   const onFinish = (values) => {
     console.log('values', values)
@@ -40,6 +41,10 @@ function App () {
       table: params
     });
     setTableData([...tabelData, ...params])
+  }
+
+  const edit = () => {
+    setEditState((state) => !state)
   }
 
   useEffect(() => {
@@ -77,14 +82,16 @@ function App () {
                       key: 'name',
                       dataIndex: 'name',
                       render: (_, record) => {
-
-                        return <Form.Item
-                          rules={rules}
-                          name={[record.name, 'name']}
-                          fieldKey={[record.fieldKey, 'name']}
-                        >
-                          <Input />
-                        </Form.Item>
+                        const currentData = tabelData[record.key]
+                        return editState ? (
+                          <Form.Item
+                            rules={rules}
+                            name={[record.name, 'name']}
+                            fieldKey={[record.fieldKey, 'name']}
+                          >
+                            <Input />
+                          </Form.Item>
+                        ) : (currentData.name)
                       }
                     },
                     {
@@ -92,27 +99,31 @@ function App () {
                       key: 'age',
                       dataIndex: 'age',
                       render: (_, record) => {
-                        return <Form.Item
-                          rules={rules}
-                          // name={[record.name, 'age']}
-                          fieldKey={[record.fieldKey, 'age']}
-                          shouldUpdate
-                        >
-                          {({ getFieldValue }) => {
-                            console.log('性别', record);
-                            const fieldValue = getFieldValue('table')
-                            const currentData = fieldValue[record.key]
+                        const currentData = tabelData[record.key]
 
-                            return (
-                              <Form.Item name={[record.name, 'age']}>
-                                <Select disabled={currentData.id === 100}>
-                                  <Select.Option value="男">男</Select.Option>
-                                  <Select.Option value="女">女</Select.Option>
-                                </Select>
-                              </Form.Item>
-                            )
-                          }}
-                        </Form.Item>
+                        return editState ? (
+                          <Form.Item
+                            rules={rules}
+                            // name={[record.name, 'age']}
+                            fieldKey={[record.fieldKey, 'age']}
+                            shouldUpdate
+                          >
+                            {({ getFieldValue }) => {
+                              console.log('性别', record);
+                              const fieldValue = getFieldValue('table')
+                              const currentData = fieldValue[record.key]
+
+                              return (
+                                <Form.Item name={[record.name, 'age']}>
+                                  <Select disabled={currentData.id === 100}>
+                                    <Select.Option value="男">男</Select.Option>
+                                    <Select.Option value="女">女</Select.Option>
+                                  </Select>
+                                </Form.Item>
+                              )
+                            }}
+                          </Form.Item>
+                        ) : (currentData.age)
                       }
                     },
                     {
@@ -120,31 +131,35 @@ function App () {
                       key: 'address',
                       dataIndex: 'address',
                       render: (_, record) => {
-                        return <Form.Item
-                          rules={rules}
-                          // name={[record.name, 'address']}
-                          fieldKey={[record.fieldKey, 'address']}
-                          shouldUpdate
-                        >
-                          {({ getFieldValue }) => {
-                            const fieldValue = getFieldValue('table')
-                            const currentData = fieldValue[record.key]
-                            console.log('fieldValue', fieldValue);
-                            const result = currentData.age === '女' ? <Input /> : (
-                              <Select>
-                                <Select.Option value="四川">四川</Select.Option>
-                                <Select.Option value="重庆">重庆</Select.Option>
-                              </Select>
-                            )
+                        const currentData = tabelData[record.key]
 
-                            return (
-                              <Form.Item name={[record.name, 'address']}>
-                                {result}
-                              </Form.Item>
-                            )
-                          }}
+                        return editState ? (
+                          <Form.Item
+                            rules={rules}
+                            // name={[record.name, 'address']}
+                            fieldKey={[record.fieldKey, 'address']}
+                            shouldUpdate
+                          >
+                            {({ getFieldValue }) => {
+                              const fieldValue = getFieldValue('table')
+                              const currentData = fieldValue[record.key]
+                              console.log('fieldValue', fieldValue);
+                              const result = currentData.age === '女' ? <Input /> : (
+                                <Select>
+                                  <Select.Option value="四川">四川</Select.Option>
+                                  <Select.Option value="重庆">重庆</Select.Option>
+                                </Select>
+                              )
+                              return (
+                                <Form.Item name={[record.name, 'address']}>
+                                  {result}
+                                </Form.Item>
+                              )
+                            }}
 
-                        </Form.Item>
+                          </Form.Item>
+                        ) : (currentData.address)
+
                       }
                     },
                     {
@@ -181,6 +196,7 @@ function App () {
       <Button onClick={() => validate()}>校验</Button>
       <Button onClick={() => increate()}>新增数据</Button>
       <Button onClick={() => mock()}>模拟加载</Button>
+      <Button onClick={() => edit()}>取消编辑</Button>
     </div>
   );
 }
