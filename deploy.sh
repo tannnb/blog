@@ -2,7 +2,7 @@
 set -e
 
 # 生成静态文件
-npm run docs:build
+npm run build
 
 # 导航到构建输出目录
 cd docs/.vuepress/dist

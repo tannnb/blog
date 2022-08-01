@@ -1,11 +1,17 @@
 ---
 home: true
 lang: zh-CN
-heroText: 黑娃 ● 知识库
+heroText: 菜鸟实验室
 heroImage: /hero.png
 
-actionText: 立刻开始
-actionLink: /interview/base/
+actions:
+  - text: 立刻开始
+    link: /guide/
+    type: primary
+  # - text: 项目简介
+  #   link: /zh/guide/
+  #   type: secondary
+
 tagline: 知识库强，则技术强，技术强则国强
     
 features:

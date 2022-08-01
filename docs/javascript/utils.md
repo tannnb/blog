@@ -40,25 +40,25 @@ function getIdCardInfo(idCard, separator = '/') {
 ## 滚动到顶部
 
 ```js
-// 滚动条滚动到指定位置 ScrollTop(position, time);
-function scrollTop(number = 0, time = 300) {
+// 滚动条滚动到指定位置 ScrollTop(number, time);
+function ScrollTop (number = 0, time = 200) {
     if (!time) {
         document.body.scrollTop = document.documentElement.scrollTop = number;
         return number;
     }
     const spacingTime = 20;
-    let spacingInex = time / spacingTime;
-    let nowTop = document.body.scrollTop || document.documentElement.scrollTop;
-    let everTop = (number - nowTop) / spacingInex;
+    let spacingInex = time / spacingTime; 
+    let nowTop = document.body.scrollTop + document.documentElement.scrollTop;
+    let everTop = (number - nowTop) / spacingInex; 
     let scrollTimer = setInterval(() => {
         if (spacingInex > 0) {
             spacingInex--;
-            ScrollTop(nowTop += everTop);
+            ScrollTop(nowTop += everTop, time);
         } else {
-            clearInterval(scrollTimer);
+            clearInterval(scrollTimer); 
         }
     }, spacingTime);
-}
+};
 ```
 
 ## 数据类型验证
