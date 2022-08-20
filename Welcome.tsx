@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import { Form, Table, Input, Checkbox } from 'antd';
-import { MenuOutlined } from '@ant-design/icons';
+import React, { useState, useEffect } from 'react';
+import { Form, Table, Input, Checkbox, Select, Button } from 'antd';
+import { LikeTwoTone, MenuOutlined } from '@ant-design/icons';
 import { arrayMoveImmutable } from 'array-move';
 import type { SortableContainerProps, SortEnd } from 'react-sortable-hoc';
 import { SortableContainer, SortableElement, SortableHandle } from 'react-sortable-hoc';
+import _ from 'lodash';
 import './we.css';
 
 const DragHandle = SortableHandle(() => <MenuOutlined style={{ cursor: 'grab', color: '#999' }} />);
@@ -14,39 +15,76 @@ const SortableBody = SortableContainer((props: React.HTMLAttributes<HTMLTableSec
   <tbody {...props} />
 ));
 
+let goobaleIndex = 2;
 const Welcome: React.FC = () => {
   const [form] = Form.useForm();
-
-  const [dataSource] = useState([
+  const [edit, setEdit] = useState(false);
+  const [dataSource, setDataSource] = useState([
     {
       key: 0,
       index: 0,
-      name: '1111',
-      age: '1111',
-      address: true,
+      name: '0',
     },
     {
       key: 1,
       index: 1,
-      name: '2222',
-      age: '2222',
-      address: false,
+      name: 1,
     },
+    // {
+    //   key: 2,
+    //   index: 2,
+    //   name: 2,
+    // },
+    // {
+    //   key: 3,
+    //   index: 3,
+    //   name: 3,
+    // },
+    // {
+    //   key: 4,
+    //   index: 4,
+    //   name: 4,
+    // },
   ]);
+
+  useEffect(() => {
+    // setDataSource(dataSource);
+    form.setFieldsValue({ table: dataSource });
+  }, []);
 
   const columns = [
     {
-      title: 'Sort',
+      title: '',
       dataIndex: 'sort',
       width: 30,
       className: 'drag-visible',
       render: () => <DragHandle />,
     },
     {
+      title: '序号',
+      width: 80,
+      render: (_: number, record: any) => {
+        return (
+          <Form.Item style={{ margin: 0 }} shouldUpdate>
+            {({ getFieldValue }) => {
+              const currentData = getFieldValue('table');
+              const data = currentData[record.fieldKey];
+              console.log(currentData, data);
+              // console.log(dataSource, record, data);
+              return (
+                <Form.Item noStyle style={{ margin: 0 }}>
+                  <div>{data.index}</div>
+                </Form.Item>
+              );
+            }}
+          </Form.Item>
+        );
+      },
+    },
+    {
       title: 'name',
       dataIndex: 'name',
-      width: '30%',
-      render: (_, record) => {
+      render: (_, record: any) => {
         return (
           <Form.Item style={{ margin: 0 }} shouldUpdate fieldKey={[record.fieldKey, 'name']}>
             {({ getFieldValue }) => {
@@ -59,79 +97,21 @@ const Welcome: React.FC = () => {
                   name={[record.fieldKey, 'name']}
                   rules={[{ required: true, message: '必填' }]}
                 >
-                  <Input
-                    onBlur={(e) => {
-                      const newData = currentData.map((item, index) => {
-                        if (record.fieldKey === index) {
-                          item.address = e.target.value;
-                        }
-                        return item;
-                      });
-                      form.setFieldsValue({ table: newData });
-                      // setDataSource(newData);
-                    }}
-                  />
-                </Form.Item>
-              );
-            }}
-          </Form.Item>
-        );
-      },
-    },
-    {
-      title: 'age',
-      dataIndex: 'age',
-      editable: true,
-      render: (_, record) => {
-        return (
-          <Form.Item style={{ margin: 0 }} shouldUpdate fieldKey={[record.fieldKey, 'age']}>
-            {({ getFieldValue }) => {
-              return (
-                <Form.Item
-                  noStyle
-                  style={{ margin: 0 }}
-                  name={[record.fieldKey, 'age']}
-                  rules={[{ required: true, message: '必填' }]}
-                >
-                  <Input />
-                </Form.Item>
-              );
-            }}
-          </Form.Item>
-        );
-      },
-    },
-    {
-      title: 'address',
-      dataIndex: 'address',
-      render: (_, record) => {
-        return (
-          <Form.Item style={{ margin: 0 }} shouldUpdate fieldKey={[record.fieldKey, 'address']}>
-            {({ getFieldValue }) => {
-              const currentData = getFieldValue('table');
-              const data = currentData[record.fieldKey];
-              return (
-                <Form.Item
-                  noStyle
-                  initialValue={true}
-                  style={{ margin: 0 }}
-                  name={[record.fieldKey, 'address']}
-                  rules={[{ required: true, message: '必填' }]}
-                >
-                  <Checkbox
-                    checked={data.address}
-                    onChange={(e) => {
-                      const newData = currentData.map((item, index) => {
-                        if (record.fieldKey === index) {
-                          item.address = e.target.checked;
-                        }
-                        return item;
-                      });
-                      console.log(newData);
-                      form.setFieldsValue({ table: newData });
-                      // setDataSource(newData);
-                    }}
-                  />
+                  {edit ? (
+                    <Input
+                      onBlur={(e) => {
+                        const newData = currentData.map((item, index) => {
+                          if (record.fieldKey === index) {
+                            item.address = e.target.value;
+                          }
+                          return item;
+                        });
+                        form.setFieldsValue({ table: newData });
+                      }}
+                    />
+                  ) : (
+                    <div>{data?.name}</div>
+                  )}
                 </Form.Item>
               );
             }}
@@ -145,7 +125,10 @@ const Welcome: React.FC = () => {
     if (oldIndex !== newIndex) {
       const table = form.getFieldsValue().table;
       const newData = arrayMoveImmutable(table, oldIndex, newIndex).filter((el) => !!el);
+
+      // setDataSource(newData);
       form.setFieldsValue({ table: newData });
+      form.validateFields();
     }
   };
 
@@ -160,20 +143,60 @@ const Welcome: React.FC = () => {
   );
 
   const DraggableBodyRow: React.FC<any> = ({ className, style, ...restProps }) => {
-    const index = dataSource.findIndex((x) => x.index === restProps['data-row-key']);
-    return <SortableItem key={index} index={index} {...restProps} />;
+    const index = dataSource?.findIndex((x) => x.index === restProps['data-row-key']);
+    return <SortableItem index={index} {...restProps} />;
   };
 
+  const getMaxIndex = () => {
+    let currentIndex = 0;
+    const table = form.getFieldsValue().table;
+    const currentData = _.cloneDeep(table);
+    currentData.forEach((item, index: number) => {
+      if (index >= currentIndex) {
+        currentIndex = index;
+      }
+    });
+    return currentIndex + 1;
+  };
+
+  const expandState = () => {
+    setEdit(!edit);
+  };
+
+  const increateAdd = () => {
+    const newData = form.getFieldsValue().table;
+
+    const currentData = _.cloneDeep(newData);
+    console.log('添加之前:', newData);
+
+    const params = {
+      key: goobaleIndex,
+      index: goobaleIndex,
+      name: goobaleIndex,
+    };
+    currentData.push(params);
+    console.log('添加之后:', currentData);
+
+    setDataSource(currentData);
+    form.setFieldsValue({ table: currentData });
+
+    goobaleIndex += 1;
+  };
+
+  // initialValues={{ table: dataSource }}
   return (
     <div>
-      <Form form={form} initialValues={{ table: dataSource }}>
+      <Button onClick={() => expandState()}>切换状态</Button>
+      <Button onClick={() => increateAdd()}>增加一条</Button>
+      <div>----</div>
+      <Form form={form}>
         <Form.List name="table">
           {(fields) => {
+            console.log('fields', fields);
             return (
               <Table
-                rowClassName={() => 'editable-row'}
                 bordered
-                // rowKey="index"
+                // rowKey="key"
                 dataSource={fields}
                 columns={columns}
                 pagination={false}
