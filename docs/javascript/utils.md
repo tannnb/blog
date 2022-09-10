@@ -204,3 +204,36 @@ let doCookie = {
 ```
 
 
+## AOP
+
+```js
+Function.prototype.befor(function(callback)  {
+  let _self = this;
+  return function() {
+    callback.apply(_self,arguments)
+    return  _self.apply(_self,arguments)
+  }
+})
+
+Function.prototype.after = function (callback) {
+  var _self = this
+  return function  () {
+    const result = _self.apply(_self, arguments)
+    callback.apply(_self, arguments)
+    return result
+  }
+}
+
+
+function app() {
+  console.log('app')
+  return 'Application'
+}
+const result = app.befor(function() {
+  console.log('执行之前')
+}).after(function() {
+   console.log('执行之后')
+})
+console.log(result)
+
+```
