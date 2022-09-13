@@ -13,10 +13,6 @@ import { head, navbar, sidebar } from './configs'
 const isProduction = process.env.NODE_ENV === 'production'
 
 // 兼容 GitHub Pages 和 vercel 部署
-const base = process.env.BUILD_ENV
-  ? (process.env.BUILD_ENV as `/${string}/`)
-  : '/'
-
 export default defineUserConfig({
   base: '/blog/',
   dest: './dist',

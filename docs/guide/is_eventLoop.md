@@ -11,7 +11,7 @@ JavaScript是一门单线程的语言，意味着同一时间内只能做一件�
 
 运行流程图如下：
 <div style="text-align: left;width: 600px">
-  <img src="/images/base/eventloop1.png" />
+      <img :src="$withBase('/images/base/eventloop1.png')">
 </div>
 
 从上面我们可以看到，同步任务进入主线程，即主执行栈，异步任务进入任务队列，主线程内的任务执行完毕为空，会去任务队列读取对应的任务，推入主线程执行。
@@ -77,7 +77,7 @@ console.log(3)
 
 此时，事件循环，宏任务，微任务的关系如图所示：
 <div style="text-align: left;width: 600px">
-  <img src="/images/base/eventloop2.png" />
+  <img :src="$withBase('/images/base/eventloop2.png')" alt="foo">
 </div>
 
 按照这个流程，它的执行机制是：

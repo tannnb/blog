@@ -114,7 +114,7 @@ console.log(a) //输出: 10
 // a的值为一个基本类型，是存储在栈中，将a的值赋给b，虽然两个变量的值相等，但是两个变量保存了两个不同的内存地址
 ```
 <div style="text-align: left">
-  <img src="/images/base/data_type_1.png" />
+  <img :src="$withBase('/images/base/data_type_1.png')">
 </div>
 
 ### 引用类型
@@ -129,7 +129,7 @@ console.log(obj1.name); // 输出: 李雷
 // 所以更改obj2会对obj1产生影响
 ```
 <div style="text-align: left">
-  <img src="/images/base/data_type_2.png" />
+  <img :src="$withBase('/images/base/data_type_2.png')">
 </div>
 
 

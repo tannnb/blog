@@ -2,10 +2,10 @@
 
 ## 一、什么是浅拷贝
 
-### 创建一个新对象，这个对象有着原始对象属性值的一份精确拷贝。如果属性是基本类型，拷贝的就是基本类型的值; 如果属性是引用类型，拷贝的就是内存地址 ，所以如果其中一个对象改变了这个地址，就会影响到另一个对象。
+#### 创建一个新对象，这个对象有着原始对象属性值的一份精确拷贝。如果属性是基本类型，拷贝的就是基本类型的值; 如果属性是引用类型，拷贝的就是内存地址 ，所以如果其中一个对象改变了这个地址，就会影响到另一个对象。
 
 <div style="text-align: left; width:500px">
-  <img src="/images/base/copy_1.png" />
+    <img :src="$withBase('/images/base/copy_1.png')">
 </div>
 
 ### 浅拷贝实现方法
@@ -45,7 +45,7 @@ function clone(target) {
 
 将一个对象从内存中完整的拷贝一份出来,从堆内存中开辟一个新的区域存放新对象,且修改新对象不会影响原对象。
 <div style="text-align: left; width:500px">
-  <img src="/images/base/copy_2.png" />
+      <img :src="$withBase('/images/base/copy_2.png')">
 </div>
 
 ### 简单版
