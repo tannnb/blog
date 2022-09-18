@@ -103,12 +103,12 @@ function cloneObj(origin, target) {
 }
 ```
 
-## 深拷贝ES5版
-```js
+## 深拷贝 ES5 版
 
-function deepClone (origin, target) {
+```js
+function deepClone(origin, target) {
   var tar = target || {}
-  var toStr = Object.prototype.toString;
+  var toStr = Object.prototype.toString
   var arrType = '[object Array]'
 
   for (var k in origin) {
@@ -124,13 +124,12 @@ function deepClone (origin, target) {
 
   return tar
 }
-
 ```
 
+## 深拷贝 ES6 版
 
-## 深拷贝ES6版
 ```js
-function deepClone (origin, hasMap = new WeakMap()) {
+function deepClone(origin, hasMap = new WeakMap()) {
   if (origin == undefined || typeof origin !== 'object') {
     return origin
   }
@@ -158,9 +157,6 @@ function deepClone (origin, hasMap = new WeakMap()) {
   return target
 }
 ```
-
-
-
 
 ## 获取 url 中的参数
 
@@ -335,4 +331,23 @@ const test1 = {
 }
 
 const result = Object.myAssign({}, test1)
+```
+
+## 深度冻结对象 freeze
+
+```js
+// Object.freeze() 浅冻结
+// 给Object上扩展一个深度冻结方法
+Object.deepFreeze = function (o) {
+  var _keys = Object.getOwnPropertyNames(o)
+  if (_keys.length) {
+    _keys.forEach(function (k) {
+      var _value = o[k]
+      if (typeof _value === 'object' && _value !== null) {
+        deepFreeze(_value)
+      }
+    })
+  }
+  return Object.freeze(o)
+}
 ```
