@@ -351,3 +351,45 @@ Object.deepFreeze = function (o) {
   return Object.freeze(o)
 }
 ```
+
+## Object.Entries / Object.formEntries
+
+```js
+Object.myEntries = function (data) {
+  let _pool = []
+
+  if (Object.prototype.toString.call(data) === '[object Object]') {
+    for (let k in data) {
+      if (data.hasOwnProperty(k)) {
+        let _arr = [k, data[k]]
+        _pool.push(_arr)
+      }
+    }
+  }
+  return _pool
+}
+
+Object.myFornEntrics = function (o) {
+  let _obj = {}
+
+  for (let k in o) {
+    _obj[o[k][0]] = o[k][1]
+  }
+
+  return _obj
+}
+```
+
+## 手动实现 forEach
+
+```js
+Array.prototype.myForEach = function (callback) {
+  var _arr = this
+  var _len = _arr.length
+  var _argument = argument[1] || window
+
+  for (var i = 0; i < _len; i++) {
+    callback.apply(_argument, [_arr[i], i, _arr])
+  }
+}
+```
