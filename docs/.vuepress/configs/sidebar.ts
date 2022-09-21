@@ -6,6 +6,7 @@ export const sidebar: SidebarConfig = {
       text: '基础知识',
       children: [
         '/guide/',
+        '/guide/nsn_umber',
         '/guide/data_type',
         '/guide/isEqual',
         '/guide/typeof',
@@ -15,7 +16,6 @@ export const sidebar: SidebarConfig = {
         '/guide/is_class',
         '/guide/is_eventLoop',
         '/guide/is_copy',
-        '/guide/is_call_apply_bind',
         '/guide/is_tree',
         '/guide/is_curry',
         '/guide/is_debounce',
