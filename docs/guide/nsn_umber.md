@@ -103,6 +103,24 @@ Array.prototype.myMap = function (callback) {
 }
 ```
 
+#### 模拟 filter
+
+```js
+Array.prototype.myFilter = function (callback) {
+  var _arr = this
+  var _len = _arr.length
+  var _arguments = arguments[1] || window
+  var _newArr = []
+  var _item
+
+  for (var i = 0; i < _len; i++) {
+    _item = deepClone(_arr[i])
+    callback.apply(_arguments, [_item, i, _arr]) ? _newArr.push() : ''
+  }
+  return _newArr
+}
+```
+
 #### 模拟实现 call
 
 ```js
