@@ -18,7 +18,6 @@ export const sidebar: SidebarConfig = {
         '/guide/is_copy',
         '/guide/is_tree',
         '/guide/is_curry',
-        '/guide/is_debounce',
         '/guide/is_promise',
         '/guide/is_proxy',
         '/guide/is_subject',

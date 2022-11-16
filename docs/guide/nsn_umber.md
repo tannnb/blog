@@ -221,7 +221,7 @@ Function.prototype.myApply = function (context, array) {
 }
 ```
 
-#### 模拟实现 Apply
+#### 模拟实现 Bind
 
 ```js
 Function.prototype.myBind = function (context) {
@@ -269,4 +269,47 @@ const result = app
     console.log('执行之后')
   })
 console.log(result)
+```
+
+
+#### 模拟实现 debounce
+
+```js
+// immediate:是否立即执行
+function debounce(func, wait, immediate) {
+    let timeID;
+    return function () {
+        let context = this;
+        let arg = arguments;
+        let later = function () {
+            timeID = null;
+            if (!immediate) {
+                func.apply(context, args)
+            }
+        }
+        let callNow = immediate && !timeID;
+        clearTimeout(timeID);
+        timeID = setTimeout(later, wait)
+        if (callNow) {
+            func.apply(context, arg)
+        }
+    }
+}
+```
+
+
+#### 模拟实现 throttling
+```ts
+function throttle(func, wait = 500) {
+    let timeID;
+    let startTime = 0;
+    return function (...args) {
+        let context = this;
+        let currentTime = +new Date();
+        if (currentTime - startTime > wait) {
+            func.apply(context, args)
+            startTime = currentTime
+        }
+    }
+}
 ```
