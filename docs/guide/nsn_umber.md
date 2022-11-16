@@ -122,6 +122,7 @@ Array.prototype.myFilter = function (callback) {
 ```
 
 #### 模拟 every
+
 ```js
 Array.prototype.myEvery = function (callback) {
   var _arr = this
@@ -139,13 +140,14 @@ Array.prototype.myEvery = function (callback) {
   return _result
 }
 ```
+
 #### 模拟 some
 ```js
 Array.prototype.mySome = function (callback) {
   var _arr = this
   var _len = _arr.length
   var _arguments = arguments[1] || window
-  var _result = false 
+  var _result = false
 
   for (var i = 0; i < _len; i++) {
     if (callback.apply(_arguments, [_arr[i], i, _arr])) {
@@ -155,6 +157,40 @@ Array.prototype.mySome = function (callback) {
   }
 
   return _result
+}
+```
+
+#### 模拟 reduce
+```js
+Array.prototype.myReduce = function (callback, initialValue) {
+  var _arr = this
+  var _len = _arr.length
+  var _arguments = arguments[2] || window
+  var _item
+
+  for (var i = 0; i < _len; i++) {
+    _item = deepClone(_arr[i])
+    initialValue = callback.apply(_arguments, [initialValue, _item, i, _arr])
+  }
+
+  return initialValue
+}
+```
+
+#### 模拟 reduceRight
+```js
+Array.prototype.myReduceRight = function (callback, initialValue) {
+  var _arr = this
+  var _len = _arr.length
+  var _arguments = arguments[2] || window
+  var _item
+
+  for (var i = _len; i >= 0; i--) {
+    _item = deepClone(_arr[i])
+    initialValue = callback.apply(_arguments, [initialValue, _item, i, _arr])
+  }
+
+  return initialValue
 }
 ```
 
@@ -181,7 +217,7 @@ Function.prototype.myCall = function (context) {
 Function.prototype.myApply = function (context, array) {
   context = context ? Object(context) : window
   context.fn = this
-  return !array ? context.fn(): context.fn(...arr)
+  return !array ? context.fn() : context.fn(...arr)
 }
 ```
 
@@ -224,6 +260,7 @@ function app() {
   console.log('app')
   return 'Application'
 }
+
 const result = app
   .befor(function () {
     console.log('执行之前')
