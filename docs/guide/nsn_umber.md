@@ -139,7 +139,24 @@ Array.prototype.myEvery = function (callback) {
   return _result
 }
 ```
+#### 模拟 some
+```js
+Array.prototype.mySome = function (callback) {
+  var _arr = this
+  var _len = _arr.length
+  var _arguments = arguments[1] || window
+  var _result = false 
 
+  for (var i = 0; i < _len; i++) {
+    if (callback.apply(_arguments, [_arr[i], i, _arr])) {
+      _result = true
+      break
+    }
+  }
+
+  return _result
+}
+```
 
 
 #### 模拟实现 call
