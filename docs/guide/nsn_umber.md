@@ -97,7 +97,7 @@ Array.prototype.myMap = function (callback) {
   for (var i = 0; i < _len; i++) {
     _item = deepClone(_arr[i])
     _res = callback.apply(_arguments, [_item, i, _arr])
-    _res && _newArr.push()
+    _res && _newArr.push(_res)
   }
   return _newArr
 }
@@ -115,18 +115,39 @@ Array.prototype.myFilter = function (callback) {
 
   for (var i = 0; i < _len; i++) {
     _item = deepClone(_arr[i])
-    callback.apply(_arguments, [_item, i, _arr]) ? _newArr.push() : ''
+    callback.apply(_arguments, [_item, i, _arr]) ? _newArr.push(_item) : ''
   }
   return _newArr
 }
 ```
+
+#### 模拟 every
+```js
+Array.prototype.myEvery = function (callback) {
+  var _arr = this
+  var _len = _arr.length
+  var _arguments = arguments[1] || window
+  var _result = true
+
+  for (var i = 0; i < _len; i++) {
+    if (!callback.apply(_arguments, [_arr[i], i, _arr])) {
+      _result = false
+      break
+    }
+  }
+
+  return _result
+}
+```
+
+
 
 #### 模拟实现 call
 
 ```js
 Function.prototype.myCall = function (context) {
   context = context ? Object(context) : window
-  console.fn = this
+  context.fn = this
 
   // 执行函数
   let args = [...arguments].slice(1)
@@ -142,14 +163,8 @@ Function.prototype.myCall = function (context) {
 ```js
 Function.prototype.myApply = function (context, array) {
   context = context ? Object(context) : window
-  console.fn = this
-  let result
-  if (!array) {
-    result = context.fn()
-  } else {
-    result = context.fn(...arr)
-  }
-  return result
+  context.fn = this
+  return !array ? context.fn(): context.fn(...arr)
 }
 ```
 
