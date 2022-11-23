@@ -142,6 +142,7 @@ Array.prototype.myEvery = function (callback) {
 ```
 
 #### 模拟 some
+
 ```js
 Array.prototype.mySome = function (callback) {
   var _arr = this
@@ -161,6 +162,7 @@ Array.prototype.mySome = function (callback) {
 ```
 
 #### 模拟 reduce
+
 ```js
 Array.prototype.myReduce = function (callback, initialValue) {
   var _arr = this
@@ -178,6 +180,7 @@ Array.prototype.myReduce = function (callback, initialValue) {
 ```
 
 #### 模拟 reduceRight
+
 ```js
 Array.prototype.myReduceRight = function (callback, initialValue) {
   var _arr = this
@@ -193,7 +196,6 @@ Array.prototype.myReduceRight = function (callback, initialValue) {
   return initialValue
 }
 ```
-
 
 #### 模拟实现 call
 
@@ -271,45 +273,50 @@ const result = app
 console.log(result)
 ```
 
-
 #### 模拟实现 debounce
 
 ```js
 // immediate:是否立即执行
-function debounce(func, wait, immediate) {
-    let timeID;
-    return function () {
-        let context = this;
-        let arg = arguments;
-        let later = function () {
-            timeID = null;
-            if (!immediate) {
-                func.apply(context, args)
-            }
-        }
-        let callNow = immediate && !timeID;
-        clearTimeout(timeID);
-        timeID = setTimeout(later, wait)
-        if (callNow) {
-            func.apply(context, arg)
-        }
+function debounce(fn, wait, immediate) {
+  let time = null
+  const debounced = function () {
+    if (time) {
+      clearTimeout(time);
     }
+
+    if (immediate) {
+      const exec = !time
+      time = setTimeout(() => time = null, wait)
+      if (exec) {
+        fn.apply(this, arguments)
+      }
+    } else {
+      time = setTimeout(() => {
+        fn.apply(this, arguments)
+      }, wait)
+    }
+    return response
+  }
+  debounced.remove = function () {
+    clearTimeout(time)
+    time = null
+  }
+  return debounced
 }
 ```
-
 
 #### 模拟实现 throttling
 ```ts
 function throttle(func, wait = 500) {
-    let timeID;
-    let startTime = 0;
-    return function (...args) {
-        let context = this;
-        let currentTime = +new Date();
-        if (currentTime - startTime > wait) {
-            func.apply(context, args)
-            startTime = currentTime
-        }
+  let timeID;
+  let startTime = 0;
+  return function (...args) {
+    let context = this;
+    let currentTime = +new Date();
+    if (currentTime - startTime > wait) {
+      func.apply(context, args)
+      startTime = currentTime
     }
+  }
 }
 ```
