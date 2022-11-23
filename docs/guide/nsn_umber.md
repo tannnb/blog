@@ -274,7 +274,7 @@ console.log(result)
 ```
 
 #### 模拟实现 debounce
-
+函数防抖：n秒内只要触发事件，就重新计时，事件处理函数的程序将永远不能被执行
 ```js
 // immediate:是否立即执行
 function debounce(fn, wait, immediate) {
@@ -306,16 +306,19 @@ function debounce(fn, wait, immediate) {
 ```
 
 #### 模拟实现 throttling
+函数节流: 事件被触发，n秒之内只执行一次事件处理函数
 ```ts
-function throttle(func, wait = 500) {
-  let timeID;
-  let startTime = 0;
-  return function (...args) {
-    let context = this;
-    let currentTime = +new Date();
-    if (currentTime - startTime > wait) {
-      func.apply(context, args)
-      startTime = currentTime
+function throttle (fn, depay = 500) {
+  let time = null
+  let begin = +new Date()
+  return function () {
+    let currentTiem = +new Date()
+    clearTimeout(time)
+    if (currentTime - begin >= depay) {
+      fn.apply(this, arguments)
+      begin = currentTiem
+    } else {
+      time = setTimeout(() => fn.apply(this, arguments), depay)
     }
   }
 }
