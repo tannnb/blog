@@ -32,7 +32,8 @@ console.log(Test.__proto__)
 
 // 对象的__proto__保存着该对象的构造函数的prototype
 // console.log(Test.prototype.__proto__ === Object.prototype)
-console.log(Test.__proto__ === Test.prototype) // true
+// Function.__proto__ === Function.prototype // true Function.__proto__指向的是它本身的prototype(规定如此)
+console.log(test.__proto__ === Test.prototype) // true
 
 
 // 以一个对象为基准，以__proto__为连接的这条链条，一直到Object.prototype为止的这个链，我们叫做原型链
