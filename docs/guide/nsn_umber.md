@@ -238,6 +238,26 @@ Function.prototype.myBind = function (context) {
 }
 ```
 
+#### 模拟实现 generator
+给Object增加迭代器
+```js
+const target = {
+  0: 1,
+  1: 2,
+  2: 3,
+  length: 3
+}
+Object.prototype[Symbol.iterator] = function () {
+    let index = 0;
+    let _this = this
+    return {
+        next() {
+            return index < _this.length ? { value: _this[index++], done: false } : { value: undefined, done: true }
+        }
+    }
+}
+```
+
 #### 模拟实现 AOP
 
 ```js
