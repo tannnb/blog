@@ -239,7 +239,9 @@ Function.prototype.myBind = function (context) {
 ```
 
 #### 模拟实现 generator
-给Object增加迭代器
+
+给 Object 增加迭代器
+
 ```js
 const target = {
   0: 1,
@@ -248,13 +250,15 @@ const target = {
   length: 3
 }
 Object.prototype[Symbol.iterator] = function () {
-    let index = 0;
-    let _this = this
-    return {
-        next() {
-            return index < _this.length ? { value: _this[index++], done: false } : { value: undefined, done: true }
-        }
+  let index = 0
+  let _this = this
+  return {
+    next() {
+      return index < _this.length
+        ? { value: _this[index++], done: false }
+        : { value: undefined, done: true }
     }
+  }
 }
 ```
 
@@ -294,19 +298,21 @@ console.log(result)
 ```
 
 #### 模拟实现 debounce
-函数防抖：n秒内只要触发事件，就重新计时，事件处理函数的程序将永远不能被执行
+
+函数防抖：n 秒内只要触发事件，就重新计时，事件处理函数的程序将永远不能被执行
+
 ```js
 // immediate:是否立即执行
 function debounce(fn, wait, immediate) {
   let time = null
   const debounced = function () {
     if (time) {
-      clearTimeout(time);
+      clearTimeout(time)
     }
 
     if (immediate) {
       const exec = !time
-      time = setTimeout(() => time = null, wait)
+      time = setTimeout(() => (time = null), wait)
       if (exec) {
         fn.apply(this, arguments)
       }
@@ -326,9 +332,10 @@ function debounce(fn, wait, immediate) {
 ```
 
 #### 模拟实现 throttling
-函数节流: 事件被触发，n秒之内只执行一次事件处理函数
+函数节流: 事件被触发，n 秒之内只执行一次事件处理函数
+
 ```ts
-function throttle (fn, depay = 500) {
+function throttle(fn, depay = 500) {
   let time = null
   let begin = +new Date()
   return function () {
@@ -342,4 +349,34 @@ function throttle (fn, depay = 500) {
     }
   }
 }
+```
+
+#### 模拟实现函数重载
+
+```ts
+function addMethods(source, key, fn) {
+  let target = source[key]
+  source[key] = function (...args) {
+    if (args.length === fn.length) {
+      return fn.apply(this, args)
+    } else if (typeof old === 'function') {
+      return target.apply(this, args)
+    }
+  }
+}
+
+let search = {}
+addMethods(search, 'find', () => {
+  console.log('默认查询')
+})
+addMethods(search, 'find', (name) => {
+  console.log(`查询条件:${name}`)
+})
+addMethods(search, 'find', (name, age) => {
+  console.log(`查询条件:${name},${age}`)
+})
+
+search.find()
+search.find('名称')
+search.find('名称', '年龄')
 ```
