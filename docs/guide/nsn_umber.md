@@ -359,7 +359,7 @@ function addMethods(source, key, fn) {
   source[key] = function (...args) {
     if (args.length === fn.length) {
       return fn.apply(this, args)
-    } else if (typeof old === 'function') {
+    } else if (typeof target === 'function') {
       return target.apply(this, args)
     }
   }
