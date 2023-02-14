@@ -262,6 +262,34 @@ Object.prototype[Symbol.iterator] = function () {
 }
 ```
 
+
+#### 模拟实现 lodash/chunk
+
+```js
+function chunk (array, size = 1) {
+  if (size < 1) {
+    return []
+  }
+  const result = []
+  for (let i = 0; i < array.length; i += size) {
+    result.push(array.slice(i, i + size))
+  }
+  return result
+}
+```
+#### 模拟实现 lodash/countBy
+
+```js
+function countBy (collection, iteratee) {
+  const result = {}
+  for (const item of collection) {
+    const key = iteratee(item)
+    result[key] ? result[key]++ : (result[key] = 1)
+  }
+  return result
+}
+```
+
 #### 模拟实现 AOP
 
 ```js
