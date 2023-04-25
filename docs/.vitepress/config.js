@@ -1,5 +1,5 @@
 export default {
-  base:'/',
+  base:'/docs/',
   dest: './dist',
   // outDir: '../dist',
   lang: 'zh-CN',
