@@ -35,9 +35,8 @@ sidebar: auto
 | git stash                               | 暂时将未提交的变化移除                     |
 | git stash pop                           | 取出未提交的变化                           |
 
-[查看完整版 Git 命令](command)
 
-[git 命令大全 github](https://github.com/521xueweihan/git-tips)
+[git 命令大全 github] <a href="https://github.com/521xueweihan/git-tips" target="_blank" rel="noreferrer noopener">https://github.com/521xueweihan/git-tips</a>
 
 
 # Git 命令清单
@@ -265,7 +264,8 @@ git stash
 git stash pop
 ```
 
-[参考地址：阮一峰 -- 常用 Git 命令清单](https://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
+[参考地址：阮一峰 -- 常用 Git 命令清单]
+<a href="https://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html" target="_blank" rel="noreferrer noopener">https://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html</a>
 
 ## GIT 拉取远程分支到本地
 ```sh

@@ -1,10 +1,13 @@
 export default {
   base:'/',
   dest: './dist',
-  outDir: '../dist',
+  // outDir: '../dist',
   lang: 'zh-CN',
   title: '蜗牛实验室',
   description: '日常学习记录以及其他',
+  markdown:{
+    linkify: false
+  },
   head:[
     ['meta', { name: 'theme-color', content: '#3eaf7c' }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
@@ -81,12 +84,12 @@ export default {
             { text: "什么是类", link: "/record/base_class" },
             { text: "事件循环", link: "/record/base_eventloop" },
             { text: "深拷贝/浅拷贝", link: "/record/base_copy" },
-          ], 
+          ],
         },
         {
           text: "仿写",
           collapsed:true,
-          items: [ 
+          items: [
             { text: "常用方法",  link: "/record/writing_method"},
             { text: "tree",  link: "/record/writing_tree"},
             { text: "柯里化",  link: "/record/writing_curry"},
@@ -94,7 +97,7 @@ export default {
             { text: "observer",  link: "/record/writing_observer"},
             { text: "subscribe",  link: "/record/writing_subscribe"},
 
-            
+
           ],
         },
       ],
