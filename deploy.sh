@@ -1,16 +1,25 @@
-# 构建
+#!/usr/bin/env sh
+
+# 忽略错误
 set -e
 
-# 生成静态文件
-npm run build
+# 构建
+npm run docs:build
 
-# 导航到构建输出目录
-cd dist
+# 进入待发布的目录
+cd docs/.vitepress/dist
+
+# 如果是发布到自定义域名
+# echo 'www.example.com' > CNAME
 
 git init
 git add -A
 git commit -m 'deploy'
 
+# 如果部署到 https://<USERNAME>.github.io
 git push -f git@github.com:tannnb/blog.git master:gh-pages
+
+# 如果是部署到 https://<USERNAME>.github.io/<REPO>
+# git push -f git@github.com:<USERNAME>/<REPO>.git master:gh-pages
 
 cd -
