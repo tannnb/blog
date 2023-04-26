@@ -1,0 +1,1 @@
+import{_ as s,o as n,c as a,V as l}from"./chunks/framework.b9206b98.js";const C=JSON.parse('{"title":"仿写Promise","description":"","frontmatter":{},"headers":[],"relativePath":"record/writing_promise.md"}'),p={name:"record/writing_promise.md"},o=l("",2),e=[o];function t(c,r,F,y,D,i){return n(),a("div",null,e)}const f=s(p,[["render",t]]);export{C as __pageData,f as default};

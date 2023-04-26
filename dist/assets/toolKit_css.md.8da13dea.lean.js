@@ -1,0 +1,1 @@
+import{_ as s,o as a,c as n,V as l}from"./chunks/framework.b9206b98.js";const A=JSON.parse('{"title":"CSS 语法相关","description":"","frontmatter":{"sidebar":"auto"},"headers":[],"relativePath":"toolKit/css.md"}'),p={name:"toolKit/css.md"},o=l("",9),e=[o];function t(c,r,D,y,C,F){return a(),n("div",null,e)}const d=s(p,[["render",t]]);export{A as __pageData,d as default};

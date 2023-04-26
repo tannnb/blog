@@ -1,0 +1,1 @@
+import{_ as s,o as a,c as e,V as l}from"./chunks/framework.b9206b98.js";const A=JSON.parse('{"title":"概念","description":"","frontmatter":{},"headers":[],"relativePath":"typescript/base_index.md"}'),n={name:"typescript/base_index.md"},o=l("",13),t=[o];function p(c,r,i,d,y,C){return a(),e("div",null,t)}const _=s(n,[["render",p]]);export{A as __pageData,_ as default};

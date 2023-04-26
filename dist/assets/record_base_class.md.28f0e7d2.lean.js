@@ -1,0 +1,1 @@
+import{_ as s,o as n,c as a,V as l}from"./chunks/framework.b9206b98.js";const i=JSON.parse('{"title":"类的创建和继承","description":"","frontmatter":{},"headers":[],"relativePath":"record/base_class.md"}'),o={name:"record/base_class.md"},p=l("",7),e=[p];function t(c,r,D,y,F,A){return n(),a("div",null,e)}const g=s(o,[["render",t]]);export{i as __pageData,g as default};

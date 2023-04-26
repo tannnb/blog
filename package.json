@@ -14,7 +14,8 @@
   "license": "ISC",
   "dependencies": {
     "@mdit-vue/shared": "^0.12.0",
-    "less": "^4.1.3",
-    "vitepress": "1.0.0-alpha.74"
+    "sass": "^1.62.1",
+    "vitepress": "1.0.0-alpha.74",
+    "vue": "^3.2.47"
   }
 }

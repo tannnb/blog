@@ -1,0 +1,1 @@
+import{_ as s,o as n,c as a,V as l}from"./chunks/framework.b9206b98.js";const i=JSON.parse('{"title":"常用方法学习与总结","description":"","frontmatter":{},"headers":[],"relativePath":"record/writing_method.md"}'),p={name:"record/writing_method.md"},o=l("",47),e=[o];function t(c,r,y,F,D,A){return n(),a("div",null,e)}const u=s(p,[["render",t]]);export{i as __pageData,u as default};

@@ -1,0 +1,1 @@
+import{_ as s,o as n,c as a,V as l}from"./chunks/framework.b9206b98.js";const i=JSON.parse('{"title":"仿写数据响应式原理","description":"","frontmatter":{},"headers":[],"relativePath":"record/writing_observer.md"}'),p={name:"record/writing_observer.md"},o=l("",13),e=[o];function t(c,r,y,F,D,A){return n(),a("div",null,e)}const d=s(p,[["render",t]]);export{i as __pageData,d as default};

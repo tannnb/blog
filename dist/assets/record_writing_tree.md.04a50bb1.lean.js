@@ -1,0 +1,1 @@
+import{_ as s,o as a,c as n,V as l}from"./chunks/framework.b9206b98.js";const C=JSON.parse('{"title":"仿写扁平数据结构转Tree","description":"","frontmatter":{},"headers":[],"relativePath":"record/writing_tree.md"}'),o={name:"record/writing_tree.md"},p=l("",2),e=[p];function t(r,c,y,F,D,i){return a(),n("div",null,e)}const d=s(o,[["render",t]]);export{C as __pageData,d as default};

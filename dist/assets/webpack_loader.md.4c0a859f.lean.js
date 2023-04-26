@@ -1,0 +1,1 @@
+import{_ as s,o as a,c as l,V as n}from"./chunks/framework.b9206b98.js";const C=JSON.parse('{"title":"自定义Loader","description":"","frontmatter":{},"headers":[],"relativePath":"webpack/loader.md"}'),o={name:"webpack/loader.md"},p=n("",24),e=[p];function c(t,r,F,D,y,i){return a(),l("div",null,e)}const d=s(o,[["render",c]]);export{C as __pageData,d as default};

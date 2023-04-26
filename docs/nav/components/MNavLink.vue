@@ -1,20 +1,4 @@
-<script setup>
-import { computed } from 'vue'
-import { withBase } from 'vitepress'
-import { slugify } from '@mdit-vue/shared'
 
-const props = defineProps()
-const formatTitle = computed(() => {
-  if (!props.title) {
-    return ''
-  }
-  return slugify(props.title)
-})
-const svg = computed(() => {
-  if (typeof props.icon === 'object') return props.icon.svg
-  return ''
-})
-</script>
 
 <template>
   <a v-if="link" class="m-nav-link" :href="link" target="_blank" rel="noreferrer">
@@ -35,7 +19,47 @@ const svg = computed(() => {
   </a>
 </template>
 
-<style lang="less" scoped>
+<script setup>
+import { computed ,defineProps} from 'vue'
+import { withBase } from 'vitepress'
+import { slugify } from '@mdit-vue/shared'
+
+const props = defineProps({
+  key:{
+    type:String,
+    default:''
+  },
+  icon:{
+    type:String,
+    default:''
+  },
+  title:{
+    type:String,
+    default:''
+  },
+  desc:{
+    type:String,
+    default:''
+  },
+  link:{
+    type:String,
+    default:''
+  },
+})
+
+const formatTitle = computed(() => {
+  if (!props.title) {
+    return ''
+  }
+  return slugify(props.title)
+})
+const svg = computed(() => {
+  if (typeof props.icon === 'object') return props.icon.svg
+  return ''
+})
+</script>
+
+<style lang="scss" scoped>
 .m-nav-link {
   --m-nav-icon-box-size: 40px;
   --m-nav-icon-size: 24px;
