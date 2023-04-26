@@ -1,7 +1,7 @@
 export default {
   base:'/docs/',
   dest: './dist',
-  outDir: '../dist',
+  // outDir: '../dist',
   lang: 'zh-CN',
   title: '蜗牛实验室',
   description: '日常学习记录以及其他',

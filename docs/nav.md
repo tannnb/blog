@@ -6,7 +6,6 @@ outline: [2, 3, 4]
 
 <script setup>
 import { NAV_DATA } from './nav/data'
-console.log('NAV_DATA', NAV_DATA)
 </script>
 <style src="./nav/index.scss"></style>
 
