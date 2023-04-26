@@ -1,7 +1,7 @@
 export default {
   base:'/docs/',
   dest: './dist',
-  // outDir: '../dist',
+  outDir: '../dist',
   lang: 'zh-CN',
   title: '蜗牛实验室',
   description: '日常学习记录以及其他',
@@ -20,7 +20,6 @@ export default {
   themeConfig: {
     siteTitle: "蜗牛实验室",
     logo: "/logo.png",
-    lastUpdatedText: '最近更新时间',
     editLinkText: '在 GitHub 上编辑此页',
     contributorsText: '贡献者',
     tip: '提示',
@@ -37,14 +36,12 @@ export default {
     openInNewWindow: '在新窗口打开',
     toggleColorMode: '切换颜色模式',
     toggleSidebar: '切换侧边栏',
-    docFooter: {
-      prev: '上一篇',
-      next: '下一篇'
-    },
+
     search: {
       provider: 'local'
     },
     nav: [
+      { text: '导航', link: '/nav', activeMatch: '^/nav' },
       { text: "学习记录", link: "/record/" },
       { text: "工具包", link: "/toolKit/css" },
       {
@@ -148,6 +145,21 @@ export default {
     },
     socialLinks:[
       { icon: "github", link: "https://github.com/tannnb" },
-    ]
+    ],
+    docFooter: {
+      prev: '上一篇',
+      next: '下一篇'
+    },
+    outline: {
+      level: 'deep',
+      label: '本页目录'
+    },
+    footer: {
+      copyright: 'Copyright © 2019-present tannnb'
+    },
+    darkModeSwitchLabel: '外观',
+    returnToTopLabel: '返回顶部',
+    lastUpdatedText: '上次更新',
+    cleanUrls: true,
   },
 }
