@@ -32,6 +32,12 @@ export const NAV_DATA = [
         title: 'Json 中文网',
         desc: 'JSON 在线解析及格式化验证',
         link: 'https://www.json.cn'
+      },
+      {
+        icon: 'https://www.lodashjs.com/img/logo.png',
+        title: 'lodash',
+        desc: '高性能JS实用工具库',
+        link: 'https://www.lodashjs.com/'
       }
     ]
   },
@@ -40,19 +46,9 @@ export const NAV_DATA = [
     items: [
       {
         icon: '/icons/chatgpt.png',
-        title: 'ChatGPT（最强）',
+        title: 'ChatGPT',
         link: 'https://chat.openai.com/chat'
       },
-      {
-        icon: 'https://www.midjourney.com/apple-touch-icon.png',
-        title: 'Midjourney（绘画）',
-        link: 'https://www.midjourney.com'
-      },
-      {
-        icon: 'https://global-uploads.webflow.com/59deb588800ae30001ec19c9/5d4891e0e260e3c1bc37b100_beautiful%20ai%20favicon%20%20blue%20square.png',
-        title: 'Beautiful.ai（PPT）',
-        link: 'https://www.beautiful.ai'
-      }
     ]
   },
   {
@@ -189,18 +185,6 @@ export const NAV_DATA = [
         desc: '轻量、可定制的移动端 Vue 组件库',
         link: 'https://vant-ui.github.io/vant'
       },
-      {
-        icon: 'https://webapp.didistatic.com/static/webapp/shield/Cube-UI_logo.ico',
-        title: 'Cube UI',
-        desc: '基于 Vue.js 实现的精致移动端组件库',
-        link: 'https://didi.github.io/cube-ui'
-      },
-      {
-        icon: 'https://img14.360buyimg.com/imagetools/jfs/t1/167902/2/8762/791358/603742d7E9b4275e3/e09d8f9a8bf4c0ef.png',
-        title: 'NutUI',
-        desc: '京东风格的轻量级移动端组件库',
-        link: 'https://nutui.jd.com'
-      }
     ]
   },
   {
@@ -295,12 +279,6 @@ export const NAV_DATA = [
         link: 'https://koajs.com'
       },
       {
-        icon: 'https://www.eggjs.org/favicon.png',
-        title: 'Egg',
-        desc: '为企业级框架和应用而生',
-        link: 'https://www.eggjs.org/zh-CN'
-      },
-      {
         icon: 'https://d33wubrfki0l68.cloudfront.net/e937e774cbbe23635999615ad5d7732decad182a/26072/logo-small.ede75a6b.svg',
         title: 'Nest.js 中文文档',
         desc: '用于构建高效且可伸缩的服务端应用程序的渐进式 Node.js 框架',
@@ -366,12 +344,6 @@ export const NAV_DATA = [
         link: 'https://www.rollupjs.com'
       },
       {
-        icon: 'https://turbo.build/images/favicon-dark/apple-touch-icon.png',
-        title: 'Turbo',
-        desc: 'Turbo is an incremental bundler and build system optimized for JavaScript and TypeScript, written in Rust',
-        link: 'https://turbo.build'
-      },
-      {
         icon: 'https://www.babeljs.cn/img/favicon.png',
         title: 'Babel',
         desc: 'Babel 是一个 JavaScript 编译器',
@@ -394,12 +366,6 @@ export const NAV_DATA = [
   {
     title: '站点生成器',
     items: [
-      {
-        icon: 'https://astro.build/favicon.svg',
-        title: 'Astro',
-        desc: '一个现代化的轻量级静态站点生成器',
-        link: 'https://astro.build'
-      },
       {
         icon: 'https://cn.vuejs.org/logo.svg',
         title: 'VitePress',
@@ -476,10 +442,13 @@ export const NAV_DATA = [
     title: '社区',
     items: [
       {
-        title: 'Github',
-        icon: {
-          svg: '<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>'
+        icon:{
+          svg:`
+          <svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32" data-view-component="true" class="octicon octicon-mark-github v-align-middle">
+          <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path></svg>
+          `
         },
+        title: 'Github',
         desc: '一个面向开源及私有软件项目的托管平台',
         link: 'https://github.com'
       },
