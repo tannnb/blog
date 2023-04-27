@@ -15,7 +15,7 @@ export default {
     ['link', { rel: 'apple-touch-icon', href: '/favicon.ico' }],
     ['link', { rel: 'mask-icon', href: '/favicon.ico', color: '#3eaf7c' }],
     ['meta', { name: 'msapplication-TileImage', content: '/favicon.ico' }],
-    ['meta', { name: 'msapplication-TileColor', content: '#000000' }],
+    ['meta', { name: 'msapplication-TileColor', content: '#000000' }]
   ],
   themeConfig: {
     siteTitle: "蜗牛实验室",
@@ -43,7 +43,7 @@ export default {
     nav: [
       { text: '导航', link: '/nav', activeMatch: '^/nav' },
       { text: "学习记录", link: "/record/" },
-      { text: "工具包", link: "/toolKit/css" },
+      { text: "常用方法", link: "/toolKit/css" },
       {
         text: "更多",
         items: [
@@ -100,6 +100,7 @@ export default {
       ],
       "/toolKit/":[
         { text: "常用css", link: "/toolKit/css" },
+        { text: "vue相关技巧", link: "/toolKit/vue" },
       ],
       '/webpack/':[
         {

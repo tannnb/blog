@@ -379,6 +379,57 @@ function throttle(fn, depay = 500) {
 }
 ```
 
+#### 模拟实现 deepClone
+
+```ts
+function deepClone (origin, target) {
+  var tar = target || {}
+  var toStr = Object.prototype.toString;
+  var arrType = '[object Array]'
+
+  for (var k in origin) {
+    if (origin.hasOwnProperty(k)) {
+      if (typeof origin[k] === 'object' && origin[k] !== null) {
+        tar[k] = toStr.call(origin[k]) === arrType ? [] : {}
+        deepClone(origin[k], tar[k])
+      } else {
+        tar[k] = origin[k]
+      }
+    }
+  }
+  return tar
+}
+
+
+function deepClone (origin, hasMap = new WeakMap()) {
+  if (origin == undefined || typeof origin !== 'object') {
+    return origin
+  }
+
+  if (origin instanceof Date) {
+    return new Date(origin)
+  }
+  if (origin instanceof RegExp) {
+    return new RegExp(origin)
+  }
+
+  const hashKey = hasMap.get(origin)
+  if (hashKey) {
+    return hashKey
+  }
+
+  const target = new origin.constructor()
+  hasMap.set(origin, target)
+  for (let k in origin) {
+    if (origin.hasOwnProperty(k)) {
+      target[k] = deepClone2(origin[k], hasMap)
+    }
+  }
+
+  return target
+}
+```
+
 #### 模拟实现函数重载
 
 ```ts

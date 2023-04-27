@@ -14,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "@mdit-vue/shared": "^0.12.0",
+    "prismjs": "^1.29.0",
     "sass": "^1.62.1",
     "vitepress": "1.0.0-alpha.74",
     "vue": "^3.2.47"
