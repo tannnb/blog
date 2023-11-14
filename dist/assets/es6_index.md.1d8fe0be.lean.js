@@ -1,1 +1,0 @@
-import{_ as s,o as n,c as a,V as l}from"./chunks/framework.b9206b98.js";const i=JSON.parse('{"title":"深入理解ES6","description":"","frontmatter":{"sidebar":"auto"},"headers":[],"relativePath":"es6/index.md"}'),o={name:"es6/index.md"},p=l("",881),e=[p];function t(c,r,y,D,F,A){return n(),a("div",null,e)}const d=s(o,[["render",t]]);export{i as __pageData,d as default};

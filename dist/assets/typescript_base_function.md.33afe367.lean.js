@@ -1,1 +1,0 @@
-import{_ as s,o as a,c as n,V as l}from"./chunks/framework.b9206b98.js";const i=JSON.parse('{"title":"函数","description":"","frontmatter":{},"headers":[],"relativePath":"typescript/base_function.md"}'),o={name:"typescript/base_function.md"},p=l("",16),e=[p];function t(c,r,y,F,D,C){return a(),n("div",null,e)}const u=s(o,[["render",t]]);export{i as __pageData,u as default};

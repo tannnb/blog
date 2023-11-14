@@ -1,1 +1,0 @@
-import{_ as s,o as n,c as a,V as l}from"./chunks/framework.b9206b98.js";const i=JSON.parse('{"title":"new操作符具体干了什么","description":"","frontmatter":{},"headers":[],"relativePath":"record/base_new.md"}'),p={name:"record/base_new.md"},o=l("",11),e=[o];function t(c,r,y,F,D,A){return n(),a("div",null,e)}const d=s(p,[["render",t]]);export{i as __pageData,d as default};

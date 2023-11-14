@@ -1,1 +1,0 @@
-import{_ as s,o as a,c as n,V as l}from"./chunks/framework.b9206b98.js";const A=JSON.parse('{"title":"自定义插件","description":"","frontmatter":{},"headers":[],"relativePath":"webpack/plugin.md"}'),p={name:"webpack/plugin.md"},o=l("",19),e=[o];function c(t,r,y,D,F,i){return a(),n("div",null,e)}const d=s(p,[["render",c]]);export{A as __pageData,d as default};

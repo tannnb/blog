@@ -1,1 +1,0 @@
-import{_ as s,o as a,c as n,V as l}from"./chunks/framework.b9206b98.js";const F=JSON.parse('{"title":"== 和 ===区别","description":"","frontmatter":{},"headers":[],"relativePath":"record/base_equal.md"}'),o={name:"record/base_equal.md"},p=l("",9),e=[p];function t(c,r,y,D,C,A){return a(),n("div",null,e)}const d=s(o,[["render",t]]);export{F as __pageData,d as default};

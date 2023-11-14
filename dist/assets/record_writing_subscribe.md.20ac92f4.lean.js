@@ -1,1 +1,0 @@
-import{_ as s,o as n,c as a,V as l}from"./chunks/framework.b9206b98.js";const i=JSON.parse('{"title":"仿写发布订阅模式","description":"","frontmatter":{},"headers":[],"relativePath":"record/writing_subscribe.md"}'),p={name:"record/writing_subscribe.md"},o=l("",2),e=[o];function t(c,r,F,y,D,A){return n(),a("div",null,e)}const f=s(p,[["render",t]]);export{i as __pageData,f as default};

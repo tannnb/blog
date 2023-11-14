@@ -1,1 +1,0 @@
-import{_ as s,o as n,c as a,V as l}from"./chunks/framework.b9206b98.js";const C=JSON.parse('{"title":"闭包","description":"","frontmatter":{},"headers":[],"relativePath":"record/base_closure.md"}'),p={name:"record/base_closure.md"},o=l("",14),e=[o];function t(c,r,y,F,D,A){return n(),a("div",null,e)}const d=s(p,[["render",t]]);export{C as __pageData,d as default};

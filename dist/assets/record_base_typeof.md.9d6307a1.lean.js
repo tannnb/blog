@@ -1,1 +1,0 @@
-import{_ as s,o as n,c as a,V as l}from"./chunks/framework.b9206b98.js";const C=JSON.parse('{"title":"typeof 与 instanceof 区别","description":"","frontmatter":{},"headers":[],"relativePath":"record/base_typeof.md"}'),o={name:"record/base_typeof.md"},p=l("",11),e=[p];function t(c,r,y,D,A,F){return n(),a("div",null,e)}const f=s(o,[["render",t]]);export{C as __pageData,f as default};

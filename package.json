@@ -1,22 +1,39 @@
 {
-  "name": "docs-app",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "知识小铺",
+  "type": "module",
+  "private": true,
+  "version": "0.0.1",
+  "packageManager": "pnpm@8.0.0",
+  "description": "Development related notes",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tannnb/docs.git"
+  },
+  "license": "MIT",
+
   "scripts": {
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs",
+    "dev": "cross-env NODE_ENV=development vitepress dev docs --port=8732",
+    "build": "vitepress build docs",
+    "build:github": "cross-env APP_BASE_PATH=/docs/ npm run build",
+    "lint": "prettier --write .",
+    "prepare": "husky install",
     "deploy": "bash deploy.sh"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "@mdit-vue/shared": "^0.12.0",
-    "prismjs": "^1.29.0",
-    "sass": "^1.62.1",
-    "vitepress": "1.0.0-alpha.74",
+    "@types/node": "^18.13.0",
+    "cross-env": "^7.0.3",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.2",
+    "prettier": "^2.8.4",
+    "sass": "^1.58.3",
+    "sitemap": "^7.1.1",
+    "vitepress": "1.0.0-alpha.60",
     "vue": "^3.2.47"
+  },
+  "lint-staged": {
+    "*.{js,ts,css,md,json}": [
+      "prettier --write"
+    ]
   }
 }

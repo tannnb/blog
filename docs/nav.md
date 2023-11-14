@@ -1,5 +1,5 @@
 ---
-description: 常用网址导航
+description: 收录了大量高质量前端相关站点，为前端开发工程师提供最简单便捷的网址导航服务
 layoutClass: m-nav-layout
 outline: [2, 3, 4]
 ---
