@@ -1,3 +1,44 @@
+---
+sidebar: auto
+---
+
+# Git
+
+## 常用 Git 命令
+
+::: tip 提示
+[xxx] 均为可选参数
+:::
+
+| 命令                                    | 作用                                       |
+| :-------------------------------------- | :----------------------------------------- |
+| git clone 仓库地址                      | 下载一个 Git 项目                          |
+| git config --list                       | 显示当前的 Git 配置                        |
+| git config [--global] user.name "名称"  | 设置提交代码时的用户名称                   |
+| git config [--global] user.email "邮箱" | 设置提交代码时的邮箱地址                   |
+| git add .                               | 添加所有文件到暂存区                       |
+| git commit -m "提交信息"                | 提交暂存区到仓库区                         |
+| git commit --amend -m "提交信息"        | 替换（无代码改动就重写）上一次 commit 信息 |
+| git branch                              | 列出所有本地分支                           |
+| git branch -r                           | 列出所有远程分支                           |
+| git branch -a                           | 列出所有本地分支和远程分支                 |
+| git branch -d 分支名                    | 删除分支                                   |
+| git branch 分支名                       | 新建一个分支，但依然停留在当前分支         |
+| git checkout --orphan 分支名            | 新建一个空白分支                           |
+| git status                              | 显示变更的文件                             |
+| git log                                 | 显示当前分支的版本历史                     |
+| git merge 分支名                        | 合并指定分支到当前分支                     |
+| git remote -v                           | 显示所有远程仓库                           |
+| git pull [remote][branch]               | 取回远程仓库的变化，并与本地分支合并       |
+| git push [remote][branch]               | 上传本地指定分支到远程仓库                 |
+| git push [remote] --force               | 强行推送当前分支到远程仓库，即使有冲突     |
+| git stash                               | 暂时将未提交的变化移除                     |
+| git stash pop                           | 取出未提交的变化                           |
+
+
+[git 命令大全 github] <a href="https://github.com/521xueweihan/git-tips" target="_blank" rel="noreferrer noopener">https://github.com/521xueweihan/git-tips</a>
+
+
 # Git 命令清单
 
 ## 1. 新建 git 仓库
@@ -115,10 +156,10 @@ git push origin :refs/tags/[tagName]
 # 查看 tag 信息
 git show [tag]
 
-# 提交指定 tag
+# 提交指定tag
 git push [remote] [tag]
 
-# 提交所有 tag
+# 提交所有tag
 git push [remote] --tags
 
 # 新建一个分支，指向某个tag
@@ -182,13 +223,7 @@ git remote -v
 git remote show [remote]
 
 # 增加一个新的远程仓库，并命名
-git remote add [name] [url]
-
-# 删除远程仓库
-git remote remove [name]
-
-# 查看远程仓库地址
-git remote get-url [name]
+git remote add [shortname] [url]
 
 # 取回远程仓库的变化，并与本地分支合并
 git pull [remote] [branch]
@@ -224,37 +259,79 @@ git reset --keep [commit id]
 # 新建一个 commit，用来撤销指定 commit 后者的所有变化都将被前者抵消，并且应用到当前分支
 git revert [commit id]
 
-# 暂存操作
-# 只暂存被追踪的文件
+# 暂时将未提交的变化移除，稍后再移入
 git stash
-# 暂存所有文件并添加说明
-git stash [save '说明信息'] [-u]
-# 查看 stash 列表
-git stash list
-# 取出最近一次的 stash
-git stash apply
-# 取出 stash 列表里对应数字的暂存
-git stash apply 数字
-# 取出并删除最近一次的 stash
 git stash pop
-# 清空所有 stash
-git stash clear
 ```
 
-## 10. 日志
+[参考地址：阮一峰 -- 常用 Git 命令清单]
+<a href="https://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html" target="_blank" rel="noreferrer noopener">https://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html</a>
+
+## GIT 拉取远程分支到本地
+```sh
+1. git init
+
+# 与origin master建立连接
+2. git remote add origin git@github.com:<userName>/***.git
+
+# 拉取远程分支到本地(dev为远程)
+3. git fetch origin dev
+
+# 创建本地分支并切换到该分支
+# dev:本地分支名称  
+# origin/dev:远程分支名称
+4. git checkout -b dev origin/dev
+
+# 拉取分支内容
+5 git pull origin dev
+```
+
+
+## 提交到github的gh-pages分支
+
+1. 安装 `gh-pages`
 
 ```sh
-# 查看提交过的完整日志
-git log
-
-# 查看精简日志（精简版本号和提交信息）
-git log --oneline
-
-# 查看精简日志（完整版本号和提交信息）
-git log --pretty=oneline
-
-# 查看所有分支的所有操作记录（包括被删除的 commit 记录和 reset 操作）
-git reflog
+yarn add -D gh-pages
+# OR npm install -D gh-pages
 ```
 
-[参考地址：阮一峰 -- 常用 Git 命令清单](https://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
+2. 在 `package.json` 中添加如下脚本
+
+```json
+"deploy":"gh-pages -d dist -m deploy",
+"deploy:build": "npm run build && npm run deploy"
+```
+
+3. 运行 `deploy` 脚本
+
+```sh
+yarn deploy
+# OR npm run deploy
+```
+
+## 删除 Git 中的所有提交历史记录
+
+::: tip 提示
+以 `master` 分支为例
+:::
+
+```sh
+# 创建 orphan 分支
+git checkout --orphan [分支名]
+
+# 添加需要上传文件
+git add .
+
+# 提交更改
+git commit -m "Initial"
+
+# 删除需要清空提交记录的分支
+git branch -D master
+
+# 将当前分支重命名为需要清空提交记录的分支名
+git branch -m master
+
+# 强制更新存储库
+git push -f origin master
+```
